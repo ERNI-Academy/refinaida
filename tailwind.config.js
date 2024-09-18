@@ -1,75 +1,126 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    darkMode: ["class"],
+    content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/primereact/**/*.{js,ts,jsx,tsx}",
+  ],
+
   theme: {
-    container: {
-      center: true,
-      screens: {
-        sm: "100%",
-        md: "100%",
-        lg: "1024px",
-        xl: "1024px",
-        "2xl": "1024px",
-      },
-    },
-    extend: {
-      colors: {
-        primary: {
-          0: "#000000",
-          10: "#001a41",
-          20: "#002e68",
-          25: "#00397d",
-          30: "#0d448e",
-          35: "#21519b",
-          40: "#305da8",
-          50: "#4c76c3",
-          60: "#6790de",
-          70: "#82abfb",
-          80: "#adc6ff",
-          90: "#d8e2ff",
-          95: "#edf0ff",
-          98: "#f9f9ff",
-          99: "#fefbff",
-          100: "#ffffff",
-        },
-        secondary: {
-          0: "#000000",
-          10: "#001a41",
-          20: "#002e68",
-          25: "#00397d",
-          30: "#004493",
-          35: "#004fa9",
-          40: "#005bc0",
-          50: "#0073ef",
-          60: "#4a8eff",
-          70: "#7fabff",
-          80: "#adc7ff",
-          90: "#d8e2ff",
-          95: "#edf0ff",
-          98: "#f9f9ff",
-          99: "#fefbff",
-          100: "#ffffff",
-        },
-        tertiary: {
-          0: "#000000",
-          10: "#001e30",
-          20: "#003450",
-          25: "#003f60",
-          30: "#004b71",
-          35: "#005783",
-          40: "#006495",
-          50: "#107eb8",
-          60: "#3d98d4",
-          70: "#5db3f1",
-          80: "#8fcdff",
-          90: "#cbe6ff",
-          95: "#e7f2ff",
-          98: "#f7f9ff",
-          99: "#fcfcff",
-          100: "#ffffff",
-        },
-      },
-    },
+  	container: {
+  		center: 'true',
+  		screens: {
+  			sm: '100%',
+  			md: '100%',
+  			lg: '1024px',
+  			xl: '1024px',
+  			'2xl': '1024px'
+  		}
+  	},
+  	extend: {
+  		fontFamily: {
+  			sans: ["Source Sans 3", "sans-serif"],
+  			mono: ["Source Code Pro", "monospace"]
+  		},
+  		colors: {
+  			primary: {
+  				'0': '#000000',
+  				'10': '#001a41',
+  				'20': '#002e68',
+  				'25': '#00397d',
+  				'30': '#0d448e',
+  				'35': '#21519b',
+  				'40': '#305da8',
+  				'50': '#4c76c3',
+  				'60': '#6790de',
+  				'70': '#82abfb',
+  				'80': '#adc6ff',
+  				'90': '#d8e2ff',
+  				'95': '#edf0ff',
+  				'98': '#f9f9ff',
+  				'99': '#fefbff',
+  				'100': '#ffffff',
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				'0': '#000000',
+  				'10': '#001a41',
+  				'20': '#002e68',
+  				'25': '#00397d',
+  				'30': '#004493',
+  				'35': '#004fa9',
+  				'40': '#005bc0',
+  				'50': '#0073ef',
+  				'60': '#4a8eff',
+  				'70': '#7fabff',
+  				'80': '#adc7ff',
+  				'90': '#d8e2ff',
+  				'95': '#edf0ff',
+  				'98': '#f9f9ff',
+  				'99': '#fefbff',
+  				'100': '#ffffff',
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			tertiary: {
+  				'0': '#000000',
+  				'10': '#001e30',
+  				'20': '#003450',
+  				'25': '#003f60',
+  				'30': '#004b71',
+  				'35': '#005783',
+  				'40': '#006495',
+  				'50': '#107eb8',
+  				'60': '#3d98d4',
+  				'70': '#5db3f1',
+  				'80': '#8fcdff',
+  				'90': '#cbe6ff',
+  				'95': '#e7f2ff',
+  				'98': '#f7f9ff',
+  				'99': '#fcfcff',
+  				'100': '#ffffff'
+  			},
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+  			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		}
+  	}
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };

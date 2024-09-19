@@ -1,4 +1,4 @@
-import Container from "@/components/container";
+import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,11 +8,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useAppStore } from "@/hooks/use-app-store";
 import { useNavigate } from "react-router-dom";
 
 export const NewFeaturePage = () => {
   const navigate = useNavigate();
-
+  const { setFeature } = useAppStore();
   return (
     <Container>
       <Card>
@@ -26,7 +27,11 @@ export const NewFeaturePage = () => {
         </CardHeader>
         <CardContent>
           <div className="flex flex-col gap-4 items-center">
-            <Input className="w-3/5" placeholder="Adding user authentication" />
+            <Input
+              className="w-3/5"
+              placeholder="Adding user authentication"
+              onChange={(e) => setFeature(e.target.value)}
+            />
             <Button className="w-2/6" onClick={() => navigate("/refine")}>
               Start refining
             </Button>

@@ -67,7 +67,7 @@
   }
   body {
     @apply bg-background text-foreground;
-    @apply h-full w-full;
+    @apply h-full w-full min-w-96;
     font-family: "Source Sans 3", sans-serif;
   }
   #root {

@@ -4,7 +4,7 @@ type ContainerProps = {
   size?: ContainerSize;
 };
 
-const Container = ({ children, size = "md" }: ContainerProps) => {
+export const Container = ({ children, size = "md" }: ContainerProps) => {
   const sizeClasses = {
     sm: "container mx-auto my-12 px-12",
     md: "container mx-auto my-8 px-8",
@@ -14,5 +14,3 @@ const Container = ({ children, size = "md" }: ContainerProps) => {
 
   return <div className={sizeClasses[size]}>{children}</div>;
 };
-
-export default Container;

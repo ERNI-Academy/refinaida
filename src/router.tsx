@@ -1,14 +1,20 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "./app";
+import { NewFeaturePage } from "@/pages/new-feature-page";
+import { RefineFeaturePage } from "@/pages/refine-feature-page";
+import { createMemoryRouter } from "react-router-dom";
+import { Root } from "./root";
 
-export const router = createBrowserRouter([
+export const router = createMemoryRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Root />,
     children: [
       {
-        path: "/new-feature",
-        element: <div>Home</div>,
+        path: "/",
+        element: <NewFeaturePage />,
+      },
+      {
+        path: "/refine",
+        element: <RefineFeaturePage />,
       },
     ],
   },

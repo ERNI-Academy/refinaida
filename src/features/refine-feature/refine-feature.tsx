@@ -5,8 +5,10 @@ import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-
 import { useAppStore } from "@/hooks/use-app-store";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/router.tsx";
+import { useTranslation } from "react-i18next";
 
 const RefineFeature = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { feature } = useAppStore();
@@ -15,7 +17,9 @@ const RefineFeature = () => {
     <Container size="lg">
       <div className="flex flex-col gap-8">
         <div className="flex flex-col w-full items-center justify-center">
-          <span className="text-lg font-bold text-gray-500">Feature</span>
+          <span className="text-lg font-bold text-gray-500">
+            {t("refine.feature.title")}
+          </span>
           <span className="text-5xl text-ellipsis whitespace-nowrap w-full text-center overflow-hidden">
             {feature}
           </span>
@@ -31,7 +35,7 @@ const RefineFeature = () => {
               variant={"outline"}
               onClick={() => navigate(routes.default)}
             >
-              Back
+              {t("refine.feature.button.back")}
             </Button>
             <Button className="w-7/12">Send</Button>
           </div>
@@ -40,7 +44,7 @@ const RefineFeature = () => {
               className="w-7/12 ml-auto"
               onClick={() => navigate(routes.backlogFeature)}
             >
-              Get Requirements
+              {t("refine.feature.button.getRequirements")}
             </Button>
           </div>
         </div>

@@ -11,8 +11,10 @@ import { Input } from "@/components/ui/input/input";
 import { useAppStore } from "@/hooks/use-app-store";
 import { useNavigate } from "react-router-dom";
 import { routes } from "@/router.tsx";
+import { useTranslation } from "react-i18next";
 
 const NewFeature = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { setFeature } = useAppStore();
 
@@ -21,10 +23,10 @@ const NewFeature = () => {
       <Card>
         <CardHeader className="mb-4">
           <CardTitle className="text-5xl font-semibold text-center">
-            Let's refine a feature
+            {t("new.feature.title")}
           </CardTitle>
           <CardDescription className="text-lg text-gray-500 text-center">
-            What feature does your solution need?
+            {t("new.feature.subtitle")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -34,8 +36,11 @@ const NewFeature = () => {
               placeholder="Adding user authentication"
               onChange={(e) => setFeature(e.target.value)}
             />
-            <Button className="w-2/6" onClick={() => navigate("/refine")}>
-              Start refining
+            <Button
+              className="w-2/6"
+              onClick={() => navigate(routes.refineFeature)}
+            >
+              {t("new.feature.button.startRefining")}
             </Button>
           </div>
         </CardContent>

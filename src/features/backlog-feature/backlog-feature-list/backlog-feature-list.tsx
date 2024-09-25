@@ -3,7 +3,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/components/ui/card/card";
 
 const BacklogFeatureList = () => (
   <Card className="w-3/5">

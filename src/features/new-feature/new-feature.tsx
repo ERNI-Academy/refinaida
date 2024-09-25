@@ -1,15 +1,16 @@
-import { Container } from "@/components/layout/container";
-import { Button } from "@/components/ui/button";
+import { Container } from "@/components/layout/container/container";
+import { Button } from "@/components/ui/button/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+} from "@/components/ui/card/card";
+import { Input } from "@/components/ui/input/input";
 import { useAppStore } from "@/hooks/use-app-store";
 import { useNavigate } from "react-router-dom";
+import { routes } from "@/router.tsx";
 
 const NewFeature = () => {
   const navigate = useNavigate();

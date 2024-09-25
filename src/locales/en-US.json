@@ -1,0 +1,13 @@
+{
+    "new.feature.title": "Let's refine a feature",
+    "new.feature.subtitle": "What feature doesyour solution need?",
+    "new.feature.button.startRefining": "Start refining",
+    "refine.feature.title": "Feature",
+    "refine.feature.button.back": "Back",
+    "refine.feature.button.getRequirements": "Get Requirements",
+    "backlog.feature.title": "Feature",
+    "backlog.feature.backLog.title": "Backlog",
+    "backlog.feature.button.export": "Export",
+    "backlog.feature.button.thinkMore": "Think more",
+    "backlog.feature.button.refineRequirements": "Refine Requirements"
+}

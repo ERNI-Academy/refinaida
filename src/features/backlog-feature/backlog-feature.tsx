@@ -1,5 +1,5 @@
-import { Container } from "@/components/layout/container";
-import { Button } from "@/components/ui/button";
+import { Container } from "@/components/layout/container/container";
+import { Button } from "@/components/ui/button/button";
 import { useAppStore } from "@/hooks/use-app-store";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
@@ -25,17 +25,11 @@ const BacklogFeature = () => {
         </div>
         <div className="w-full flex gap-4">
           <div className="w-3/5 flex justify-between">
-            <Button className="w-5/12 bg-black text-white border border-black rounded hover:bg-white hover:text-black transition duration-300">
-              Export
-            </Button>
-            <Button className="w-5/12 bg-black text-white border border-black rounded hover:bg-white hover:text-black transition duration-300">
-              Think more
-            </Button>
+            <Button className="w-5/12">Export</Button>
+            <Button className="w-5/12">Think more</Button>
           </div>
           <div className="w-2/5 flex">
-            <Button className="w-7/12 ml-auto bg-black text-white border border-black rounded hover:bg-white hover:text-black transition duration-300">
-              Refine Requirements
-            </Button>
+            <Button className="w-7/12 ml-auto">Refine Requirements</Button>
           </div>
         </div>
       </div>

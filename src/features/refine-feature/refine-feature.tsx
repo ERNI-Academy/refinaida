@@ -37,7 +37,10 @@ const RefineFeature = () => {
             </Button>
           </div>
           <div className="w-2/4 flex">
-            <Button className="w-7/12 ml-auto bg-black text-white border border-black rounded hover:bg-white hover:text-black transition duration-300">
+            <Button
+              className="w-7/12 ml-auto bg-black text-white border border-black rounded hover:bg-white hover:text-black transition duration-300"
+              onClick={() => navigate(routes.backlogFeature)}
+            >
               Get Requirements
             </Button>
           </div>

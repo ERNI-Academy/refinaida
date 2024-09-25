@@ -1,9 +1,14 @@
 import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/hooks/use-app-store";
+import { useNavigate } from "react-router-dom";
+import { routes } from "@/router.tsx";
 
 const RefineFeature = () => {
+  const navigate = useNavigate();
+
   const { feature } = useAppStore();
 
   return (
@@ -18,6 +23,24 @@ const RefineFeature = () => {
         <div className="w-full flex gap-4">
           <RefineFeatureChat />
           <RefineFeatureRequirements />
+        </div>
+        <div className="w-full flex gap-4">
+          <div className="w-2/4 flex justify-between">
+            <Button
+              className="w-2/6 bg-white text-black border border-black rounded hover:bg-black hover:text-white  transition duration-300"
+              onClick={() => navigate(routes.default)}
+            >
+              Back
+            </Button>
+            <Button className="w-7/12 bg-black text-white border border-black rounded hover:bg-white hover:text-black transition duration-300">
+              Send
+            </Button>
+          </div>
+          <div className="w-2/4 flex">
+            <Button className="w-7/12 ml-auto bg-black text-white border border-black rounded hover:bg-white hover:text-black transition duration-300">
+              Get Requirements
+            </Button>
+          </div>
         </div>
       </div>
     </Container>

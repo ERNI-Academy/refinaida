@@ -1,8 +1,10 @@
 import { createMemoryRouter } from "react-router-dom";
-import { Root } from "./root";
+
+import BacklogFeature from "@/features/backlog-feature/backlog-feature";
 import NewFeaturePage from "@/pages/new-feature-page";
 import RefineFeaturePage from "@/pages/refine-feature-page";
-import BacklogFeature from "@/features/backlog-feature/backlog-feature";
+
+import { Root } from "./root";
 
 export const routes = {
   default: "/",

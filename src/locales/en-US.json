@@ -9,5 +9,6 @@
     "backlog.feature.backLog.title": "Backlog",
     "backlog.feature.button.export": "Export",
     "backlog.feature.button.thinkMore": "Think more",
-    "backlog.feature.button.refineRequirements": "Refine Requirements"
+    "backlog.feature.button.refineRequirements": "Refine Requirements",
+    "components.spinner.text": "Loading..."
 }

@@ -1,3 +1,6 @@
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
 import { Container } from "@/components/layout/container/container";
 import { Button } from "@/components/ui/button/button";
 import {
@@ -9,9 +12,7 @@ import {
 } from "@/components/ui/card/card";
 import { Input } from "@/components/ui/input/input";
 import { useAppStore } from "@/hooks/use-app-store";
-import { useNavigate } from "react-router-dom";
 import { routes } from "@/router.tsx";
-import { useTranslation } from "react-i18next";
 
 const NewFeature = () => {
   const { t } = useTranslation();

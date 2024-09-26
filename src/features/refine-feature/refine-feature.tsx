@@ -1,11 +1,12 @@
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+
 import { Container } from "@/components/layout/container/container";
 import { Button } from "@/components/ui/button/button";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/hooks/use-app-store";
-import { useNavigate } from "react-router-dom";
 import { routes } from "@/router.tsx";
-import { useTranslation } from "react-i18next";
 
 const RefineFeature = () => {
   const { t } = useTranslation();

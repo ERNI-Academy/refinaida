@@ -1,15 +1,15 @@
+import { Suspense } from "react";
 import { createMemoryRouter } from "react-router-dom";
 
-import BacklogFeature from "@/features/backlog-feature/backlog-feature";
-import NewFeaturePage from "@/pages/new-feature-page";
-import RefineFeaturePage from "@/pages/refine-feature-page";
+import Spinner from "@/components/ui/spinner/spinner";
+import { BacklogFeaturePage, NewFeaturePage, RefineFeaturePage } from "@/pages";
 
 import { Root } from "./root";
 
 export const routes = {
   default: "/",
-  refineFeature: "/refineFeature",
-  backlogFeature: "/backlogFeature",
+  refineFeature: "/refine-feature",
+  backlogFeature: "/backlog-feature",
 };
 
 export const router = createMemoryRouter([
@@ -19,15 +19,27 @@ export const router = createMemoryRouter([
     children: [
       {
         path: routes.default,
-        element: <NewFeaturePage />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <NewFeaturePage />
+          </Suspense>
+        ),
       },
       {
         path: routes.refineFeature,
-        element: <RefineFeaturePage />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <RefineFeaturePage />
+          </Suspense>
+        ),
       },
       {
         path: routes.backlogFeature,
-        element: <BacklogFeature />,
+        element: (
+          <Suspense fallback={<Spinner />}>
+            <BacklogFeaturePage />
+          </Suspense>
+        ),
       },
     ],
   },

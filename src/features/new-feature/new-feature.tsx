@@ -24,10 +24,10 @@ const NewFeature = () => {
       <Card>
         <CardHeader className="mb-4">
           <CardTitle className="text-5xl font-semibold text-center">
-            {t("new.feature.title")}
+            {t("newFeature.title")}
           </CardTitle>
           <CardDescription className="text-lg text-gray-500 text-center">
-            {t("new.feature.subtitle")}
+            {t("newFeature.subtitle")}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -41,7 +41,7 @@ const NewFeature = () => {
               className="w-2/6"
               onClick={() => navigate(routes.refineFeature)}
             >
-              {t("new.feature.button.startRefining")}
+              {t("newFeature.buttons.startRefining")}
             </Button>
           </div>
         </CardContent>

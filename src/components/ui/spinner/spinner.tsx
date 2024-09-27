@@ -1,6 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
+import { cn } from "@/lib/utils";
+
 interface SpinnerProps {
   size?: "small" | "medium" | "large";
   className?: string;
@@ -26,7 +28,10 @@ const Spinner: React.FC<SpinnerProps> = ({
 
   return (
     <div
-      className={`fixed inset-0 flex items-center justify-center ${className}`}
+      className={cn(
+        "fixed inset-0 flex items-center justify-center",
+        className
+      )}
     >
       <div className="flex items-center space-x-2">
         <div

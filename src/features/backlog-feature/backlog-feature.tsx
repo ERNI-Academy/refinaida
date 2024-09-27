@@ -15,15 +15,15 @@ const BacklogFeature = () => {
       <div className="flex flex-col gap-8">
         <div className="flex flex-col w-full items-center justify-center">
           <span className="text-lg font-bold text-gray-500">
-            {t("backlog.feature.title")}
+            {t("backlogFeature.title")}
           </span>
           <span className="text-5xl text-ellipsis whitespace-nowrap w-full text-center overflow-hidden">
             {feature}
           </span>
         </div>
-        <div className="w-full">
+        <div className="flex flex-col w-full">
           <span className="text-2xl font-bold text-gray-500">
-            {t("backlog.feature.backLog.title")}
+            {t("backlogFeature.secondTitle")}
           </span>
         </div>
         <div className="w-full flex gap-4">
@@ -33,15 +33,15 @@ const BacklogFeature = () => {
         <div className="w-full flex gap-4">
           <div className="w-3/5 flex justify-between">
             <Button className="w-5/12">
-              {t("backlog.feature.button.export")}
+              {t("backlogFeature.buttons.export")}
             </Button>
             <Button className="w-5/12">
-              {t("backlog.feature.button.thinkMore")}
+              {t("backlogFeature.buttons.thinkMore")}
             </Button>
           </div>
           <div className="w-2/5 flex">
             <Button className="w-7/12 ml-auto">
-              {t("backlog.feature.button.refineRequirements")}
+              {t("backlogFeature.buttons.refineRequirements")}
             </Button>
           </div>
         </div>

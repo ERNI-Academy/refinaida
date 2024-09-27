@@ -19,7 +19,7 @@ const RefineFeature = () => {
       <div className="flex flex-col gap-8">
         <div className="flex flex-col w-full items-center justify-center">
           <span className="text-lg font-bold text-gray-500">
-            {t("refine.feature.title")}
+            {t("refineFeature.title")}
           </span>
           <span className="text-5xl text-ellipsis whitespace-nowrap w-full text-center overflow-hidden">
             {feature}
@@ -36,10 +36,10 @@ const RefineFeature = () => {
               variant={"outline"}
               onClick={() => navigate(routes.default)}
             >
-              {t("refine.feature.button.back")}
+              {t("refineFeature.buttons.back")}
             </Button>
             <Button className="w-7/12">
-              {t("refine.feature.button.send")}
+              {t("refineFeature.buttons.send")}
             </Button>
           </div>
           <div className="w-2/4 flex">
@@ -47,7 +47,7 @@ const RefineFeature = () => {
               className="w-7/12 ml-auto"
               onClick={() => navigate(routes.backlogFeature)}
             >
-              {t("refine.feature.button.getRequirements")}
+              {t("refineFeature.buttons.getRequirements")}
             </Button>
           </div>
         </div>

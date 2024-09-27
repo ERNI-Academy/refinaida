@@ -38,7 +38,9 @@ const RefineFeature = () => {
             >
               {t("refine.feature.button.back")}
             </Button>
-            <Button className="w-7/12">Send</Button>
+            <Button className="w-7/12">
+              {t("refine.feature.button.send")}
+            </Button>
           </div>
           <div className="w-2/4 flex">
             <Button

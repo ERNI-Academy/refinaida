@@ -1,9 +1,11 @@
 {
+    "header.title": "REFIN:AIDA", 
     "new.feature.title": "Let's refine a feature",
-    "new.feature.subtitle": "What feature doesyour solution need?",
+    "new.feature.subtitle": "What feature does your solution need?",
     "new.feature.button.startRefining": "Start refining",
     "refine.feature.title": "Feature",
     "refine.feature.button.back": "Back",
+    "refine.feature.button.send": "Send",
     "refine.feature.button.getRequirements": "Get Requirements",
     "backlog.feature.title": "Feature",
     "backlog.feature.backLog.title": "Backlog",

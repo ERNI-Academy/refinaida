@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm-run-all build && swa deploy --deployment-token 7695c361ba9b03b9d07b083c7b4d03ad962f67b43c912e8c31bee55f4061d0f15-aba99154-0a39-4dda-b88c-472381cdc2c4003621128 --app-name refinaida --env production  ./dist"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.0",
@@ -25,6 +26,7 @@
     "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {
+    "@azure/static-web-apps-cli": "^2.0.1",
     "@eslint/js": "^9.11.1",
     "@types/node": "^22.5.5",
     "@types/react": "^18.3.3",
@@ -38,6 +40,7 @@
     "eslint-plugin-react-refresh": "^0.4.12",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^15.9.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.12",
     "typescript": "~5.5.3",

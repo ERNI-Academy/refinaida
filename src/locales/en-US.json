@@ -13,8 +13,12 @@
         "title": "Feature",
         "buttons": {
             "back": "Back",
-            "send": "Send",
             "getRequirements": "Get Requirements"
+        },
+        "chat": {
+            "sendMessage": {
+                "placeholder": "Type your message here..."
+            }
         }
     },
     "backlogFeature": {

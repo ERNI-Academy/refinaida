@@ -1,11 +1,15 @@
-.rounded-except-br {
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom-left-radius: 1rem; 
-    }
+.chat-wrapper {
+    max-height: 500px;
 
-.rounded-except-bl {
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem; 
+    .rounded-except-br {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-bottom-left-radius: 1rem; 
+        }
+    
+    .rounded-except-bl {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem; 
+    }
 }

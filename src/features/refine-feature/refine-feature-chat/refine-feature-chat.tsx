@@ -12,10 +12,14 @@ interface Message {
   sender: string;
 }
 
+// Provisional constansts
 const USER = "You";
 const USER_AIDA = "AIDA";
 const MESSAGE_WELCOME = "Hi, I'm AIDA! How can I help you?";
-const MESSAGE_DEFAULT = "Let me check...";
+const MESSAGE_INFORMATION = "Here you have the information...";
+const MESSAGE_THINKING = "Thinking";
+const MESSAGE_THINKING_DOCKS = "Thinking...";
+const MESSAGE_SENDING = "Sending";
 
 const RefineFeatureChat = () => {
   const { t } = useTranslation();
@@ -24,7 +28,26 @@ const RefineFeatureChat = () => {
   const [messages, setMessages] = useState<Message[]>([
     { text: MESSAGE_WELCOME, sender: USER_AIDA },
   ]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState(MESSAGE_SENDING);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+
+  // Provisional implementation
+  useEffect(() => {
+    let interval: any;
+    if (isLoading) {
+      interval = setInterval(() => {
+        setLoadingText((prev) => {
+          if (prev === MESSAGE_THINKING_DOCKS) return MESSAGE_THINKING;
+          return prev + ".";
+        });
+      }, 500);
+    } else {
+      setLoadingText(MESSAGE_THINKING);
+    }
+
+    return () => clearInterval(interval);
+  }, [isLoading]);
 
   const handleSendMessage = () => {
     if (input.trim()) {
@@ -33,11 +56,16 @@ const RefineFeatureChat = () => {
         sender: USER,
       };
       const aidaMessage: Message = {
-        text: MESSAGE_DEFAULT,
+        text: MESSAGE_INFORMATION,
         sender: USER_AIDA,
       };
+
+      setIsLoading(true);
       setMessages([...messages, userMessage, aidaMessage]);
       setInput("");
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
     }
   };
 
@@ -87,7 +115,11 @@ const RefineFeatureChat = () => {
                         "p-2 inline-block bg-gray-200 text-black rounded-except-bl"
                       }
                     >
-                      {message.text}
+                      {isLoading &&
+                      messages.length > 1 &&
+                      messages.length === index + 1
+                        ? loadingText
+                        : message.text}
                     </div>
                   </div>
                 </div>
@@ -103,12 +135,15 @@ const RefineFeatureChat = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
+                disabled={isLoading}
               />
             </div>
             <div className="w-1/12">
               <Send
-                className="h-6 w-6 cursor-pointer"
-                onClick={handleSendMessage}
+                className={`h-6 w-6 ${
+                  !isLoading ? "cursor-pointer" : "cursor-not-allowed "
+                }`}
+                onClick={isLoading ? handleSendMessage : () => {}}
               />
             </div>
           </div>

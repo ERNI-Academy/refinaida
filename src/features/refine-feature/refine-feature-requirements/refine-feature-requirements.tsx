@@ -1,15 +1,10 @@
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card/card";
+import { Card, CardHeader } from "@/components/ui/card/card";
+import { Textarea } from "@/components/ui/textarea/textarea";
 
 const RefineFeatureRequirements = () => (
   <Card className="w-2/4">
-    <CardHeader>
-      <CardTitle>Refine a feature</CardTitle>
-      <CardDescription>What feature does your solution need?</CardDescription>
+    <CardHeader className="w-full h-full ">
+      <Textarea className="w-full h-full resize-none" />
     </CardHeader>
   </Card>
 );

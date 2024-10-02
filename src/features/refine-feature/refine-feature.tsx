@@ -1,3 +1,5 @@
+import "./refine-feature.scss";
+
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +27,7 @@ const RefineFeature = () => {
             {feature}
           </span>
         </div>
-        <div className="w-full flex gap-4">
+        <div className="w-full flex gap-4 refine-feature-wrapper">
           <RefineFeatureChat />
           <RefineFeatureRequirements />
         </div>

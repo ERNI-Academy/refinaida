@@ -21,7 +21,11 @@ const MESSAGE_THINKING = "Thinking";
 const MESSAGE_THINKING_DOCKS = "Thinking...";
 const MESSAGE_SENDING = "Sending";
 
-const RefineFeatureChat = () => {
+type RefineFeatureChatProps = {
+  className: string;
+};
+
+const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   const { t } = useTranslation();
 
   const [input, setInput] = useState<string>("");
@@ -84,7 +88,7 @@ const RefineFeatureChat = () => {
   }, [messages]);
 
   return (
-    <Card className="w-2/4">
+    <Card className={className}>
       <CardHeader>
         <div className="flex flex-col h-screen bg-gray-50 chat-wrapper">
           <div className="flex-grow p-4 overflow-y-auto">
@@ -138,7 +142,7 @@ const RefineFeatureChat = () => {
                 disabled={isLoading}
               />
             </div>
-            <div className="w-1/12">
+            <div className="w-1/12 items-center justify-center">
               <Send
                 className={`h-6 w-6 ${
                   !isLoading ? "cursor-pointer" : "cursor-not-allowed "

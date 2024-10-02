@@ -1,5 +1,7 @@
 import "./refine-feature.scss";
 
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +18,12 @@ const RefineFeature = () => {
 
   const { feature } = useAppStore();
 
+  const [isSmall, setIsSmall] = useState(false);
+
+  const handleResize = () => {
+    setIsSmall(!isSmall);
+  };
+
   return (
     <Container size="lg">
       <div className="flex flex-col gap-8">
@@ -28,8 +36,19 @@ const RefineFeature = () => {
           </span>
         </div>
         <div className="w-full flex gap-4 refine-feature-wrapper">
-          <RefineFeatureChat />
-          <RefineFeatureRequirements />
+          <RefineFeatureChat className={`${isSmall ? "w-4/6" : "w-2/4"}`} />
+          <div className="flex flex-col items-center justify-center">
+            <button onClick={handleResize}>
+              {isSmall ? (
+                <ChevronLeftIcon className="h-4 w-4" />
+              ) : (
+                <ChevronRightIcon className="h-4 w-4" />
+              )}
+            </button>
+          </div>
+          <RefineFeatureRequirements
+            className={`${isSmall ? "w-2/6" : "w-2/4"}`}
+          />
         </div>
         <div className="w-full flex gap-4">
           <div className="w-2/4 flex justify-between">

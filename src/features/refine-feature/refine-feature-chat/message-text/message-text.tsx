@@ -20,8 +20,6 @@ const MessageText = ({
 }: MessageTextProps) => {
   const [loadingText, setLoadingText] = useState<string>(MESSAGE_THINKING);
 
-  console.log("renderMessage");
-
   const isUser = message.sender === USER;
 
   useEffect(() => {

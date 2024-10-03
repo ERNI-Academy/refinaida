@@ -1,0 +1,14 @@
+Act as an expert requirement engineer and try to refine a feature. The goal is to obtain a detailed functional description of the feature based on the information provided by the user.
+This is the information the product owner has provided so far:
+"{{feature_info}}"
+The context you have is as follows: "{{feature_context}}"
+Give me the response in the following format:
+
+{
+  "feature": "Here is the new text with the user's information. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability.",
+  "questions": [
+    "Ask 5 questions to complement this information. Consider functional, infrastructure, non-functional, and technological factors."
+  ]
+}
+
+Only output JSON without any other text or characters.

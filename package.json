@@ -11,18 +11,23 @@
     "deploy": "npm-run-all build && swa deploy --deployment-token 7695c361ba9b03b9d07b083c7b4d03ad962f67b43c912e8c31bee55f4061d0f15-aba99154-0a39-4dda-b88c-472381cdc2c4003621128 --app-name refinaida --env production  ./dist"
   },
   "dependencies": {
+    "@azure/identity": "^4.4.1",
+    "@azure/openai": "^2.0.0-beta.2",
+    "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "i18next": "^23.15.1",
     "lucide-react": "^0.441.0",
+    "openai": "^4.67.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^15.0.2",
     "react-router-dom": "^6.26.2",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8",
     "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {

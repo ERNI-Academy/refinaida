@@ -20,10 +20,6 @@ const RefineFeature = () => {
 
   const [isSmall, setIsSmall] = useState(false);
 
-  const handleResize = () => {
-    setIsSmall(!isSmall);
-  };
-
   return (
     <Container size="lg">
       <div className="flex flex-col gap-8">
@@ -38,7 +34,7 @@ const RefineFeature = () => {
         <div className="w-full flex gap-4 refine-feature-wrapper">
           <RefineFeatureChat className={`${isSmall ? "w-4/6" : "w-2/4"}`} />
           <div className="flex flex-col items-center justify-center">
-            <button onClick={handleResize}>
+            <button onClick={() => setIsSmall((prevState) => !prevState)}>
               {isSmall ? (
                 <ChevronLeftIcon className="h-4 w-4" />
               ) : (

@@ -1,7 +1,10 @@
 import { Bot, User } from "lucide-react";
 import { memo, useEffect, useState } from "react";
 
-import { USER } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
+import {
+  MESSAGE_THINKING,
+  USER,
+} from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
 import { Message } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.types";
 
 interface MessageTextProps {
@@ -9,8 +12,6 @@ interface MessageTextProps {
   index: any;
   isLoading?: boolean;
 }
-
-const MESSAGE_THINKING = "Thinking";
 
 const MessageText = ({
   message,

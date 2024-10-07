@@ -1,14 +1,16 @@
 import { AzureOpenAI } from "openai";
-import { zodResponseFormat } from "openai/helpers/zod";
+// import { zodResponseFormat } from "openai/helpers/zod";
 import { ZodObject } from "zod";
+
+const ERROR_MESSAGE = "No response from AIDA";
 
 class AidaService {
   private static instance: AidaService;
   private client: AzureOpenAI;
 
   private constructor(apiKey: string, endpoint: string) {
-    const deployment = "aida-apps-gpt-4o";
-    const apiVersion = "2023-03-15-preview";
+    const deployment = import.meta.env.VITE_AZURE_OPEN_AI_DEPLOYMENT as string;
+    const apiVersion = import.meta.env.VITE_AZURE_OPEN_AI_API_VERSION as string;
     this.client = new AzureOpenAI({
       apiKey,
       endpoint,
@@ -29,7 +31,7 @@ class AidaService {
     prompt: string,
     jsonSchema: ZodObject<any>
   ): Promise<string> {
-    console.log("AidaService - generateResponse");
+    // console.log("AidaService - GenerateResponse...");
     const result = await this.client.chat.completions.create({
       stream: false,
       model: "gpt-4o",
@@ -40,7 +42,7 @@ class AidaService {
     if (result.choices && result.choices.length > 0) {
       return result.choices[0].message.content as string;
     } else {
-      throw new Error("No response from AIDA");
+      throw new Error(ERROR_MESSAGE);
     }
   }
 }

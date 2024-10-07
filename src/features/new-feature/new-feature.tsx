@@ -12,55 +12,80 @@ import {
   CardTitle,
 } from "@/components/ui/card/card";
 import { Input } from "@/components/ui/input/input";
+import Spinner from "@/components/ui/spinner/spinner";
 import useAida from "@/hooks/use-aida";
 import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefineFeatureResponse } from "@/lib/aida";
+import { handleEnterKey } from "@/lib/utils";
 import { routes } from "@/router";
 
 const NewFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { setFeature, feature, setQuestions, setContext } = useAppStore();
+  const {
+    setFeature,
+    feature,
+    setQuestions,
+    setContext,
+    isLoading,
+    setIsLoading,
+  } = useAppStore();
 
   const { refineFeature } = useAida();
 
   const handleRefine = useCallback(async () => {
     try {
+      setIsLoading(true);
       const response = (await refineFeature(feature, "")) as string;
       const parsedResponse = parseAidaRefineFeatureResponse(response);
       setContext(parsedResponse.feature);
       setQuestions(parsedResponse.questions);
+      console.log(parsedResponse.questions);
+      setIsLoading(false);
       navigate(routes.refineFeature);
     } catch (error) {
+      setIsLoading(false);
       console.error(error);
     }
-  }, [refineFeature, feature, setContext, setQuestions, navigate]);
+  }, [
+    setIsLoading,
+    refineFeature,
+    feature,
+    setContext,
+    setQuestions,
+    navigate,
+  ]);
 
   return (
     <Container>
-      <Card>
-        <CardHeader className="mb-4">
-          <CardTitle className="text-5xl font-semibold text-center">
-            {t("newFeature.title")}
-          </CardTitle>
-          <CardDescription className="text-lg text-gray-500 text-center">
-            {t("newFeature.subtitle")}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col gap-4 items-center">
-            <Input
-              className="w-3/5"
-              placeholder={t("newFeature.input.placeholder")}
-              onChange={(e) => setFeature(e.target.value)}
-            />
-            <Button className="w-2/6" onClick={handleRefine}>
-              {t("newFeature.buttons.startRefining")}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      {!isLoading ? (
+        <Card>
+          <CardHeader className="mb-4">
+            <CardTitle className="text-5xl font-semibold text-center">
+              {t("newFeature.title")}
+            </CardTitle>
+            <CardDescription className="text-lg text-gray-500 text-center">
+              {t("newFeature.subtitle")}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col gap-4 items-center">
+              <Input
+                className="w-3/5"
+                placeholder={t("newFeature.input.placeholder")}
+                onChange={(e) => setFeature(e.target.value)}
+                onKeyDown={(e) => handleEnterKey(e, handleRefine)}
+              />
+              <Button className="w-2/6" onClick={handleRefine}>
+                {t("newFeature.buttons.startRefining")}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      ) : (
+        <Spinner />
+      )}
     </Container>
   );
 };

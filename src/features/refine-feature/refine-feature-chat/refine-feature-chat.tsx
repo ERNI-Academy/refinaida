@@ -12,6 +12,7 @@ import {
   USER_AIDA,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
 import { useAppStore } from "@/hooks/use-app-store";
+import { handleEnterKey } from "@/lib/utils";
 
 interface Message {
   text: string;
@@ -29,13 +30,12 @@ type RefineFeatureChatProps = {
 const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   const { t } = useTranslation();
 
-  const { questions } = useAppStore();
+  const { questions, isLoading, setIsLoading } = useAppStore();
 
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([
     { text: questions[0], sender: USER_AIDA },
   ]);
-  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   // Provisional implementation
@@ -55,7 +55,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [isLoading]);
+  }, [isLoading, setIsLoading]);
 
   const handleSendMessage = useCallback(() => {
     if (input.length && !isLoading) {
@@ -68,13 +68,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
       setMessages((prevState) => [...prevState, userMessage]);
       setInput("");
     }
-  }, [input, isLoading]);
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      handleSendMessage();
-    }
-  };
+  }, [input, isLoading, setIsLoading]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -111,7 +105,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
                 placeholder={t("refineFeature.chat.sendMessage.placeholder")}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
+                onKeyDown={(e) => handleEnterKey(e, handleSendMessage)}
                 disabled={isLoading}
               />
             </div>

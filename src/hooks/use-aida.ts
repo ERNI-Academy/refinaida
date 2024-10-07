@@ -12,8 +12,8 @@ const refineFeatureResponseSchema = z.object({
 const useAida = () => {
   const aidaService = useMemo(() => {
     return AidaService.getInstance(
-      import.meta.env.VITE_AIDA_API_KEY as string,
-      "https://services-aida-apps.openai.azure.com"
+      import.meta.env.VITE_AZURE_OPEN_AI_API_KEY as string,
+      import.meta.env.VITE_AZURE_OPEN_AI_ENDPOINT as string
     );
   }, []);
 

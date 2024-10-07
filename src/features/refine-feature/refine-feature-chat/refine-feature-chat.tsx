@@ -11,6 +11,7 @@ import {
   USER,
   USER_AIDA,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
+import { useAppStore } from "@/hooks/use-app-store";
 
 interface Message {
   text: string;
@@ -18,7 +19,7 @@ interface Message {
 }
 
 // Provisional constansts
-const MESSAGE_WELCOME = "Hi, I'm AIDA! How can I help you?";
+// const MESSAGE_WELCOME = "Hi, I'm AIDA! How can I help you?";
 const MESSAGE_INFORMATION = "Here you have the information...";
 
 type RefineFeatureChatProps = {
@@ -28,9 +29,11 @@ type RefineFeatureChatProps = {
 const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   const { t } = useTranslation();
 
+  const { questions } = useAppStore();
+
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([
-    { text: MESSAGE_WELCOME, sender: USER_AIDA },
+    { text: questions[0], sender: USER_AIDA },
   ]);
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);

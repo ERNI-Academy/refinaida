@@ -16,25 +16,26 @@ import useAida from "@/hooks/use-aida";
 import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefineFeatureResponse } from "@/lib/aida";
 import { routes } from "@/router";
+
 const NewFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
   const { setFeature, feature, setQuestions, setContext } = useAppStore();
 
   const { refineFeature } = useAida();
 
-  const onClick = useCallback(async () => {
+  const handleRefine = useCallback(async () => {
     try {
       const response = (await refineFeature(feature, "")) as string;
       const parsedResponse = parseAidaRefineFeatureResponse(response);
-      console.log(parsedResponse);
-      setQuestions(parsedResponse.questions);
       setContext(parsedResponse.feature);
+      setQuestions(parsedResponse.questions);
       navigate(routes.refineFeature);
     } catch (error) {
       console.error(error);
     }
-  }, [refineFeature, feature, setQuestions, setContext, navigate]);
+  }, [refineFeature, feature, setContext, setQuestions, navigate]);
 
   return (
     <Container>
@@ -51,10 +52,10 @@ const NewFeature = () => {
           <div className="flex flex-col gap-4 items-center">
             <Input
               className="w-3/5"
-              placeholder="Adding user authentication"
+              placeholder={t("newFeature.input.placeholder")}
               onChange={(e) => setFeature(e.target.value)}
             />
-            <Button className="w-2/6" onClick={() => onClick()}>
+            <Button className="w-2/6" onClick={handleRefine}>
               {t("newFeature.buttons.startRefining")}
             </Button>
           </div>

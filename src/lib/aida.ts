@@ -5,7 +5,4 @@ export type AidaRefineFeatureResponse = {
 
 export const parseAidaRefineFeatureResponse = (
   response: string
-): AidaRefineFeatureResponse => {
-  const parsedResponse = JSON.parse(response);
-  return parsedResponse.feature;
-};
+): AidaRefineFeatureResponse => JSON.parse(response);

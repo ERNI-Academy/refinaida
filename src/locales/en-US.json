@@ -7,6 +7,9 @@
         "subtitle": "What feature does your solution need?",
         "buttons": {
             "startRefining": "Start refining"
+        },
+        "input": {
+            "placeholder": "Type something you want to refine..."
         }
     },
     "refineFeature": {

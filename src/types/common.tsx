@@ -1,5 +1,5 @@
-export interface QuestionsAndAnswers {
+export interface Message {
   id: string;
-  question: string;
-  answer?: string;
+  text: string | string[];
+  sender: string;
 }

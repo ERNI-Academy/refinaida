@@ -11,17 +11,10 @@ import {
   USER,
   USER_AIDA,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
+import { Message } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.types";
 import { useAppStore } from "@/hooks/use-app-store";
 import { handleEnterKey } from "@/lib/utils";
-
-interface Message {
-  text: string;
-  sender: string;
-}
-
-// Provisional constansts
-// const MESSAGE_WELCOME = "Hi, I'm AIDA! How can I help you?";
-const MESSAGE_INFORMATION = "Here you have the information...";
+import { QuestionsAndAnswers } from "@/types/common";
 
 type RefineFeatureChatProps = {
   className: string;
@@ -30,45 +23,101 @@ type RefineFeatureChatProps = {
 const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   const { t } = useTranslation();
 
-  const { questions, isLoading, setIsLoading } = useAppStore();
+  const {
+    questionsAndAnswers,
+    setQuestionsAndAnswers,
+    isLoading,
+    setIsLoading,
+  } = useAppStore();
 
   const [input, setInput] = useState<string>("");
+  const [currentQuestionsAndAnswers, setCurrentQuestionsAndAnswers] =
+    useState<QuestionsAndAnswers>(questionsAndAnswers[0]);
   const [messages, setMessages] = useState<Message[]>([
-    { text: questions[0], sender: USER_AIDA },
+    {
+      id: currentQuestionsAndAnswers.id,
+      text: currentQuestionsAndAnswers.question,
+      sender: USER_AIDA,
+    },
   ]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  // Provisional implementation
+  const getQuestionId = useCallback(
+    (currentQuestion: string) =>
+      questionsAndAnswers.find((qa) => qa.question === currentQuestion)?.id,
+    [questionsAndAnswers]
+  );
+
+  const handleAnswerChange = useCallback(
+    (currentQuestion: string, answer: string) => {
+      const questionId = getQuestionId(currentQuestion);
+      if (questionId) {
+        const updatedQuestionsAndAnswers = questionsAndAnswers.map((qa) =>
+          qa.id === getQuestionId(currentQuestion) ? { ...qa, answer } : qa
+        );
+        setQuestionsAndAnswers(updatedQuestionsAndAnswers);
+        console.log(updatedQuestionsAndAnswers);
+      }
+    },
+    [getQuestionId, questionsAndAnswers, setQuestionsAndAnswers]
+  );
+
+  const getNextUnansweredQuestion = useCallback((): string | undefined => {
+    const questionAndAnswer: QuestionsAndAnswers | undefined =
+      questionsAndAnswers.find((qa) => !qa.answer);
+    if (questionAndAnswer) {
+      setCurrentQuestionsAndAnswers(questionAndAnswer);
+      return questionAndAnswer.question;
+    }
+    return undefined;
+  }, [questionsAndAnswers]);
+
   useEffect(() => {
     let timeout: any;
-    if (isLoading) {
+    const nexQuestion = getNextUnansweredQuestion();
+    if (isLoading && nexQuestion !== undefined) {
       const aidaMessage: Message = {
-        text: MESSAGE_INFORMATION,
+        id: currentQuestionsAndAnswers.id,
+        text: nexQuestion,
         sender: USER_AIDA,
       };
       timeout = setTimeout(() => {
         setIsLoading(false);
         setMessages((prevState) => [...prevState, aidaMessage]);
-      }, 5000);
+      }, 1500);
     }
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [isLoading, setIsLoading]);
+  }, [
+    currentQuestionsAndAnswers.id,
+    getNextUnansweredQuestion,
+    isLoading,
+    setIsLoading,
+  ]);
 
   const handleSendMessage = useCallback(() => {
     if (input.length && !isLoading) {
+      const answer = input.trim();
+      handleAnswerChange(currentQuestionsAndAnswers.question, answer);
       const userMessage: Message = {
+        id: currentQuestionsAndAnswers.id,
         text: input.trim(),
         sender: USER,
       };
-
       setIsLoading(true);
       setMessages((prevState) => [...prevState, userMessage]);
       setInput("");
     }
-  }, [input, isLoading, setIsLoading]);
+  }, [
+    input,
+    isLoading,
+    handleAnswerChange,
+    currentQuestionsAndAnswers.question,
+    currentQuestionsAndAnswers.id,
+    setIsLoading,
+  ]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -83,16 +132,19 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
       <CardHeader>
         <div className="flex flex-col h-screen bg-gray-50 chat-wrapper">
           <div className="flex-grow p-4 overflow-y-auto">
-            {messages.map((message, index) => (
-              <MessageText message={message} index={index} />
+            {messages.map((message) => (
+              <MessageText
+                key={`${message.id}-${message.sender}`}
+                message={message}
+              />
             ))}
             {isLoading && (
               <MessageText
                 message={{
+                  id: "loadingMessage",
                   text: "",
                   sender: USER_AIDA,
                 }}
-                index={"loading"}
                 isLoading
               />
             )}

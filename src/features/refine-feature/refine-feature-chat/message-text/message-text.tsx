@@ -9,15 +9,10 @@ import { Message } from "@/features/refine-feature/refine-feature-chat/refine-fe
 
 interface MessageTextProps {
   message: Message;
-  index: any;
   isLoading?: boolean;
 }
 
-const MessageText = ({
-  message,
-  index,
-  isLoading = false,
-}: MessageTextProps) => {
+const MessageText = ({ message, isLoading = false }: MessageTextProps) => {
   const [loadingText, setLoadingText] = useState<string>(MESSAGE_THINKING);
 
   const isUser = message.sender === USER;
@@ -32,8 +27,6 @@ const MessageText = ({
           return prev + ".";
         });
       }, 500);
-    } else {
-      setLoadingText(MESSAGE_THINKING);
     }
 
     return () => {
@@ -42,11 +35,7 @@ const MessageText = ({
   }, [isLoading]);
 
   return (
-    // TODO: Remove index when the data will be properly
-    <div
-      key={index}
-      className={`flex mb-4  ${isUser ? "justify-end" : "justify-start"}`}
-    >
+    <div className={`flex mb-4  ${isUser ? "justify-end" : "justify-start"}`}>
       <div className="flex gap-2">
         <div
           className={`p-2 inline-block ${

@@ -17,7 +17,7 @@ const RefineFeatureRequirements = ({
         <Textarea
           className="w-full h-full resize-none"
           value={context}
-          disabled
+          readOnly
         />
       </CardHeader>
     </Card>

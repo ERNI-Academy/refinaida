@@ -18,15 +18,16 @@ import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefineFeatureResponse } from "@/lib/aida";
 import { handleEnterKey } from "@/lib/utils";
 import { routes } from "@/router";
+import { QuestionsAndAnswers } from "@/types/common";
 
 const NewFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const {
-    setFeature,
     feature,
-    setQuestions,
+    setFeature,
+    setQuestionsAndAnswers,
     setContext,
     isLoading,
     setIsLoading,
@@ -34,14 +35,26 @@ const NewFeature = () => {
 
   const { refineFeature } = useAida();
 
+  const handleQuestionsAndAnswers = useCallback(
+    (questions: string[]): void => {
+      const questionsAndAnswers: QuestionsAndAnswers[] = questions.map(
+        (question) => ({
+          id: crypto.randomUUID(),
+          question: question,
+        })
+      );
+      setQuestionsAndAnswers(questionsAndAnswers);
+    },
+    [setQuestionsAndAnswers]
+  );
+
   const handleRefine = useCallback(async () => {
     try {
       setIsLoading(true);
       const response = (await refineFeature(feature, "")) as string;
       const parsedResponse = parseAidaRefineFeatureResponse(response);
       setContext(parsedResponse.feature);
-      setQuestions(parsedResponse.questions);
-      console.log(parsedResponse.questions);
+      handleQuestionsAndAnswers(parsedResponse.questions);
       setIsLoading(false);
       navigate(routes.refineFeature);
     } catch (error) {
@@ -53,7 +66,7 @@ const NewFeature = () => {
     refineFeature,
     feature,
     setContext,
-    setQuestions,
+    handleQuestionsAndAnswers,
     navigate,
   ]);
 
@@ -74,6 +87,7 @@ const NewFeature = () => {
               <Input
                 className="w-3/5"
                 placeholder={t("newFeature.input.placeholder")}
+                value={feature}
                 onChange={(e) => setFeature(e.target.value)}
                 onKeyDown={(e) => handleEnterKey(e, handleRefine)}
               />

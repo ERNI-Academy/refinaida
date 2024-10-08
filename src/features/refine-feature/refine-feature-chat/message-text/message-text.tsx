@@ -5,7 +5,7 @@ import {
   MESSAGE_THINKING,
   USER,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
-import { Message } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.types";
+import { Message } from "@/types/common";
 
 interface MessageTextProps {
   message: Message;
@@ -44,7 +44,18 @@ const MessageText = ({ message, isLoading = false }: MessageTextProps) => {
               : "order-3 bg-gray-200 text-black rounded-except-bl"
           }`}
         >
-          {!isUser && isLoading ? loadingText : message.text}
+          {Array.isArray(message.text) ? (
+            message.text.map((question, index) => (
+              <p
+                key={question}
+                className={index !== message.text.length - 1 ? "mb-2" : ""}
+              >
+                {!isUser && isLoading ? loadingText : question}
+              </p>
+            ))
+          ) : (
+            <p>{!isUser && isLoading ? loadingText : message.text}</p>
+          )}
         </div>
         <div className="flex items-end order-2">
           {isUser ? <User className="h-6 w-6" /> : <Bot className="h-6 w-6" />}

@@ -18,7 +18,6 @@ import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefineFeatureResponse } from "@/lib/aida";
 import { handleEnterKey } from "@/lib/utils";
 import { routes } from "@/router";
-import { QuestionsAndAnswers } from "@/types/common";
 
 const NewFeature = () => {
   const { t } = useTranslation();
@@ -27,26 +26,13 @@ const NewFeature = () => {
   const {
     feature,
     setFeature,
-    setQuestionsAndAnswers,
     setContext,
+    setQuestions,
     isLoading,
     setIsLoading,
   } = useAppStore();
 
   const { refineFeature } = useAida();
-
-  const handleQuestionsAndAnswers = useCallback(
-    (questions: string[]): void => {
-      const questionsAndAnswers: QuestionsAndAnswers[] = questions.map(
-        (question) => ({
-          id: crypto.randomUUID(),
-          question: question,
-        })
-      );
-      setQuestionsAndAnswers(questionsAndAnswers);
-    },
-    [setQuestionsAndAnswers]
-  );
 
   const handleRefine = useCallback(async () => {
     try {
@@ -54,7 +40,7 @@ const NewFeature = () => {
       const response = (await refineFeature(feature, "")) as string;
       const parsedResponse = parseAidaRefineFeatureResponse(response);
       setContext(parsedResponse.feature);
-      handleQuestionsAndAnswers(parsedResponse.questions);
+      setQuestions(parsedResponse.questions);
       setIsLoading(false);
       navigate(routes.refineFeature);
     } catch (error) {
@@ -66,7 +52,7 @@ const NewFeature = () => {
     refineFeature,
     feature,
     setContext,
-    handleQuestionsAndAnswers,
+    setQuestions,
     navigate,
   ]);
 

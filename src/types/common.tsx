@@ -3,3 +3,9 @@ export interface Message {
   text: string | string[];
   sender: string;
 }
+
+export type RefineFeature = {
+  summary: string;
+  description: string;
+  questions: string[];
+};

@@ -1,13 +1,7 @@
 import { useMemo } from "react";
-import { z } from "zod";
 
 import refineFeaturePrompt from "@/prompts/refine-feature.txt?raw";
 import AidaService from "@/services/aida-service";
-
-const refineFeatureResponseSchema = z.object({
-  feature: z.string(),
-  questions: z.array(z.string()),
-});
 
 const useAida = () => {
   const aidaService = useMemo(() => {
@@ -17,15 +11,17 @@ const useAida = () => {
     );
   }, []);
 
-  const refineFeature = async (feature: string, context: string) => {
+  const refineFeature = async (feature: string, context?: string) => {
     try {
-      const prompt = refineFeaturePrompt
-        .replace("{{feature_info}}", feature)
-        .replace("{{feature_context}}", context);
-      return await aidaService.generateResponse(
-        prompt,
-        refineFeatureResponseSchema
-      );
+      let prompt: string;
+      if (context) {
+        prompt = refineFeaturePrompt
+          .replace("{{feature_info}}", feature)
+          .replace("{{feature_context}}", context);
+      } else {
+        prompt = refineFeaturePrompt.replace("{{feature_info}}", feature);
+      }
+      return await aidaService.generateResponse(prompt);
     } catch (error) {
       return error;
     }

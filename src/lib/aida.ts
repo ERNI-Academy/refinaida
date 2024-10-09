@@ -1,7 +1,6 @@
-export type AidaRefineFeatureResponse = {
-  feature: string;
-  questions: string[];
-};
+import { RefineFeature } from "@/types/common";
+
+export type AidaRefineFeatureResponse = RefineFeature;
 
 export const parseAidaRefineFeatureResponse = (
   response: string

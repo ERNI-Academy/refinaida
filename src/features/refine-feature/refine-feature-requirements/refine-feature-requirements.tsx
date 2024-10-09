@@ -9,14 +9,14 @@ type RefineFeatureRequirementsProps = {
 const RefineFeatureRequirements = ({
   className,
 }: RefineFeatureRequirementsProps) => {
-  const { context } = useAppStore();
+  const { refineFeature } = useAppStore();
 
   return (
     <Card className={className}>
       <CardHeader className="w-full h-full ">
         <Textarea
           className="w-full h-full resize-none"
-          value={context}
+          value={`Summary: ${refineFeature.summary}\n\nDescription: ${refineFeature.description}`}
           readOnly
         />
       </CardHeader>

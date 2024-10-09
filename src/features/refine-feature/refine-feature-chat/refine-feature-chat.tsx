@@ -22,13 +22,13 @@ type RefineFeatureChatProps = {
 const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   const { t } = useTranslation();
 
-  const { questions, isLoading, setIsLoading } = useAppStore();
+  const { refineFeature, isLoading, setIsLoading } = useAppStore();
 
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "questions",
-      text: questions,
+      text: refineFeature.questions,
       sender: USER_AIDA,
     },
   ]);

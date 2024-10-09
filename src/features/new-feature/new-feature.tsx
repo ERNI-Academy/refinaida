@@ -23,38 +23,24 @@ const NewFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const {
-    feature,
-    setFeature,
-    setContext,
-    setQuestions,
-    isLoading,
-    setIsLoading,
-  } = useAppStore();
+  const { feature, setFeature, setRefineFeature, isLoading, setIsLoading } =
+    useAppStore();
 
   const { refineFeature } = useAida();
 
   const handleRefine = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = (await refineFeature(feature, "")) as string;
+      const response = (await refineFeature(feature)) as string;
       const parsedResponse = parseAidaRefineFeatureResponse(response);
-      setContext(parsedResponse.feature);
-      setQuestions(parsedResponse.questions);
+      setRefineFeature(parsedResponse);
       setIsLoading(false);
       navigate(routes.refineFeature);
     } catch (error) {
       setIsLoading(false);
       console.error(error);
     }
-  }, [
-    setIsLoading,
-    refineFeature,
-    feature,
-    setContext,
-    setQuestions,
-    navigate,
-  ]);
+  }, [setIsLoading, refineFeature, feature, setRefineFeature, navigate]);
 
   return (
     <Container>

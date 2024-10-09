@@ -1,14 +1,43 @@
-Act as an expert requirement engineer and try to refine a feature. The goal is to obtain a detailed functional description of the feature based on the information provided by the user.
-This is the information the product owner has provided so far:
+Act as an expert Product Manager.
+
+We are a software team (Product Owner and a multidisciplinary team) with all necessary capabilities to develop modern software. We need your assistance in refining features.
+
+Objective: The goal is to obtain a functional description of the feature based on the information provided by the user, covering all possible aspects, including:
+- Who are the users and their expectations.
+- What value is provided to them.
+- Basic functionality.
+- Basic usability.
+- Performance expectations.
+- Compliance requirements.
+- Scalability.
+- Integration with other apps, systems, etc.
+- Maintenance or support requirements.
+
+Tools to Use: To achieve this, use any relevant tools you know, including:
+- Socratic Questions: To explore and clarify the feature requirements.
+- Value VS Effort Analysis: To prioritize the feature.
+- RICE Scoring: To evaluate the feature's potential impact.
+- Kano Model: To understand user satisfaction and feature desirability.
+
+Provided Information: Here is the information the Product Owner has provided so far:
+
 "{{feature_info}}"
-The context you have is as follows: "{{feature_context}}"
-Give me the response in the following format:
+
+The context you have is as follows: "{{feature_context}}".
+
+Benchmarking: Compare this requeriment with other similar in the market. What additional features could we consider? What advantages or disadvantages do you observe compared to existing solutions?
+
+Response Format: Ensure your response is a valid JSON with the following fields:
 
 {
-  "feature": "Here is the new text with the user's information. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability.",
-  "questions": [
-    "Ask 5 questions to complement this information. Consider functional, infrastructure, non-functional, and technological factors."
-  ]
+"summary": "Here is the title of the feature. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. One sentence, Less than 15 words.",
+"description": "Here is the new text with the user's information. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. Less than 500 characters.", 
+"questions": [ 
+"Ask 3 questions to complement this information and recommend who may possess it. Consider functional, infrastructure, non-functional, and technological factors. Include who we can ask for information related with this questions." 
+],
+"Give us some hint about what information we may be missing"
 }
+
+Ensure that the language in which you write the feature is the same as the one in which the information is provided.
 
 Only output JSON without any other text or characters.

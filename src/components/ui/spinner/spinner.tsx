@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 interface SpinnerProps {
   size?: "small" | "medium" | "large";
   className?: string;
+  fullScreen?: boolean;
 }
 
 const sizeMap = {
@@ -17,6 +18,7 @@ const sizeMap = {
 const Spinner: React.FC<SpinnerProps> = ({
   size = "medium",
   className = "",
+  fullScreen = false,
 }) => {
   const { t } = useTranslation();
 
@@ -29,7 +31,8 @@ const Spinner: React.FC<SpinnerProps> = ({
   return (
     <div
       className={cn(
-        "fixed inset-0 flex items-center justify-center",
+        "flex items-center justify-center",
+        fullScreen ? "fixed inset-0" : "",
         className
       )}
     >
@@ -38,7 +41,7 @@ const Spinner: React.FC<SpinnerProps> = ({
           className="border-4 border-t-4 border-t-blue-500 border-gray-200 rounded-full animate-spin"
           style={sizeStyle}
         />
-        <span className="text-gray-500"> {t("components.spinner.text")}</span>
+        <span className="text-gray-500">{t("components.spinner.text")}</span>
       </div>
     </div>
   );

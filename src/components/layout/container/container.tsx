@@ -1,10 +1,17 @@
+import { cn } from "@/lib/utils";
+
 type ContainerSize = "sm" | "md" | "lg" | "full";
 type ContainerProps = {
   children: React.ReactNode;
+  className?: string;
   size?: ContainerSize;
 };
 
-export const Container = ({ children, size = "md" }: ContainerProps) => {
+export const Container = ({
+  children,
+  className,
+  size = "md",
+}: ContainerProps) => {
   const sizeClasses = {
     sm: "container mx-auto my-12 px-12",
     md: "container mx-auto my-8 px-8",
@@ -12,5 +19,5 @@ export const Container = ({ children, size = "md" }: ContainerProps) => {
     full: "w-full mx-auto my-4 px-4",
   };
 
-  return <div className={sizeClasses[size]}>{children}</div>;
+  return <div className={cn(sizeClasses[size], className)}>{children}</div>;
 };

@@ -13,34 +13,23 @@ import {
 } from "@/components/ui/card/card";
 import { Input } from "@/components/ui/input/input";
 import Spinner from "@/components/ui/spinner/spinner";
-import useAida from "@/hooks/use-aida";
 import { useAppStore } from "@/hooks/use-app-store";
-import { parseAidaRefineFeatureResponse } from "@/lib/aida";
-import { handleEnterKey } from "@/lib/utils";
+import useRefineFeature from "@/hooks/use-refine-feature";
 import { routes } from "@/router";
+import { handleEnterKey } from "@/utils/utils";
 
 const NewFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { feature, setFeature, setRefineFeature, isLoading, setIsLoading } =
-    useAppStore();
+  const { feature, setFeature, isLoading } = useAppStore();
 
-  const { refineFeature } = useAida();
+  const { fetchRefineFeature } = useRefineFeature();
 
   const handleRefine = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const response = (await refineFeature(feature)) as string;
-      const parsedResponse = parseAidaRefineFeatureResponse(response);
-      setRefineFeature(parsedResponse);
-      setIsLoading(false);
-      navigate(routes.refineFeature);
-    } catch (error) {
-      setIsLoading(false);
-      console.error(error);
-    }
-  }, [setIsLoading, refineFeature, feature, setRefineFeature, navigate]);
+    await fetchRefineFeature(feature);
+    navigate(routes.refineFeature);
+  }, [feature, fetchRefineFeature, navigate]);
 
   return (
     <Container>
@@ -70,7 +59,7 @@ const NewFeature = () => {
           </CardContent>
         </Card>
       ) : (
-        <Spinner />
+        <Spinner fullScreen />
       )}
     </Container>
   );

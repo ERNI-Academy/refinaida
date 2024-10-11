@@ -3,7 +3,7 @@ import { memo, useEffect, useState } from "react";
 
 import {
   MESSAGE_THINKING,
-  USER,
+  UserEnum,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
 import { Message } from "@/types/common";
 
@@ -15,7 +15,7 @@ interface MessageTextProps {
 const MessageText = ({ message, isLoading = false }: MessageTextProps) => {
   const [loadingText, setLoadingText] = useState<string>(MESSAGE_THINKING);
 
-  const isUser = message.sender === USER;
+  const isUser = message.sender === UserEnum.USER;
 
   useEffect(() => {
     let interval: any;

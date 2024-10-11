@@ -20,7 +20,7 @@
         },
         "chat": {
             "sendMessage": {
-                "placeholder": "Type your message here..."
+                "placeholder": "Type your response here..."
             }
         }
     },

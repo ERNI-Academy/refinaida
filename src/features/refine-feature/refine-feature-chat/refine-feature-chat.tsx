@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Card, CardHeader } from "@/components/ui/card/card";
-import { Input } from "@/components/ui/input/input";
+import { Textarea } from "@/components/ui/textarea/textarea";
 import MessageText from "@/features/refine-feature/refine-feature-chat/message-text/message-text";
 import {
   USER,
@@ -101,8 +101,8 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
           </div>
           <div className="flex w-full pt-4 bg-white gap-4 justify-center items-center">
             <div className="w-11/12">
-              <Input
-                className="flex-grow border border-gray-300 p-2 rounded-lg"
+              <Textarea
+                className="flex-grow border border-gray-300 p-2 rounded-lg resize-none"
                 placeholder={t("refineFeature.chat.sendMessage.placeholder")}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}

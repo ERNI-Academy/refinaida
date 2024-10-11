@@ -1,5 +1,10 @@
-import { Card, CardHeader } from "@/components/ui/card/card";
-import { Textarea } from "@/components/ui/textarea/textarea";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card/card";
+import Spinner from "@/components/ui/spinner/spinner";
 import { useAppStore } from "@/hooks/use-app-store";
 
 type RefineFeatureRequirementsProps = {
@@ -9,17 +14,18 @@ type RefineFeatureRequirementsProps = {
 const RefineFeatureRequirements = ({
   className,
 }: RefineFeatureRequirementsProps) => {
-  const { refineFeature } = useAppStore();
+  const { refineFeature, isLoading } = useAppStore();
 
   return (
     <Card className={className}>
-      <CardHeader className="w-full h-full ">
-        <Textarea
-          className="w-full h-full resize-none"
-          value={`Summary: ${refineFeature.summary}\n\nDescription: ${refineFeature.description}`}
-          readOnly
-        />
-      </CardHeader>
+      {!isLoading ? (
+        <CardHeader className="w-full h-full p-10">
+          <CardTitle className="mb-3">{`Summary: ${refineFeature.summary}`}</CardTitle>
+          <CardDescription>{`Description: ${refineFeature.description}`}</CardDescription>
+        </CardHeader>
+      ) : (
+        <Spinner className="h-full w-full" />
+      )}
     </Card>
   );
 };

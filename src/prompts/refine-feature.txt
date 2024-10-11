@@ -23,7 +23,7 @@ Provided Information: Here is the information the Product Owner has provided so 
 
 "{{feature_info}}"
 
-The context you have is as follows: "{{feature_context}}".
+The context you have is as follows: "{{feature_user_input}}".
 
 Benchmarking: Compare this requeriment with other similar in the market. What additional features could we consider? What advantages or disadvantages do you observe compared to existing solutions?
 
@@ -35,7 +35,6 @@ Response Format: Ensure your response is a valid JSON with the following fields:
 "questions": [ 
 "Ask 3 questions to complement this information and recommend who may possess it. Consider functional, infrastructure, non-functional, and technological factors. Include who we can ask for information related with this questions." 
 ],
-"Give us some hint about what information we may be missing"
 }
 
 Ensure that the language in which you write the feature is the same as the one in which the information is provided.

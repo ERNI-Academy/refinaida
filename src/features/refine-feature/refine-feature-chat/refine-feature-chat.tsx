@@ -12,8 +12,9 @@ import {
   USER_AIDA,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
 import { useAppStore } from "@/hooks/use-app-store";
-import { handleEnterKey } from "@/lib/utils";
+import useRefineFeature from "@/hooks/use-refine-feature";
 import { Message } from "@/types/common";
+import { handleEnterKey } from "@/utils/utils";
 
 type RefineFeatureChatProps = {
   className: string;
@@ -22,50 +23,50 @@ type RefineFeatureChatProps = {
 const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   const { t } = useTranslation();
 
-  const { refineFeature, isLoading, setIsLoading } = useAppStore();
+  const {
+    refineFeature: { questions },
+    isLoading,
+  } = useAppStore();
+  const { fetchRefineFeature } = useRefineFeature();
 
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "questions",
-      text: refineFeature.questions,
+      text: questions,
       sender: USER_AIDA,
     },
   ]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    let timeout: any;
-    if (isLoading) {
-      const aidaMessage: Message = {
-        id: "nextQuestions",
-        text: "nexQuestions",
-        sender: USER_AIDA,
-      };
-      timeout = setTimeout(() => {
-        setIsLoading(false);
-        setMessages((prevState) => [...prevState, aidaMessage]);
-      }, 1500);
-    }
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [isLoading, setIsLoading]);
+  // useEffect(() => {
+  //   const aidaMessage: Message = {
+  //     id: `questions-${Math.random()}`,
+  //     text: questions,
+  //     sender: USER_AIDA,
+  //   };
+  //   setMessages((prevState) => [...prevState, aidaMessage]);
+  // }, [questions]);
 
   const handleSendMessage = useCallback(() => {
-    if (input.length && !isLoading) {
-      const answer = input.trim();
+    if (input.length) {
+      const answers = input.trim();
       const userMessage: Message = {
-        id: "response",
-        text: answer,
+        id: `response-${crypto.randomUUID()}`,
+        text: answers,
         sender: USER,
       };
-      setIsLoading(true);
       setMessages((prevState) => [...prevState, userMessage]);
       setInput("");
+      fetchRefineFeature(answers);
+      const aidaMessage: Message = {
+        id: `questions-${crypto.randomUUID()}`,
+        text: questions,
+        sender: USER_AIDA,
+      };
+      setMessages((prevState) => [...prevState, aidaMessage]);
     }
-  }, [input, isLoading, setIsLoading]);
+  }, [input, fetchRefineFeature, questions]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

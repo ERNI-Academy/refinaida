@@ -8,8 +8,8 @@ import { Card, CardHeader } from "@/components/ui/card/card";
 import { Textarea } from "@/components/ui/textarea/textarea";
 import MessageText from "@/features/refine-feature/refine-feature-chat/message-text/message-text";
 import {
-  USER,
-  USER_AIDA,
+  TypeMessageEnum,
+  UserEnum,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
 import { useAppStore } from "@/hooks/use-app-store";
 import useRefineFeature from "@/hooks/use-refine-feature";
@@ -34,37 +34,35 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
     {
       id: "questions",
       text: questions,
-      sender: USER_AIDA,
+      sender: UserEnum.USER_AIDA,
     },
   ]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   // useEffect(() => {
-  //   const aidaMessage: Message = {
-  //     id: `questions-${Math.random()}`,
-  //     text: questions,
-  //     sender: USER_AIDA,
-  //   };
-  //   setMessages((prevState) => [...prevState, aidaMessage]);
+  //   addMessage(TypeMessageEnum.QUESTIONS, questions, UserEnum.USER_AIDA);
   // }, [questions]);
 
-  const handleSendMessage = useCallback(() => {
+  const addMessage = (
+    type: TypeMessageEnum,
+    text: string | string[],
+    user: UserEnum
+  ) => {
+    const message: Message = {
+      id: `${type}-${crypto.randomUUID()}`,
+      text: text,
+      sender: user,
+    };
+    setMessages((prevState) => [...prevState, message]);
+  };
+
+  const handleSendMessage = useCallback(async () => {
     if (input.length) {
       const answers = input.trim();
-      const userMessage: Message = {
-        id: `response-${crypto.randomUUID()}`,
-        text: answers,
-        sender: USER,
-      };
-      setMessages((prevState) => [...prevState, userMessage]);
+      addMessage(TypeMessageEnum.ANSWERS, answers, UserEnum.USER);
       setInput("");
-      fetchRefineFeature(answers);
-      const aidaMessage: Message = {
-        id: `questions-${crypto.randomUUID()}`,
-        text: questions,
-        sender: USER_AIDA,
-      };
-      setMessages((prevState) => [...prevState, aidaMessage]);
+      await fetchRefineFeature(answers);
+      addMessage(TypeMessageEnum.QUESTIONS, questions, UserEnum.USER_AIDA);
     }
   }, [input, fetchRefineFeature, questions]);
 
@@ -92,7 +90,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
                 message={{
                   id: "loadingMessage",
                   text: "",
-                  sender: USER_AIDA,
+                  sender: UserEnum.USER_AIDA,
                 }}
                 isLoading
               />

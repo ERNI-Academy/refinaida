@@ -20,7 +20,7 @@ const BacklogFeatureList = () => {
   const BacklogItem = (refineBacklogItem: RefineBacklog) => {
     return (
       <Card
-        className="w-full mb-4 last:mb-0 p-3 h-30"
+        className="w-full mb-4 last:mb-0 p-3 h-30 hover:cursor-pointer bg-gray-50 shadow-sm"
         onClick={() => handleDetailBacklogItem(refineBacklogItem)}
       >
         <div className="p-2 pb-0">

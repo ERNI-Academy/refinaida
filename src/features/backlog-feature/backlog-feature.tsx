@@ -27,7 +27,7 @@ const BacklogFeature = () => {
             {t("backlogFeature.title")}
           </span>
           <span className="text-5xl text-ellipsis whitespace-nowrap w-full text-center overflow-hidden">
-            {feature}
+            {feature.name}
           </span>
         </div>
         <div className="flex flex-col w-full p-0">

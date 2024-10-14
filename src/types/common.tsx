@@ -1,3 +1,8 @@
+export type Feature = {
+  name: string;
+  context: string;
+};
+
 export interface Message {
   id: string;
   text: string | string[];

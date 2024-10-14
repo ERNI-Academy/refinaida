@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input/input";
 import Spinner from "@/components/ui/spinner/spinner";
 import { useAppStore } from "@/hooks/use-app-store";
-import useRefineFeature from "@/hooks/use-refine-feature";
+import useRefineFeatureName from "@/hooks/use-refine-feature-name";
 import { routes } from "@/router";
 import { handleEnterKey } from "@/utils/utils";
 
@@ -24,12 +24,12 @@ const NewFeature = () => {
 
   const { feature, setFeature, isLoading } = useAppStore();
 
-  const { fetchRefineFeature } = useRefineFeature();
+  const { fetchRefineFeatureName } = useRefineFeatureName();
 
   const handleRefine = useCallback(async () => {
-    await fetchRefineFeature();
+    await fetchRefineFeatureName();
     navigate(routes.refineFeature);
-  }, [fetchRefineFeature, navigate]);
+  }, [fetchRefineFeatureName, navigate]);
 
   return (
     <Container>
@@ -48,8 +48,10 @@ const NewFeature = () => {
               <Input
                 className="w-3/5"
                 placeholder={t("newFeature.input.placeholder")}
-                value={feature}
-                onChange={(e) => setFeature(e.target.value)}
+                value={feature.name}
+                onChange={(e) =>
+                  setFeature({ ...feature, name: e.target.value })
+                }
                 onKeyDown={(e) => handleEnterKey(e, handleRefine)}
               />
               <Button className="w-2/6" onClick={handleRefine}>

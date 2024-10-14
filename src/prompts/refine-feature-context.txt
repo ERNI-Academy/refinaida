@@ -21,19 +21,23 @@ Tools to Use: To achieve this, use any relevant tools you know, including:
 
 Provided Information: Here is the information the Product Owner has provided so far:
 
-"{{feature_info}}"
-
+"{{feature_context}}"
+ 
+Expand the Provided Information with the new data given by the user "{{feature_user_input}}".
+ 
 Benchmarking: Compare this requeriment with other similar in the market. What additional features could we consider? What advantages or disadvantages do you observe compared to existing solutions?
 
 Response Format: Ensure your response is a valid JSON with the following fields:
 
 {
-"summary": "Here is the title of the feature. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. One sentence, Less than 15 words.",
-"description": "Here is the new text with the user's information. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. Less than 1000 characters.", 
-"questions": [ 
-"Ask 3 questions to complement this information and recommend who may possess it. Consider functional, infrastructure, non-functional, and technological factors. Include who we can ask for information related with this questions." 
-],
+    "summary": "Here is the title of the feature. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. One sentence, Less than 15 words.",
+    "description": "Here is the new text with the user's information. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. Less than 1000 characters.", 
+    "questions": 
+    [ 
+        "Ask 3 questions to complement this information and recommend who may possess it. Consider functional, infrastructure, non-functional, and technological factors. Include who we can ask for information related with this questions." 
+    ],
 }
+
 
 Ensure that the language in which you write the feature is the same as the one in which the information is provided.
 

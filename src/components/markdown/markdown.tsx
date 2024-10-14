@@ -5,9 +5,8 @@ interface MarkdownRendererProps {
   content: string;
 }
 
-const MarkdownRenderer = ({ content }: MarkdownRendererProps) => {
-  console.log("mark:", content);
-  return <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>;
-};
+const MarkdownRenderer = ({ content }: MarkdownRendererProps) => (
+  <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+);
 
 export default MarkdownRenderer;

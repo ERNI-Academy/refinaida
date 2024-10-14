@@ -27,9 +27,9 @@ const NewFeature = () => {
   const { fetchRefineFeature } = useRefineFeature();
 
   const handleRefine = useCallback(async () => {
-    await fetchRefineFeature(feature);
+    await fetchRefineFeature();
     navigate(routes.refineFeature);
-  }, [feature, fetchRefineFeature, navigate]);
+  }, [fetchRefineFeature, navigate]);
 
   return (
     <Container>

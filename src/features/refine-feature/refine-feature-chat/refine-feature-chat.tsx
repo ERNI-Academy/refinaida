@@ -12,7 +12,7 @@ import {
   UserEnum,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
 import { useAppStore } from "@/hooks/use-app-store";
-import useRefineFeature from "@/hooks/use-refine-feature";
+import useRefineContext from "@/hooks/use-refine-context";
 import { Message } from "@/types/common";
 import { handleEnterKey } from "@/utils/utils";
 
@@ -27,7 +27,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
     refineFeature: { questions },
     isLoading,
   } = useAppStore();
-  const { fetchRefineFeature } = useRefineFeature();
+  const { fetchRefineContext } = useRefineContext();
 
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([
@@ -58,13 +58,13 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
 
   const handleSendMessage = useCallback(async () => {
     if (input.length) {
-      const answers = input.trim();
-      addMessage(TypeMessageEnum.ANSWERS, answers, UserEnum.USER);
+      const userInput = input.trim();
+      addMessage(TypeMessageEnum.ANSWERS, userInput, UserEnum.USER);
       setInput("");
-      await fetchRefineFeature(answers);
+      await fetchRefineContext(userInput);
       addMessage(TypeMessageEnum.QUESTIONS, questions, UserEnum.USER_AIDA);
     }
-  }, [input, fetchRefineFeature, questions]);
+  }, [input, fetchRefineContext, questions]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

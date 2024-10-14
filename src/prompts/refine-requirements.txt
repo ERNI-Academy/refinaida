@@ -33,4 +33,4 @@ Response Format: Ensure your response is a valid JSON with the following fields:
 
 Ensure that the language in which you write the feature is the same as the one in which the information is provided.
 
-Only output JSON without any other text or characters.
+Only output JSON without any other text or characters, with all the control characters escaped and without break line.

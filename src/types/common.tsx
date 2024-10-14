@@ -4,13 +4,13 @@ export interface Message {
   sender: string;
 }
 
-export type RefineFeature = {
+export type RefinedFeature = {
   summary: string;
   description: string;
   questions: string[];
 };
 
-export type RefineBacklog = {
+export type RefinedBacklog = {
   code: string;
   title: string;
   release: string;

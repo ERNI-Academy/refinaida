@@ -24,7 +24,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   const { t } = useTranslation();
 
   const {
-    refineFeature: { questions },
+    refinedFeature: { questions },
     isLoading,
   } = useAppStore();
   const { fetchRefineContext } = useRefineContext();

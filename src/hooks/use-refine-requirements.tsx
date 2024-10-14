@@ -5,20 +5,20 @@ import { parseAidaRefineRequirementsResponse } from "@/lib/aida";
 import { sendRefinedRequirements } from "@/utils/utils-aida-service";
 
 const useRefineRequirements = () => {
-  const { context, setRefineBacklog, setIsLoading } = useAppStore();
+  const { context, setRefinedBacklog, setIsLoading } = useAppStore();
 
   const fetchRefineRequiremets = useCallback(async () => {
     try {
       setIsLoading(true);
       const response = await sendRefinedRequirements(context);
       const parsedResponse = parseAidaRefineRequirementsResponse(response);
-      setRefineBacklog(parsedResponse);
+      setRefinedBacklog(parsedResponse);
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
       console.error(error);
     }
-  }, [context, setRefineBacklog, setIsLoading]);
+  }, [context, setRefinedBacklog, setIsLoading]);
 
   return { fetchRefineRequiremets };
 };

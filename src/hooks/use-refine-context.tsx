@@ -5,7 +5,7 @@ import { parseAidaRefineFeatureResponse } from "@/lib/aida";
 import { sendRefinedContext } from "@/utils/utils-aida-service";
 
 const useRefineContext = () => {
-  const { feature, setRefineFeature, setIsLoading } = useAppStore();
+  const { feature, setContext, setRefineFeature, setIsLoading } = useAppStore();
 
   const fetchRefineContext = useCallback(
     async (user_input: string = "") => {
@@ -13,6 +13,8 @@ const useRefineContext = () => {
         setIsLoading(true);
         const response = await sendRefinedContext(feature, user_input);
         const parsedResponse = parseAidaRefineFeatureResponse(response);
+        const context: string = `${parsedResponse.summary}. ${parsedResponse.description}`;
+        setContext(context);
         setRefineFeature(parsedResponse);
         setIsLoading(false);
       } catch (error: any) {
@@ -20,7 +22,7 @@ const useRefineContext = () => {
         console.error(error);
       }
     },
-    [feature, setIsLoading, setRefineFeature]
+    [feature, setContext, setRefineFeature, setIsLoading]
   );
 
   return { fetchRefineContext };

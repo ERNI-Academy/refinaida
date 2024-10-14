@@ -13,8 +13,10 @@ interface AppStoreState {
   setRefineFeature: (refineFeature: RefineFeature) => void;
   refineBacklog: RefineBacklog[];
   setRefineBacklog: (refineBackLog: RefineBacklog[]) => void;
-  currentRefineBacklog: RefineBacklog;
-  setCurrentRefineBacklog: (currentRefineBacklog: RefineBacklog) => void;
+  currentRefineBacklog: RefineBacklog | undefined;
+  setCurrentRefineBacklog: (
+    currentRefineBacklog: RefineBacklog | undefined
+  ) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
   aidaAuth: { apiKey: string; endpoint: string };
@@ -32,8 +34,8 @@ export const useAppStore = create<AppStoreState>((set) => ({
   setRefineFeature: (refineFeature: RefineFeature) => set({ refineFeature }),
   refineBacklog: [],
   setRefineBacklog: (refineBacklog: RefineBacklog[]) => set({ refineBacklog }),
-  currentRefineBacklog: {} as RefineBacklog,
-  setCurrentRefineBacklog: (currentRefineBacklog: RefineBacklog) =>
+  currentRefineBacklog: undefined,
+  setCurrentRefineBacklog: (currentRefineBacklog: RefineBacklog | undefined) =>
     set({ currentRefineBacklog }),
   isLoading: false,
   setIsLoading: (isLoading: boolean) => set({ isLoading }),

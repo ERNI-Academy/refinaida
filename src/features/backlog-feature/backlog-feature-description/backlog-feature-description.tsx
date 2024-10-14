@@ -11,10 +11,12 @@ const BacklogFeatureDescription = () => {
 
   return (
     <Card className="w-2/5">
-      <CardHeader className="w-full h-full p-10">
-        <CardTitle className="mb-3">{currentRefineBacklog.title}</CardTitle>
-        <CardDescription>{currentRefineBacklog.description}</CardDescription>
-      </CardHeader>
+      {currentRefineBacklog?.description && (
+        <CardHeader className="w-full h-full p-10">
+          <CardTitle className="mb-3">{currentRefineBacklog.title}</CardTitle>
+          <CardDescription>{currentRefineBacklog.description}</CardDescription>
+        </CardHeader>
+      )}
     </Card>
   );
 };

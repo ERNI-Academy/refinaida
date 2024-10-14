@@ -10,13 +10,14 @@ import useRefineRequirements from "@/hooks/use-refine-requirements";
 
 const BacklogFeature = () => {
   const { t } = useTranslation();
-  const { feature } = useAppStore();
+  const { feature, setCurrentRefineBacklog } = useAppStore();
 
   const { fetchRefineRequiremets } = useRefineRequirements();
 
   const handleThinkMore = useCallback(async () => {
+    setCurrentRefineBacklog(undefined);
     await fetchRefineRequiremets();
-  }, [fetchRefineRequiremets]);
+  }, [setCurrentRefineBacklog, fetchRefineRequiremets]);
 
   return (
     <Container size="lg">

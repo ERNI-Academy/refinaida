@@ -1,7 +1,7 @@
 import "./refine-feature.scss";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button/button";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/hooks/use-app-store";
+import useRefineRequirements from "@/hooks/use-refine-requirements";
 import { routes } from "@/router.tsx";
 
 const RefineFeature = () => {
@@ -18,7 +19,14 @@ const RefineFeature = () => {
 
   const { feature } = useAppStore();
 
+  const { fetchRefineRequiremets } = useRefineRequirements();
+
   const [isSmall, setIsSmall] = useState(false);
+
+  const handleRequirements = useCallback(async () => {
+    await fetchRefineRequiremets();
+    navigate(routes.backlogFeature);
+  }, [fetchRefineRequiremets, navigate]);
 
   return (
     <Container size="lg">
@@ -57,10 +65,7 @@ const RefineFeature = () => {
             </Button>
           </div>
           <div className="w-2/4 flex">
-            <Button
-              className="w-7/12 ml-auto"
-              onClick={() => navigate(routes.backlogFeature)}
-            >
+            <Button className="w-7/12 ml-auto" onClick={handleRequirements}>
               {t("refineFeature.buttons.getRequirements")}
             </Button>
           </div>

@@ -9,3 +9,10 @@ export type RefineFeature = {
   description: string;
   questions: string[];
 };
+
+export type RefineBacklog = {
+  code: string;
+  title: string;
+  release: string;
+  description?: string;
+};

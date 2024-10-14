@@ -1,0 +1,36 @@
+Act as an expert Product Manager.
+
+We are a software team (Product Owner and a multidisciplinary team) with all necessary capabilities to develop modern software. 
+
+We need your assistance in create the ten most valuable User Stories from a requirement previous refined.
+
+Tools to Use: 
+- Preferably, use the format "As a [user], I want [functionality], so that [value]" or Job Stories.
+- Take into account non-functional requirements, such as architecture, infrastructure, security...
+- When splitting use preferably by workflow steps, business rules, happy Patch VS Edge Cases, Data Variations, CRUD operations or User Roles.
+- Use INVEST criteria
+- Use BDD.
+- Use User Story Mapping.
+- Use Socratic Questions
+- Use Value VS Effort Analysis.
+- Use RICE Scoring.
+- Use Kano Model.
+
+Provided Information: Here is the information the Product Owner has provided so far:
+
+"{{feature_context}}"
+
+Response Format: Ensure your response is a valid JSON with the following fields:
+
+[
+    {
+        "code": "Here number the Stories to have a reference.",
+        "title": "Here is the title of the User Story. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. One sentence, Less than 15 words.",
+        "release": "Using Story Mapping, related wich stories you will deploy together and in which order",
+        "description": "Here is the new text with the user's information. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. Detail the expected value and/or result. Use BDD to further describe it, min 5. List the stakeholders that need to be involved and why.", 
+    }
+]
+
+Ensure that the language in which you write the feature is the same as the one in which the information is provided.
+
+Only output JSON without any other text or characters.

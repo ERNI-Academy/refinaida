@@ -1,3 +1,5 @@
+import "./refine-feature-requirements.scss";
+
 import {
   Card,
   CardDescription,
@@ -17,7 +19,7 @@ const RefineFeatureRequirements = ({
   const { refineFeature, isLoading } = useAppStore();
 
   return (
-    <Card className={className}>
+    <Card className={`${className} requirements-wrapper overflow-y-auto p-0`}>
       {!isLoading ? (
         <CardHeader className="w-full h-full p-10">
           <CardTitle className="mb-3">{`Summary: ${refineFeature.summary}`}</CardTitle>

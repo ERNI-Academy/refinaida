@@ -39,7 +39,7 @@ const BacklogFeatureList = () => {
   };
 
   return (
-    <Card className="w-3/5 p-5 shadow-lg backlog-feature-wrapper overflow-y-auto">
+    <Card className="w-3/5 p-5 shadow-lg backlog-featur-list-wrapper overflow-y-auto">
       {!isLoading ? (
         refineBacklog.map((refineBacklogItem) => (
           <BacklogItem

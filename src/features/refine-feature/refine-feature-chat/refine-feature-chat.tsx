@@ -39,9 +39,9 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   ]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  // useEffect(() => {
-  //   addMessage(TypeMessageEnum.QUESTIONS, questions, UserEnum.USER_AIDA);
-  // }, [questions]);
+  useEffect(() => {
+    addMessage(TypeMessageEnum.QUESTIONS, questions, UserEnum.USER_AIDA);
+  }, [questions]);
 
   const addMessage = (
     type: TypeMessageEnum,
@@ -53,18 +53,23 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
       text: text,
       sender: user,
     };
-    setMessages((prevState) => [...prevState, message]);
+    setMessages((prevState) => {
+      const lastMessage = prevState[prevState.length - 1];
+      if (lastMessage && lastMessage.text === message.text) {
+        return prevState;
+      }
+      return [...prevState, message];
+    });
   };
 
-  const handleSendMessage = useCallback(async () => {
+  const handleSendMessage = useCallback(() => {
     if (input.length) {
       const userInput = input.trim();
       addMessage(TypeMessageEnum.ANSWERS, userInput, UserEnum.USER);
       setInput("");
-      await fetchRefineContext(userInput);
-      addMessage(TypeMessageEnum.QUESTIONS, questions, UserEnum.USER_AIDA);
+      fetchRefineContext(userInput);
     }
-  }, [input, fetchRefineContext, questions]);
+  }, [input, fetchRefineContext]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -72,7 +77,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, isLoading]);
 
   return (
     <Card className={className}>

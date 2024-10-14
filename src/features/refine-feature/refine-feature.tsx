@@ -36,7 +36,7 @@ const RefineFeature = () => {
             {t("refineFeature.title")}
           </span>
           <span className="text-5xl text-ellipsis whitespace-nowrap w-full text-center overflow-hidden">
-            {feature}
+            {feature.name}
           </span>
         </div>
         <div className="w-full flex gap-4 refine-feature-wrapper">

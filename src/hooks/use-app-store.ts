@@ -1,12 +1,10 @@
 import { create } from "zustand";
 
-import { RefinedBacklog, RefinedFeature } from "@/types/common";
+import { Feature, RefinedBacklog, RefinedFeature } from "@/types/common";
 
 interface AppStoreState {
-  feature: string;
-  setFeature: (feature: string) => void;
-  context: string;
-  setContext: (context: string) => void;
+  feature: Feature;
+  setFeature: (feature: Feature) => void;
   questions: string[];
   setQuestions: (questions: string[]) => void;
   refinedFeature: RefinedFeature;
@@ -24,10 +22,8 @@ interface AppStoreState {
 }
 
 export const useAppStore = create<AppStoreState>((set) => ({
-  feature: "",
-  setFeature: (feature: string) => set({ feature }),
-  context: "",
-  setContext: (context: string) => set({ context }),
+  feature: { name: "", context: "" },
+  setFeature: (feature: Feature) => set({ feature }),
   questions: [],
   setQuestions: (questions: string[]) => set({ questions }),
   refinedFeature: {} as RefinedFeature,

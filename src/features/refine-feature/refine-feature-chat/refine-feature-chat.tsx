@@ -12,7 +12,7 @@ import {
   UserEnum,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
 import { useAppStore } from "@/hooks/use-app-store";
-import useRefineContext from "@/hooks/use-refine-context";
+import useRefineFeatureContext from "@/hooks/use-refine-feature-context";
 import { Message } from "@/types/common";
 import { handleEnterKey } from "@/utils/utils";
 
@@ -27,7 +27,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
     refinedFeature: { questions },
     isLoading,
   } = useAppStore();
-  const { fetchRefineContext } = useRefineContext();
+  const { fetchRefineFeatureContext } = useRefineFeatureContext();
 
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useState<Message[]>([
@@ -67,9 +67,9 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
       const userInput = input.trim();
       addMessage(TypeMessageEnum.ANSWERS, userInput, UserEnum.USER);
       setInput("");
-      fetchRefineContext(userInput);
+      fetchRefineFeatureContext(userInput);
     }
-  }, [input, fetchRefineContext]);
+  }, [input, fetchRefineFeatureContext]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

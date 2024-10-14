@@ -1,9 +1,5 @@
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card/card";
+import MarkdownRenderer from "@/components/markdown/markdown";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card/card";
 import { useAppStore } from "@/hooks/use-app-store";
 
 const BacklogFeatureDescription = () => {
@@ -14,7 +10,7 @@ const BacklogFeatureDescription = () => {
       {currentRefineBacklog?.description && (
         <CardHeader className="w-full h-full p-10">
           <CardTitle className="mb-3">{currentRefineBacklog.title}</CardTitle>
-          <CardDescription>{currentRefineBacklog.description}</CardDescription>
+          <MarkdownRenderer content={currentRefineBacklog.description} />
         </CardHeader>
       )}
     </Card>

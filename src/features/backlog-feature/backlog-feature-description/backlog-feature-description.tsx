@@ -1,17 +1,14 @@
-import {
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card/card";
+import { Card, CardHeader } from "@/components/ui/card/card";
+import { useAppStore } from "@/hooks/use-app-store";
 
-const BacklogFeatureDescription = () => (
-  <Card className="w-2/5">
-    <CardHeader>
-      <CardTitle>Refine a feature</CardTitle>
-      <CardDescription>What feature does your solution need?</CardDescription>
-    </CardHeader>
-  </Card>
-);
+const BacklogFeatureDescription = () => {
+  const { currentRefineBacklog } = useAppStore();
+  
+  return (
+    <Card className="w-2/5">
+      <CardHeader>{currentRefineBacklog.description}</CardHeader>
+    </Card>
+  );
+};
 
 export default BacklogFeatureDescription;

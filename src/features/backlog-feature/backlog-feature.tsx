@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Container } from "@/components/layout/container/container";
@@ -5,10 +6,17 @@ import { Button } from "@/components/ui/button/button";
 import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import { useAppStore } from "@/hooks/use-app-store";
+import useRefineRequirements from "@/hooks/use-refine-requirements";
 
 const BacklogFeature = () => {
   const { t } = useTranslation();
   const { feature } = useAppStore();
+
+  const { fetchRefineRequiremets } = useRefineRequirements();
+
+  const handleThinkMore = useCallback(async () => {
+    await fetchRefineRequiremets();
+  }, [fetchRefineRequiremets]);
 
   return (
     <Container size="lg">
@@ -21,7 +29,7 @@ const BacklogFeature = () => {
             {feature}
           </span>
         </div>
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full p-0">
           <span className="text-2xl font-bold text-gray-500">
             {t("backlogFeature.secondTitle")}
           </span>
@@ -32,15 +40,15 @@ const BacklogFeature = () => {
         </div>
         <div className="w-full flex gap-4">
           <div className="w-3/5 flex justify-between">
-            <Button className="w-5/12">
+            <Button className="w-5/12" disabled>
               {t("backlogFeature.buttons.export")}
             </Button>
-            <Button className="w-5/12">
+            <Button className="w-5/12" onClick={handleThinkMore}>
               {t("backlogFeature.buttons.thinkMore")}
             </Button>
           </div>
           <div className="w-2/5 flex">
-            <Button className="w-7/12 ml-auto">
+            <Button className="w-7/12 ml-auto" disabled>
               {t("backlogFeature.buttons.refineRequirements")}
             </Button>
           </div>

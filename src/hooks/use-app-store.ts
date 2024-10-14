@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { RefineBacklog, RefineFeature } from "@/types/common";
+import { RefinedBacklog, RefinedFeature } from "@/types/common";
 
 interface AppStoreState {
   feature: string;
@@ -9,13 +9,13 @@ interface AppStoreState {
   setContext: (context: string) => void;
   questions: string[];
   setQuestions: (questions: string[]) => void;
-  refineFeature: RefineFeature;
-  setRefineFeature: (refineFeature: RefineFeature) => void;
-  refineBacklog: RefineBacklog[];
-  setRefineBacklog: (refineBackLog: RefineBacklog[]) => void;
-  currentRefineBacklog: RefineBacklog | undefined;
-  setCurrentRefineBacklog: (
-    currentRefineBacklog: RefineBacklog | undefined
+  refinedFeature: RefinedFeature;
+  setRefinedFeature: (refinedFeature: RefinedFeature) => void;
+  refinedBacklog: RefinedBacklog[];
+  setRefinedBacklog: (refinedBackLog: RefinedBacklog[]) => void;
+  currentRefinedBacklog: RefinedBacklog | undefined;
+  setCurrentRefinedBacklog: (
+    currentRefineBacklog: RefinedBacklog | undefined
   ) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
@@ -30,13 +30,16 @@ export const useAppStore = create<AppStoreState>((set) => ({
   setContext: (context: string) => set({ context }),
   questions: [],
   setQuestions: (questions: string[]) => set({ questions }),
-  refineFeature: {} as RefineFeature,
-  setRefineFeature: (refineFeature: RefineFeature) => set({ refineFeature }),
-  refineBacklog: [],
-  setRefineBacklog: (refineBacklog: RefineBacklog[]) => set({ refineBacklog }),
-  currentRefineBacklog: undefined,
-  setCurrentRefineBacklog: (currentRefineBacklog: RefineBacklog | undefined) =>
-    set({ currentRefineBacklog }),
+  refinedFeature: {} as RefinedFeature,
+  setRefinedFeature: (refinedFeature: RefinedFeature) =>
+    set({ refinedFeature }),
+  refinedBacklog: [],
+  setRefinedBacklog: (refinedBacklog: RefinedBacklog[]) =>
+    set({ refinedBacklog }),
+  currentRefinedBacklog: undefined,
+  setCurrentRefinedBacklog: (
+    currentRefinedBacklog: RefinedBacklog | undefined
+  ) => set({ currentRefinedBacklog }),
   isLoading: false,
   setIsLoading: (isLoading: boolean) => set({ isLoading }),
   aidaAuth: { apiKey: "", endpoint: "" },

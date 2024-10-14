@@ -21,8 +21,10 @@ Tools to Use: To achieve this, use any relevant tools you know, including:
 
 Provided Information: Here is the information the Product Owner has provided so far:
 
-"{{feature_info}}"
-
+"{{feature_context}}"
+ 
+Expand the Provided Information with the new data given by the user "{{feature_user_input}}".
+ 
 Benchmarking: Compare this requeriment with other similar in the market. What additional features could we consider? What advantages or disadvantages do you observe compared to existing solutions?
 
 Response Format: Ensure your response is a valid JSON with the following fields:

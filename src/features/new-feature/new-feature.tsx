@@ -24,12 +24,12 @@ const NewFeature = () => {
 
   const { feature, setFeature, isLoading } = useAppStore();
 
-  const { fetchRefineFeatureName } = useRefineFeatureName();
+  const { fetchRefinedFeatureName } = useRefineFeatureName();
 
   const handleRefine = useCallback(async () => {
-    await fetchRefineFeatureName();
+    await fetchRefinedFeatureName();
     navigate(routes.refineFeature);
-  }, [fetchRefineFeatureName, navigate]);
+  }, [fetchRefinedFeatureName, navigate]);
 
   return (
     <Container>

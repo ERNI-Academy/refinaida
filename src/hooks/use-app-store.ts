@@ -13,7 +13,7 @@ interface AppStoreState {
   setRefinedBacklog: (refinedBackLog: RefinedBacklog[]) => void;
   currentRefinedBacklog: RefinedBacklog | undefined;
   setCurrentRefinedBacklog: (
-    currentRefineBacklog: RefinedBacklog | undefined
+    currentRefinedBacklog: RefinedBacklog | undefined
   ) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;

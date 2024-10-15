@@ -19,14 +19,14 @@ const RefineFeature = () => {
 
   const { feature } = useAppStore();
 
-  const { fetchRefineRequiremets } = useRefineRequirements();
+  const { fetchRefinedRequirements } = useRefineRequirements();
 
   const [isSmall, setIsSmall] = useState(false);
 
   const handleRequirements = useCallback(async () => {
-    await fetchRefineRequiremets();
+    await fetchRefinedRequirements();
     navigate(routes.backlogFeature);
-  }, [fetchRefineRequiremets, navigate]);
+  }, [fetchRefinedRequirements, navigate]);
 
   return (
     <Container size="lg">

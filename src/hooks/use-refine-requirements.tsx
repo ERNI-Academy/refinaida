@@ -1,17 +1,17 @@
 import { useCallback } from "react";
 
 import { useAppStore } from "@/hooks/use-app-store";
-import { parseAidaRefineRequirementsResponse } from "@/lib/aida";
+import { parseAidaRefinedRequirementsResponse } from "@/lib/aida";
 import { sendRefinedRequirements } from "@/utils/utils-aida-service";
 
 const useRefineRequirements = () => {
   const { feature, setRefinedBacklog, setIsLoading } = useAppStore();
 
-  const fetchRefineRequiremets = useCallback(async () => {
+  const fetchRefinedRequirements = useCallback(async () => {
     try {
       setIsLoading(true);
       const response = await sendRefinedRequirements(feature.context);
-      const parsedResponse = parseAidaRefineRequirementsResponse(response);
+      const parsedResponse = parseAidaRefinedRequirementsResponse(response);
       setRefinedBacklog(parsedResponse);
       setIsLoading(false);
     } catch (error: any) {
@@ -20,7 +20,7 @@ const useRefineRequirements = () => {
     }
   }, [feature.context, setRefinedBacklog, setIsLoading]);
 
-  return { fetchRefineRequiremets };
+  return { fetchRefinedRequirements };
 };
 
 export default useRefineRequirements;

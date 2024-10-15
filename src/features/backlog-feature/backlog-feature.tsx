@@ -12,12 +12,12 @@ const BacklogFeature = () => {
   const { t } = useTranslation();
   const { feature, setCurrentRefinedBacklog } = useAppStore();
 
-  const { fetchRefineRequiremets } = useRefineRequirements();
+  const { fetchRefinedRequirements } = useRefineRequirements();
 
   const handleThinkMore = useCallback(async () => {
     setCurrentRefinedBacklog(undefined);
-    await fetchRefineRequiremets();
-  }, [setCurrentRefinedBacklog, fetchRefineRequiremets]);
+    await fetchRefinedRequirements();
+  }, [setCurrentRefinedBacklog, fetchRefinedRequirements]);
 
   return (
     <Container size="lg">

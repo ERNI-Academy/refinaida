@@ -80,9 +80,12 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   }, [messages, isLoading]);
 
   return (
-    <Card className={className}>
+    <Card
+      className={`${className} shadow-lg overflow-y-auto p-0`}
+      maxHeight="600px"
+    >
       <CardHeader>
-        <div className="flex flex-col h-screen bg-gray-50 chat-wrapper">
+        <div className="flex flex-col h-screen chat-wrapper bg-gray-50">
           <div className="flex-grow p-4 overflow-y-auto">
             {messages.map((message) => (
               <MessageText

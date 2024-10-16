@@ -34,16 +34,16 @@ const NewFeature = () => {
   return (
     <Container>
       {!isLoading ? (
-        <Card>
-          <CardHeader className="mb-4">
-            <CardTitle className="text-5xl font-semibold text-center">
+        <Card className="w-9/12 p-5">
+          <CardHeader>
+            <CardTitle className="text-5xl p-1 font-semibold text-center">
               {t("newFeature.title")}
             </CardTitle>
-            <CardDescription className="text-lg text-gray-500 text-center">
+            <CardDescription className="text-lg p-0 text-gray-500 text-center">
               {t("newFeature.subtitle")}
             </CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-4">
             <div className="flex flex-col gap-4 items-center">
               <Input
                 className="w-3/5"
@@ -53,6 +53,7 @@ const NewFeature = () => {
                   setFeature({ ...feature, name: e.target.value })
                 }
                 onKeyDown={(e) => handleEnterKey(e, handleRefine)}
+                disabled={isLoading}
               />
               <Button className="w-2/6" onClick={handleRefine}>
                 {t("newFeature.buttons.startRefining")}

@@ -18,7 +18,7 @@ const BacklogFeatureList = () => {
   );
 
   return (
-    <Card className="w-3/5 p-5 shadow-lg backlog-feature-list-wrapper overflow-y-auto">
+    <Card className="w-1/2 p-5 shadow-lg overflow-y-auto" maxHeight="500px">
       {!isLoading ? (
         refinedBacklog.map((refinedBacklogItem) => (
           <Card

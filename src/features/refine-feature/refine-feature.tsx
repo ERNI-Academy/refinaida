@@ -1,5 +1,3 @@
-import "./refine-feature.scss";
-
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -30,7 +28,7 @@ const RefineFeature = () => {
 
   return (
     <Container size="lg">
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col w-full items-center justify-center">
           <span className="text-lg font-bold text-gray-500">
             {t("refineFeature.title")}
@@ -39,7 +37,7 @@ const RefineFeature = () => {
             {feature.name}
           </span>
         </div>
-        <div className="w-full flex gap-4 refine-feature-wrapper">
+        <div className="w-full flex gap-4">
           <RefineFeatureChat className={`${isSmall ? "w-4/6" : "w-2/4"}`} />
           <div className="flex flex-col items-center justify-center">
             <button onClick={() => setIsSmall((prevState) => !prevState)}>

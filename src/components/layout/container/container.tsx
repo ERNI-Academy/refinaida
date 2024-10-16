@@ -19,5 +19,15 @@ export const Container = ({
     full: "w-full mx-auto my-4 px-4",
   };
 
-  return <div className={cn(sizeClasses[size], className)}>{children}</div>;
+  return (
+    <div
+      className={cn(
+        sizeClasses[size],
+        "flex justify-center items-center",
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
 };

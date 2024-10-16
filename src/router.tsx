@@ -20,7 +20,7 @@ export const router = createMemoryRouter([
       {
         path: routes.default,
         element: (
-          <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<Spinner fullScreen />}>
             <NewFeaturePage />
           </Suspense>
         ),
@@ -28,7 +28,7 @@ export const router = createMemoryRouter([
       {
         path: routes.refineFeature,
         element: (
-          <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<Spinner fullScreen />}>
             <RefineFeaturePage />
           </Suspense>
         ),
@@ -36,7 +36,7 @@ export const router = createMemoryRouter([
       {
         path: routes.backlogFeature,
         element: (
-          <Suspense fallback={<Spinner />}>
+          <Suspense fallback={<Spinner fullScreen />}>
             <BacklogFeaturePage />
           </Suspense>
         ),

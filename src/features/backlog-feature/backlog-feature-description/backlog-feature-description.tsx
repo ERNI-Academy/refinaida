@@ -8,7 +8,7 @@ const BacklogFeatureDescription = () => {
   const { currentRefinedBacklog } = useAppStore();
 
   return (
-    <Card className="w-2/5 backlog-feature-description-wrapper overflow-y-auto">
+    <Card className="w-1/2 shadow-lg overflow-y-auto" maxHeight="500px">
       {currentRefinedBacklog?.description && (
         <CardHeader className="w-full h-full p-10">
           <CardTitle className="mb-3">{currentRefinedBacklog.title}</CardTitle>

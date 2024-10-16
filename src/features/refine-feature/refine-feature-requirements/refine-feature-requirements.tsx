@@ -14,14 +14,14 @@ type RefineFeatureRequirementsProps = {
 const RefineFeatureRequirements = ({
   className,
 }: RefineFeatureRequirementsProps) => {
-  const { refinedFeature, isLoading } = useAppStore();
+  const { refinedFeature, isLoadingChat } = useAppStore();
 
   return (
     <Card
       className={`${className} shadow-lg overflow-y-auto p-0`}
       maxHeight="600px"
     >
-      {!isLoading ? (
+      {!isLoadingChat ? (
         <CardHeader className="w-full h-full p-10">
           <CardTitle className="mb-3">{`Summary: ${refinedFeature.summary}`}</CardTitle>
           <CardDescription>{`Description: ${refinedFeature.description}`}</CardDescription>

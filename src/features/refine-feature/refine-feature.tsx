@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Container } from "@/components/layout/container/container";
 import { Button } from "@/components/ui/button/button";
+import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/hooks/use-app-store";
@@ -15,7 +16,7 @@ const RefineFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { feature } = useAppStore();
+  const { feature, isLoading } = useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
 
@@ -63,9 +64,13 @@ const RefineFeature = () => {
             </Button>
           </div>
           <div className="w-2/4 flex">
-            <Button className="w-7/12 ml-auto" onClick={handleRequirements}>
+            <ButtonLoading
+              className="w-7/12 ml-auto"
+              onClick={handleRequirements}
+              isLoading={isLoading}
+            >
               {t("refineFeature.buttons.getRequirements")}
-            </Button>
+            </ButtonLoading>
           </div>
         </div>
       </div>

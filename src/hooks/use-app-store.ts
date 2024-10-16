@@ -17,6 +17,8 @@ interface AppStoreState {
   ) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
+  isLoadingChat: boolean;
+  setIsLoadingChat: (isLoadingChat: boolean) => void;
   aidaAuth: { apiKey: string; endpoint: string };
   setAidaAuth: (apiKey: string, endpoint: string) => void;
 }
@@ -38,6 +40,8 @@ export const useAppStore = create<AppStoreState>((set) => ({
   ) => set({ currentRefinedBacklog }),
   isLoading: false,
   setIsLoading: (isLoading: boolean) => set({ isLoading }),
+  isLoadingChat: false,
+  setIsLoadingChat: (isLoadingChat: boolean) => set({ isLoadingChat }),
   aidaAuth: { apiKey: "", endpoint: "" },
   setAidaAuth: (apiKey: string, endpoint: string) =>
     set({ aidaAuth: { apiKey, endpoint } }),

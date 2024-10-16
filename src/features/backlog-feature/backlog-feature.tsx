@@ -1,8 +1,12 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Container } from "@/components/layout/container/container";
+import {
+  Container,
+  ContainerFull,
+} from "@/components/layout/container/container";
 import { Button } from "@/components/ui/button/button";
+import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import { useAppStore } from "@/hooks/use-app-store";
@@ -10,7 +14,7 @@ import useRefineRequirements from "@/hooks/use-refine-requirements";
 
 const BacklogFeature = () => {
   const { t } = useTranslation();
-  const { feature, setCurrentRefinedBacklog } = useAppStore();
+  const { feature, setCurrentRefinedBacklog, isLoading } = useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
 
@@ -20,7 +24,7 @@ const BacklogFeature = () => {
   }, [setCurrentRefinedBacklog, fetchRefinedRequirements]);
 
   return (
-    <Container size="lg">
+    <Container size="lg" minHeight="500px">
       <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col w-full items-center justify-center">
           <span className="text-lg font-bold text-gray-500">
@@ -35,18 +39,22 @@ const BacklogFeature = () => {
             {t("backlogFeature.secondTitle")}
           </span>
         </div>
-        <div className="w-full flex gap-4">
+        <ContainerFull className="gap-4" minHeight="500px">
           <BacklogFeatureList />
           <BacklogFeatureDescription />
-        </div>
+        </ContainerFull>
         <div className="w-full flex gap-4">
           <div className="w-1/2 flex justify-between">
             <Button className="w-5/12" disabled>
               {t("backlogFeature.buttons.export")}
             </Button>
-            <Button className="w-5/12" onClick={handleThinkMore}>
+            <ButtonLoading
+              className="w-5/12"
+              onClick={handleThinkMore}
+              isLoading={isLoading}
+            >
               {t("backlogFeature.buttons.thinkMore")}
-            </Button>
+            </ButtonLoading>
           </div>
           <div className="w-1/2 flex">
             <Button className="w-7/12 ml-auto" disabled>

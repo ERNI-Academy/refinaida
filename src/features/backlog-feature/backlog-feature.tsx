@@ -21,7 +21,7 @@ const BacklogFeature = () => {
 
   return (
     <Container size="lg">
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col w-full items-center justify-center">
           <span className="text-lg font-bold text-gray-500">
             {t("backlogFeature.title")}
@@ -40,7 +40,7 @@ const BacklogFeature = () => {
           <BacklogFeatureDescription />
         </div>
         <div className="w-full flex gap-4">
-          <div className="w-3/5 flex justify-between">
+          <div className="w-1/2 flex justify-between">
             <Button className="w-5/12" disabled>
               {t("backlogFeature.buttons.export")}
             </Button>
@@ -48,7 +48,7 @@ const BacklogFeature = () => {
               {t("backlogFeature.buttons.thinkMore")}
             </Button>
           </div>
-          <div className="w-2/5 flex">
+          <div className="w-1/2 flex">
             <Button className="w-7/12 ml-auto" disabled>
               {t("backlogFeature.buttons.refineRequirements")}
             </Button>

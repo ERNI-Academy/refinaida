@@ -5,12 +5,14 @@ type ContainerProps = {
   children: React.ReactNode;
   className?: string;
   size?: ContainerSize;
+  minHeight?: string;
 };
 
 export const Container = ({
   children,
   className,
   size = "md",
+  minHeight,
 }: ContainerProps) => {
   const sizeClasses = {
     sm: "container mx-auto my-12 px-12",
@@ -26,6 +28,22 @@ export const Container = ({
         "flex justify-center items-center",
         className
       )}
+      style={{ minHeight: minHeight }}
+    >
+      {children}
+    </div>
+  );
+};
+
+export const ContainerFull = ({
+  children,
+  className,
+  minHeight,
+}: ContainerProps) => {
+  return (
+    <div
+      className={cn("flex w-full", className)}
+      style={{ minHeight: minHeight }}
     >
       {children}
     </div>

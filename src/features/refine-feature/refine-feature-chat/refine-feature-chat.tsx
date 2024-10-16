@@ -26,6 +26,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   const {
     refinedFeature: { questions },
     isLoading,
+    isLoadingChat,
   } = useAppStore();
   const { fetchRefineFeatureContext } = useRefineFeatureContext();
 
@@ -77,7 +78,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isLoading]);
+  }, [messages, isLoading, isLoadingChat]);
 
   return (
     <Card
@@ -93,7 +94,7 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
                 message={message}
               />
             ))}
-            {isLoading && (
+            {isLoadingChat && (
               <MessageText
                 message={{
                   id: "loadingMessage",
@@ -113,13 +114,13 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => handleEnterKey(e, handleSendMessage)}
-                disabled={isLoading}
+                disabled={isLoadingChat}
               />
             </div>
             <div className="w-1/12 items-center justify-center">
               <Send
                 className={`h-6 w-6 ${
-                  !isLoading ? "cursor-pointer" : "cursor-not-allowed "
+                  !isLoadingChat ? "cursor-pointer" : "cursor-not-allowed "
                 }`}
                 onClick={handleSendMessage}
               />

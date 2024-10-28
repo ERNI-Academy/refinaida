@@ -7,17 +7,11 @@ import {
 import Spinner from "@/components/ui/spinner/spinner";
 import { useAppStore } from "@/hooks/use-app-store";
 
-type RefineFeatureRequirementsProps = {
-  className: string;
-};
-
-const RefineFeatureRequirements = ({
-  className,
-}: RefineFeatureRequirementsProps) => {
+const RefineFeatureRequirements = () => {
   const { refinedFeature, isLoadingChat } = useAppStore();
 
   return (
-    <Card className={`${className} shadow-lg overflow-y-auto`} height="500px">
+    <Card className={"shadow-lg overflow-y-auto"} height="550px">
       {!isLoadingChat ? (
         <CardHeader className="w-full h-full p-10">
           <CardTitle className="mb-3">{`Summary: ${refinedFeature.summary}`}</CardTitle>

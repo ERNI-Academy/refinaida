@@ -1,9 +1,10 @@
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { useCallback, useState } from "react";
+import { Send } from "lucide-react";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { Container } from "@/components/layout/container/container";
+import Sidebar from "@/components/sidebar/sidebar";
 import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
@@ -19,8 +20,6 @@ const RefineFeature = () => {
   const { feature, isLoading } = useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
-
-  const [isSmall, setIsSmall] = useState(false);
 
   const handleRequirements = useCallback(async () => {
     await fetchRefinedRequirements();
@@ -38,21 +37,14 @@ const RefineFeature = () => {
             {feature.name}
           </span>
         </div>
-        <div className="w-full flex gap-4">
-          <RefineFeatureChat className={`${isSmall ? "w-4/6" : "w-2/4"}`} />
-          <div className="flex flex-col items-center justify-center">
-            <button onClick={() => setIsSmall((prevState) => !prevState)}>
-              {isSmall ? (
-                <ChevronLeftIcon className="h-4 w-4" />
-              ) : (
-                <ChevronRightIcon className="h-4 w-4" />
-              )}
-            </button>
-          </div>
-          <RefineFeatureRequirements
-            className={`${isSmall ? "w-2/6" : "w-2/4"}`}
-          />
-        </div>
+        <Sidebar
+          height="550px"
+          leftSlot={<RefineFeatureChat />}
+          leftWidth="w-2/4"
+          leftIcon={<Send className="h-6 w-6 cursor-pointer" />}
+          rightSlot={<RefineFeatureRequirements />}
+          rightWidth="w-10"
+        />
         <div className="w-full flex gap-4">
           <div className="w-2/4 flex justify-between">
             <Button

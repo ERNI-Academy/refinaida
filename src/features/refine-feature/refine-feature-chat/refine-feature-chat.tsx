@@ -4,7 +4,6 @@ import { Send } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Card, CardHeader } from "@/components/ui/card/card";
 import { Textarea } from "@/components/ui/textarea/textarea";
 import MessageText from "@/features/refine-feature/refine-feature-chat/message-text/message-text";
 import {
@@ -16,11 +15,7 @@ import useRefineFeatureContext from "@/hooks/use-refine-feature-context";
 import { Message } from "@/types/common";
 import { handleEnterKey } from "@/utils/utils";
 
-type RefineFeatureChatProps = {
-  className: string;
-};
-
-const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
+const RefineFeatureChat = () => {
   const { t } = useTranslation();
 
   const {
@@ -81,54 +76,47 @@ const RefineFeatureChat = ({ className }: RefineFeatureChatProps) => {
   }, [messages, isLoading, isLoadingChat]);
 
   return (
-    <Card
-      className={`${className} shadow-lg overflow-y-auto p-0`}
-      maxHeight="600px"
-    >
-      <CardHeader>
-        <div className="flex flex-col h-screen chat-wrapper bg-gray-50">
-          <div className="flex-grow p-4 overflow-y-auto">
-            {messages.map((message) => (
-              <MessageText
-                key={`${message.id}-${message.sender}`}
-                message={message}
-              />
-            ))}
-            {isLoadingChat && (
-              <MessageText
-                message={{
-                  id: "loadingMessage",
-                  text: "",
-                  sender: UserEnum.USER_AIDA,
-                }}
-                isLoading
-              />
-            )}
-            <div ref={messagesEndRef} />
-          </div>
-          <div className="flex w-full pt-4 bg-white gap-4 justify-center items-center">
-            <div className="w-11/12">
-              <Textarea
-                className="flex-grow border border-gray-300 p-2 rounded-lg resize-none"
-                placeholder={t("refineFeature.chat.sendMessage.placeholder")}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => handleEnterKey(e, handleSendMessage)}
-                disabled={isLoadingChat}
-              />
-            </div>
-            <div className="w-1/12 items-center justify-center">
-              <Send
-                className={`h-6 w-6 ${
-                  !isLoadingChat ? "cursor-pointer" : "cursor-not-allowed "
-                }`}
-                onClick={handleSendMessage}
-              />
-            </div>
-          </div>
+    <div className="flex flex-col h-screen chat-wrapper overflow-y-auto p-7">
+      <div className="flex-grow p-4 overflow-y-auto">
+        {messages.map((message) => (
+          <MessageText
+            key={`${message.id}-${message.sender}`}
+            message={message}
+          />
+        ))}
+        {isLoadingChat && (
+          <MessageText
+            message={{
+              id: "loadingMessage",
+              text: "",
+              sender: UserEnum.USER_AIDA,
+            }}
+            isLoading
+          />
+        )}
+        <div ref={messagesEndRef} />
+      </div>
+      <div className="flex w-full pt-4 gap-4 justify-center items-center">
+        <div className="w-11/12">
+          <Textarea
+            className="flex-grow border border-gray-300 p-2 rounded-lg resize-none"
+            placeholder={t("refineFeature.chat.sendMessage.placeholder")}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => handleEnterKey(e, handleSendMessage)}
+            disabled={isLoadingChat}
+          />
         </div>
-      </CardHeader>
-    </Card>
+        <div className="w-1/12 items-center justify-center">
+          <Send
+            className={`h-6 w-6 ${
+              !isLoadingChat ? "cursor-pointer" : "cursor-not-allowed "
+            }`}
+            onClick={handleSendMessage}
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

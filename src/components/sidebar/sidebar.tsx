@@ -4,6 +4,7 @@ import { CircleX } from "lucide-react";
 import { useState } from "react";
 
 type SidebarProps = {
+  height: string;
   leftSlot: React.ReactNode;
   leftWidth: string;
   leftIcon: React.ReactNode;
@@ -13,6 +14,7 @@ type SidebarProps = {
 };
 
 const Sidebar = ({
+  height,
   leftSlot,
   leftWidth,
   leftIcon,
@@ -27,11 +29,16 @@ const Sidebar = ({
   };
 
   return (
-    <div className="w-full flex sidebar-wrapper gap-2">
+    <div
+      className="w-full flex gap-2"
+      style={{
+        height: height,
+      }}
+    >
       <div
-        className={`flex border transition-width duration-500 ${
+        className={`flex right-slot-wrapper transition-width duration-500 ${
           isSidebarOpen ? leftWidth : rightWidth
-        } shadow-lg bg-white rounded-md`}
+        }  border shadow-lg bg-white rounded-md`}
       >
         <div
           className={`flex flex-col pt-1 bg-gray-800 transition-width duration-700 ${
@@ -42,11 +49,11 @@ const Sidebar = ({
             {isSidebarOpen ? rightIcon : leftIcon}
           </button>
         </div>
-        <div className="flex flex-col overflow-x-hidden">
+        <div className="flex flex-col">
           {isSidebarOpen && <div className="w-full flex gap-4">{leftSlot}</div>}
         </div>
       </div>
-      <div className="flex-1 bg-gray-100">
+      <div className="flex-1">
         <div className="w-full flex gap-4">{rightSlot}</div>
       </div>
     </div>

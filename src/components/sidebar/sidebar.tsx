@@ -29,19 +29,14 @@ const Sidebar = ({
   };
 
   return (
-    <div
-      className="w-full flex gap-2"
-      style={{
-        height: height,
-      }}
-    >
+    <div className="w-full flex gap-2" style={{ height }}>
       <div
-        className={`flex right-slot-wrapper transition-width duration-500 ${
+        className={`flex right-slot-wrapper transition-all duration-500 border shadow-lg bg-white rounded-md ${
           isSidebarOpen ? leftWidth : rightWidth
-        }  border shadow-lg bg-white rounded-md`}
+        }`}
       >
         <div
-          className={`flex flex-col pt-1 bg-gray-800 transition-width duration-700 ${
+          className={`flex flex-col pt-1 bg-gray-800 transition-all duration-700 ${
             isSidebarOpen ? "rounded-border" : "rounded-border-collapsed"
           } `}
         >
@@ -49,12 +44,14 @@ const Sidebar = ({
             {isSidebarOpen ? rightIcon : leftIcon}
           </button>
         </div>
-        <div className="flex flex-col">
-          {isSidebarOpen && <div className="w-full flex gap-4">{leftSlot}</div>}
+        <div className="flex flex-col w-full h-full overflow-hidden">
+          {isSidebarOpen && (
+            <div className="flex w-full h-full gap-4">{leftSlot}</div>
+          )}
         </div>
       </div>
-      <div className="flex-1">
-        <div className="w-full flex gap-4">{rightSlot}</div>
+      <div className="flex-1 w-full h-full">
+        <div className="flex w-full h-full gap-4">{rightSlot}</div>
       </div>
     </div>
   );

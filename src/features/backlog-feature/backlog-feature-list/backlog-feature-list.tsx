@@ -18,7 +18,7 @@ const BacklogFeatureList = () => {
   );
 
   return (
-    <Card className="w-1/2 p-5 shadow-lg overflow-y-auto" maxHeight="500px">
+    <div className="flex flex-col h-full w-full backlog-feature-list-wrapper overflow-y-auto p-5">
       {!isLoading ? (
         refinedBacklog.map((refinedBacklogItem) => (
           <Card
@@ -44,7 +44,7 @@ const BacklogFeatureList = () => {
       ) : (
         <Spinner className="h-full w-full" />
       )}
-    </Card>
+    </div>
   );
 };
 

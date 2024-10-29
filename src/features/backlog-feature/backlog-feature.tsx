@@ -1,10 +1,9 @@
+import { Logs } from "lucide-react";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
-import {
-  Container,
-  ContainerFull,
-} from "@/components/layout/container/container";
+import { Container } from "@/components/layout/container/container";
+import Sidebar from "@/components/sidebar/sidebar";
 import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
@@ -24,7 +23,7 @@ const BacklogFeature = () => {
   }, [setCurrentRefinedBacklog, fetchRefinedRequirements]);
 
   return (
-    <Container size="lg" minHeight="500px">
+    <Container size="lg">
       <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col w-full items-center justify-center">
           <span className="text-lg font-bold text-gray-500">
@@ -39,10 +38,14 @@ const BacklogFeature = () => {
             {t("backlogFeature.secondTitle")}
           </span>
         </div>
-        <ContainerFull className="gap-4" minHeight="500px">
-          <BacklogFeatureList />
-          <BacklogFeatureDescription />
-        </ContainerFull>
+        <Sidebar
+          height="500px"
+          leftSlot={<BacklogFeatureList />}
+          leftWidth="w-2/4"
+          leftIcon={<Logs className="h-6 w-6 cursor-pointer" />}
+          rightSlot={<BacklogFeatureDescription />}
+          rightWidth="w-10"
+        />
         <div className="w-full flex gap-4">
           <div className="w-1/2 flex justify-between">
             <Button className="w-5/12" disabled>

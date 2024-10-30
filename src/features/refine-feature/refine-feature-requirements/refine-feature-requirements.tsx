@@ -1,3 +1,5 @@
+import "./refine-feature-requirements.scss";
+
 import {
   Card,
   CardDescription,
@@ -11,7 +13,12 @@ const RefineFeatureRequirements = () => {
   const { refinedFeature, isLoadingChat } = useAppStore();
 
   return (
-    <Card className={"shadow-lg overflow-y-auto"} height="550px">
+    <Card
+      className={
+        "refine-feature-requirements-wrapper overflow-y-auto shadow-lg"
+      }
+      height="550px"
+    >
       {!isLoadingChat ? (
         <CardHeader className="w-full h-full p-10">
           <CardTitle className="mb-3">{`Summary: ${refinedFeature.summary}`}</CardTitle>

@@ -31,6 +31,9 @@
             "export": "Export",
             "thinkMore": "Think more",
             "refineRequirements": "Refine Requirements"
+        },
+        "description": {
+            "itemNotSelected": "Select item to view the details..."
         }
     },
     "components": {

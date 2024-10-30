@@ -12,7 +12,6 @@ import {
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
 import { useAppStore } from "@/hooks/use-app-store";
 import useRefineFeatureContext from "@/hooks/use-refine-feature-context";
-import { Message } from "@/types/common";
 import { handleEnterKey } from "@/utils/utils";
 
 const RefineFeatureChat = () => {
@@ -20,52 +19,36 @@ const RefineFeatureChat = () => {
 
   const {
     refinedFeature: { questions },
+    messages,
+    addMessage,
     isLoading,
     isLoadingChat,
   } = useAppStore();
   const { fetchRefineFeatureContext } = useRefineFeatureContext();
 
   const [input, setInput] = useState<string>("");
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "questions",
-      text: questions,
-      sender: UserEnum.USER_AIDA,
-    },
-  ]);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    addMessage(TypeMessageEnum.QUESTIONS, questions, UserEnum.USER_AIDA);
-  }, [questions]);
-
-  const addMessage = (
-    type: TypeMessageEnum,
-    text: string | string[],
-    user: UserEnum
-  ) => {
-    const message: Message = {
-      id: `${type}-${crypto.randomUUID()}`,
-      text: text,
-      sender: user,
-    };
-    setMessages((prevState) => {
-      const lastMessage = prevState[prevState.length - 1];
-      if (lastMessage && lastMessage.text === message.text) {
-        return prevState;
-      }
-      return [...prevState, message];
+    addMessage({
+      id: `${TypeMessageEnum.QUESTIONS}-${crypto.randomUUID()}`,
+      text: questions,
+      sender: UserEnum.USER_AIDA,
     });
-  };
+  }, [addMessage, questions]);
 
   const handleSendMessage = useCallback(() => {
     if (input.length) {
       const userInput = input.trim();
-      addMessage(TypeMessageEnum.ANSWERS, userInput, UserEnum.USER);
+      addMessage({
+        id: `${TypeMessageEnum.ANSWERS}-${crypto.randomUUID()}`,
+        text: userInput,
+        sender: UserEnum.USER,
+      });
       setInput("");
       fetchRefineFeatureContext(userInput);
     }
-  }, [input, fetchRefineFeatureContext]);
+  }, [input, addMessage, fetchRefineFeatureContext]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

@@ -24,8 +24,7 @@ const Sidebar = ({
 }: SidebarProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  const toggleSidebar = () =>
-    setIsSidebarOpen((isSidebarOpen) => !isSidebarOpen);
+  const toggleSidebar = () => setIsSidebarOpen((prevState) => !prevState);
 
   return (
     <div className="w-full flex gap-2" style={{ height }}>

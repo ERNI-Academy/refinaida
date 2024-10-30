@@ -1,12 +1,20 @@
 import { create } from "zustand";
 
-import { Feature, RefinedBacklog, RefinedFeature } from "@/types/common";
+import {
+  Feature,
+  Message,
+  RefinedBacklog,
+  RefinedFeature,
+} from "@/types/common";
 
 interface AppStoreState {
   feature: Feature;
   setFeature: (feature: Feature) => void;
   questions: string[];
   setQuestions: (questions: string[]) => void;
+  messages: Message[];
+  setMessages: (messages: Message[]) => void;
+  addMessage: (message: Message) => void;
   refinedFeature: RefinedFeature;
   setRefinedFeature: (refinedFeature: RefinedFeature) => void;
   refinedBacklog: RefinedBacklog[];
@@ -28,6 +36,16 @@ export const useAppStore = create<AppStoreState>((set) => ({
   setFeature: (feature: Feature) => set({ feature }),
   questions: [],
   setQuestions: (questions: string[]) => set({ questions }),
+  messages: [],
+  setMessages: (messages: Message[]) => set({ messages }),
+  addMessage: (message: Message) =>
+    set((state) => {
+      const lastMessage = state.messages[state.messages.length - 1];
+      if (lastMessage && lastMessage.text === message.text) {
+        return state;
+      }
+      return { messages: [...state.messages, message] };
+    }),
   refinedFeature: {} as RefinedFeature,
   setRefinedFeature: (refinedFeature: RefinedFeature) =>
     set({ refinedFeature }),

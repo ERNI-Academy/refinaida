@@ -21,14 +21,15 @@ const NewFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { feature, setFeature, isLoading } = useAppStore();
+  const { feature, setFeature, setMessages, isLoading } = useAppStore();
 
   const { fetchRefinedFeatureName } = useRefineFeatureName();
 
   const handleRefine = useCallback(async () => {
+    setMessages([]);
     await fetchRefinedFeatureName();
     navigate(routes.refineFeature);
-  }, [fetchRefinedFeatureName, navigate]);
+  }, [fetchRefinedFeatureName, setMessages, navigate]);
 
   return (
     <Container>

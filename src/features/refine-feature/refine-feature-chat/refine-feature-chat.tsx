@@ -76,8 +76,8 @@ const RefineFeatureChat = () => {
   }, [messages, isLoading, isLoadingChat]);
 
   return (
-    <div className="flex flex-col h-screen chat-wrapper overflow-y-auto p-7">
-      <div className="flex-grow p-4 overflow-y-auto">
+    <div className="flex flex-col h-full w-full refine-feature-chat overflow-y-auto">
+      <div className="flex-grow chat-wrapper overflow-y-auto">
         {messages.map((message) => (
           <MessageText
             key={`${message.id}-${message.sender}`}
@@ -96,7 +96,7 @@ const RefineFeatureChat = () => {
         )}
         <div ref={messagesEndRef} />
       </div>
-      <div className="flex w-full pt-4 gap-4 justify-center items-center">
+      <div className="flex w-full pt-4 gap-4 justify-center items-center p-6">
         <div className="w-11/12">
           <Textarea
             className="flex-grow border border-gray-300 p-2 rounded-lg resize-none"
@@ -104,13 +104,15 @@ const RefineFeatureChat = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => handleEnterKey(e, handleSendMessage)}
-            disabled={isLoadingChat}
+            disabled={isLoading || isLoadingChat}
           />
         </div>
         <div className="w-1/12 items-center justify-center">
           <Send
             className={`h-6 w-6 ${
-              !isLoadingChat ? "cursor-pointer" : "cursor-not-allowed "
+              !isLoading && !isLoadingChat
+                ? "cursor-pointer"
+                : "cursor-not-allowed"
             }`}
             onClick={handleSendMessage}
           />

@@ -18,10 +18,10 @@ const useRefineFeatureName = () => {
         context: `${parsedResponse.summary}. ${parsedResponse.description}`,
       });
       setRefinedFeature(parsedResponse);
-      setIsLoading(false);
     } catch (error: any) {
+      throw error;
+    } finally {
       setIsLoading(false);
-      console.error(error);
     }
   }, [feature, setFeature, setRefinedFeature, setIsLoading]);
 

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { Container } from "@/components/layout/container/container";
 import Sidebar from "@/components/sidebar/sidebar";
+import { useToast } from "@/components/toaster/hook/use-toast";
 import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
@@ -15,6 +16,7 @@ import { routes } from "@/router.tsx";
 
 const RefineFeature = () => {
   const { t } = useTranslation();
+  const { toast } = useToast();
   const navigate = useNavigate();
 
   const { feature, isLoading } = useAppStore();
@@ -22,9 +24,18 @@ const RefineFeature = () => {
   const { fetchRefinedRequirements } = useRefineRequirements();
 
   const handleRequirements = useCallback(async () => {
-    await fetchRefinedRequirements();
-    navigate(routes.backlogFeature);
-  }, [fetchRefinedRequirements, navigate]);
+    try {
+      await fetchRefinedRequirements();
+      navigate(routes.backlogFeature);
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: t("components.toaster.genericError.title"),
+        description: t("components.toaster.genericError.description"),
+      });
+      throw error;
+    }
+  }, [fetchRefinedRequirements, navigate, toast, t]);
 
   return (
     <Container size="lg">

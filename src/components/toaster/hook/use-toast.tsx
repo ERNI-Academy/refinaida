@@ -90,8 +90,6 @@ export const reducer = (state: State, action: Action): State => {
     case "DISMISS_TOAST": {
       const { toastId } = action;
 
-      // ! Side effects ! - This could be extracted into a dismissToast() action,
-      // but I'll keep it here for simplicity
       if (toastId) {
         addToRemoveQueue(toastId);
       } else {
@@ -137,9 +135,9 @@ function dispatch(action: Action) {
   });
 }
 
-type Toast = Omit<ToasterToast, "id">;
+type Toast = Omit<ToasterToast, "id"> & { duration?: number };
 
-function toast({ ...props }: Toast) {
+function toast({ duration = 4000, ...props }: Toast) {
   const id = genId();
 
   const update = (props: ToasterToast) =>
@@ -155,6 +153,7 @@ function toast({ ...props }: Toast) {
       ...props,
       id,
       open: true,
+      duration: duration,
       onOpenChange: (open) => {
         if (!open) dismiss();
       },

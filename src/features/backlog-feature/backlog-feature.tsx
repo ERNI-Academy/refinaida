@@ -7,6 +7,7 @@ import Sidebar from "@/components/sidebar/sidebar";
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
+import { ToastVariant } from "@/components/ui/toast/toast.const";
 import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import { useAppStore } from "@/hooks/use-app-store";
@@ -26,7 +27,7 @@ const BacklogFeature = () => {
       await fetchRefinedRequirements();
     } catch (error: any) {
       toast({
-        variant: "destructive",
+        variant: ToastVariant.Destructive,
         title: t("components.toaster.genericError.title"),
         description: t("components.toaster.genericError.description"),
       });

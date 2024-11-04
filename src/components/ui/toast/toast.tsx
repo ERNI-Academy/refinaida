@@ -3,6 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { X } from "lucide-react";
 import * as React from "react";
 
+import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { cn } from "@/lib/utils";
 
 const ToastProvider = ToastPrimitives.Provider;
@@ -27,13 +28,15 @@ const toastVariants = cva(
   {
     variants: {
       variant: {
-        default: "border bg-background text-foreground",
-        destructive:
-          "destructive group border-destructive bg-destructive text-destructive-foreground",
+        [ToastVariant.Default]: "border bg-background text-foreground",
+        [ToastVariant.Destructive]: "border-red-500 bg-red-100 text-red-700",
+        [ToastVariant.Warning]:
+          "border-yellow-500 bg-yellow-100 text-yellow-700",
+        [ToastVariant.Success]: "border-green-500 bg-green-100 text-green-700",
       },
     },
     defaultVariants: {
-      variant: "default",
+      variant: ToastVariant.Default,
     },
   }
 );

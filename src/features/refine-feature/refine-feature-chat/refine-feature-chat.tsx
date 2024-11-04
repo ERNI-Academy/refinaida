@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { Textarea } from "@/components/ui/textarea/textarea";
+import { ToastVariant } from "@/components/ui/toast/toast.const";
 import MessageText from "@/features/refine-feature/refine-feature-chat/message-text/message-text";
 import {
   TypeMessageEnum,
@@ -52,7 +53,7 @@ const RefineFeatureChat = () => {
         await fetchRefineFeatureContext(userInput);
       } catch (error: any) {
         toast({
-          variant: "destructive",
+          variant: ToastVariant.Destructive,
           title: t("components.toaster.genericError.title"),
           description: t("components.toaster.genericError.description"),
         });

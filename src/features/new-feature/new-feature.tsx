@@ -13,6 +13,7 @@ import {
   CardTitle,
 } from "@/components/ui/card/card";
 import { Input } from "@/components/ui/input/input";
+import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { useAppStore } from "@/hooks/use-app-store";
 import useRefineFeatureName from "@/hooks/use-refine-feature-name";
 import { routes } from "@/router";
@@ -34,7 +35,7 @@ const NewFeature = () => {
       navigate(routes.refineFeature);
     } catch (error: any) {
       toast({
-        variant: "destructive",
+        variant: ToastVariant.Destructive,
         title: t("components.toaster.genericError.title"),
         description: t("components.toaster.genericError.description"),
       });

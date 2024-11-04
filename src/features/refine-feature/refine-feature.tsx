@@ -8,6 +8,7 @@ import Sidebar from "@/components/sidebar/sidebar";
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
+import { ToastVariant } from "@/components/ui/toast/toast.const";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/hooks/use-app-store";
@@ -29,7 +30,7 @@ const RefineFeature = () => {
       navigate(routes.backlogFeature);
     } catch (error: any) {
       toast({
-        variant: "destructive",
+        variant: ToastVariant.Destructive,
         title: t("components.toaster.genericError.title"),
         description: t("components.toaster.genericError.description"),
       });

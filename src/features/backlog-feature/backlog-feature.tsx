@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { Container } from "@/components/layout/container/container";
 import Sidebar from "@/components/sidebar/sidebar";
+import { useToast } from "@/components/toaster/hook/use-toast";
 import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
@@ -13,14 +14,25 @@ import useRefineRequirements from "@/hooks/use-refine-requirements";
 
 const BacklogFeature = () => {
   const { t } = useTranslation();
+  const { toast } = useToast();
+
   const { feature, setCurrentRefinedBacklog, isLoading } = useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
 
   const handleThinkMore = useCallback(async () => {
-    setCurrentRefinedBacklog(undefined);
-    await fetchRefinedRequirements();
-  }, [setCurrentRefinedBacklog, fetchRefinedRequirements]);
+    try {
+      setCurrentRefinedBacklog(undefined);
+      await fetchRefinedRequirements();
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: t("components.toaster.genericError.title"),
+        description: t("components.toaster.genericError.description"),
+      });
+      throw error;
+    }
+  }, [setCurrentRefinedBacklog, fetchRefinedRequirements, toast, t]);
 
   return (
     <Container size="lg">

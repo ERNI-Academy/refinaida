@@ -22,10 +22,10 @@ const useRefineFeatureContext = () => {
           context: `${parsedResponse.summary}. ${parsedResponse.description}`,
         });
         setRefinedFeature(parsedResponse);
-        setIsLoadingChat(false);
       } catch (error: any) {
+        throw error;
+      } finally {
         setIsLoadingChat(false);
-        console.error(error);
       }
     },
     [feature, setFeature, setRefinedFeature, setIsLoadingChat]

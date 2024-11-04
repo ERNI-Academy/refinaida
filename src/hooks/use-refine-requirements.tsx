@@ -13,10 +13,10 @@ const useRefineRequirements = () => {
       const response = await sendRefinedRequirements(feature.context);
       const parsedResponse = parseAidaRefinedRequirementsResponse(response);
       setRefinedBacklog(parsedResponse);
-      setIsLoading(false);
     } catch (error: any) {
+      throw error;
+    } finally {
       setIsLoading(false);
-      console.error(error);
     }
   }, [feature.context, setRefinedBacklog, setIsLoading]);
 

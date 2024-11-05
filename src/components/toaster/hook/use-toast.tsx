@@ -22,13 +22,6 @@ const actionTypes = {
   REMOVE_TOAST: "REMOVE_TOAST",
 } as const;
 
-let count = 0;
-
-function genId() {
-  count = (count + 1) % Number.MAX_SAFE_INTEGER;
-  return count.toString();
-}
-
 type ActionType = typeof actionTypes;
 
 type Action =
@@ -138,7 +131,7 @@ function dispatch(action: Action) {
 type Toast = Omit<ToasterToast, "id"> & { duration?: number };
 
 function toast({ duration = 4000, ...props }: Toast) {
-  const id = genId();
+  const id = crypto.randomUUID();
 
   const update = (props: ToasterToast) =>
     dispatch({

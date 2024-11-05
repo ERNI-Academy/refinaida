@@ -1,10 +1,15 @@
 import { useCallback } from "react";
+import { useTranslation } from "react-i18next";
 
+import { useToast } from "@/components/toaster/hook/use-toast";
+import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefinedFeatureResponse } from "@/lib/aida";
 import { sendRefinedFeatureContext } from "@/utils/utils-aida-service";
 
 const useRefineFeatureContext = () => {
+  const { t } = useTranslation();
+  const { toast } = useToast();
   const { feature, setFeature, setRefinedFeature, setIsLoadingChat } =
     useAppStore();
 
@@ -23,12 +28,17 @@ const useRefineFeatureContext = () => {
         });
         setRefinedFeature(parsedResponse);
       } catch (error: any) {
+        toast({
+          variant: ToastVariant.Destructive,
+          title: t("components.toaster.genericError.title"),
+          description: t("components.toaster.genericError.description"),
+        });
         throw error;
       } finally {
         setIsLoadingChat(false);
       }
     },
-    [feature, setFeature, setRefinedFeature, setIsLoadingChat]
+    [setIsLoadingChat, feature, setFeature, setRefinedFeature, toast, t]
   );
 
   return { fetchRefineFeatureContext };

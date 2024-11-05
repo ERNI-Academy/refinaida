@@ -4,10 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import { Container } from "@/components/layout/container/container";
 import Sidebar from "@/components/sidebar/sidebar";
-import { useToast } from "@/components/toaster/hook/use-toast";
 import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
-import { ToastVariant } from "@/components/ui/toast/toast.const";
 import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import { useAppStore } from "@/hooks/use-app-store";
@@ -15,25 +13,15 @@ import useRefineRequirements from "@/hooks/use-refine-requirements";
 
 const BacklogFeature = () => {
   const { t } = useTranslation();
-  const { toast } = useToast();
 
   const { feature, setCurrentRefinedBacklog, isLoading } = useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
 
-  const handleThinkMore = useCallback(async () => {
-    try {
-      setCurrentRefinedBacklog(undefined);
-      await fetchRefinedRequirements();
-    } catch (error: any) {
-      toast({
-        variant: ToastVariant.Destructive,
-        title: t("components.toaster.genericError.title"),
-        description: t("components.toaster.genericError.description"),
-      });
-      throw error;
-    }
-  }, [setCurrentRefinedBacklog, fetchRefinedRequirements, toast, t]);
+  const handleThinkMore = useCallback(() => {
+    setCurrentRefinedBacklog(undefined);
+    fetchRefinedRequirements();
+  }, [setCurrentRefinedBacklog, fetchRefinedRequirements]);
 
   return (
     <Container size="lg">

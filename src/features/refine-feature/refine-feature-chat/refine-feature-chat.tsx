@@ -4,9 +4,7 @@ import { Send } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useToast } from "@/components/toaster/hook/use-toast";
 import { Textarea } from "@/components/ui/textarea/textarea";
-import { ToastVariant } from "@/components/ui/toast/toast.const";
 import MessageText from "@/features/refine-feature/refine-feature-chat/message-text/message-text";
 import {
   TypeMessageEnum,
@@ -18,7 +16,6 @@ import { handleEnterKey } from "@/utils/utils";
 
 const RefineFeatureChat = () => {
   const { t } = useTranslation();
-  const { toast } = useToast();
 
   const {
     refinedFeature: { questions },
@@ -40,7 +37,7 @@ const RefineFeatureChat = () => {
     });
   }, [addMessage, questions]);
 
-  const handleSendMessage = useCallback(async () => {
+  const handleSendMessage = useCallback(() => {
     if (input.length) {
       const userInput = input.trim();
       addMessage({
@@ -49,18 +46,9 @@ const RefineFeatureChat = () => {
         sender: UserEnum.USER,
       });
       setInput("");
-      try {
-        await fetchRefineFeatureContext(userInput);
-      } catch (error: any) {
-        toast({
-          variant: ToastVariant.Destructive,
-          title: t("components.toaster.genericError.title"),
-          description: t("components.toaster.genericError.description"),
-        });
-        throw error;
-      }
+      fetchRefineFeatureContext(userInput);
     }
-  }, [input, addMessage, fetchRefineFeatureContext, toast, t]);
+  }, [input, addMessage, fetchRefineFeatureContext]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });

@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { Container } from "@/components/layout/container/container";
-import { useToast } from "@/components/toaster/hook/use-toast";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import {
   Card,
@@ -13,7 +12,6 @@ import {
   CardTitle,
 } from "@/components/ui/card/card";
 import { Input } from "@/components/ui/input/input";
-import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { useAppStore } from "@/hooks/use-app-store";
 import useRefineFeatureName from "@/hooks/use-refine-feature-name";
 import { routes } from "@/router";
@@ -21,7 +19,6 @@ import { handleEnterKey } from "@/utils/utils";
 
 const NewFeature = () => {
   const { t } = useTranslation();
-  const { toast } = useToast();
   const navigate = useNavigate();
 
   const { feature, setFeature, setMessages, isLoading } = useAppStore();
@@ -29,19 +26,10 @@ const NewFeature = () => {
   const { fetchRefinedFeatureName } = useRefineFeatureName();
 
   const handleRefine = useCallback(async () => {
-    try {
-      setMessages([]);
-      await fetchRefinedFeatureName();
-      navigate(routes.refineFeature);
-    } catch (error: any) {
-      toast({
-        variant: ToastVariant.Destructive,
-        title: t("components.toaster.genericError.title"),
-        description: t("components.toaster.genericError.description"),
-      });
-      throw error;
-    }
-  }, [setMessages, fetchRefinedFeatureName, navigate, toast, t]);
+    setMessages([]);
+    await fetchRefinedFeatureName();
+    navigate(routes.refineFeature);
+  }, [setMessages, fetchRefinedFeatureName, navigate]);
 
   return (
     <Container>

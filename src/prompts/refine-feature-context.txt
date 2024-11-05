@@ -23,7 +23,7 @@ Provided Information: Here is the information the Product Owner has provided so 
 
 "{{feature_context}}"
  
-Expand the Provided Information with the new data given by the user "{{feature_user_input}}".
+Expand the Provided Information with the new data given by the user "{{feature_user_input}}". Try to, instead of asking for further information in some aspect to have general information in all the aspects provided.
  
 Benchmarking: Compare this requeriment with other similar in the market. What additional features could we consider? What advantages or disadvantages do you observe compared to existing solutions?
 

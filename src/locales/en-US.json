@@ -22,6 +22,13 @@
             "sendMessage": {
                 "placeholder": "Type your response here..."
             }
+        },
+        "backNewFeatureDialog":{
+            "button": "Back",
+            "dialog": {
+                "title": "Are you absolutely sure to go back?",
+                "subtitle": "This action will cause you to lose your current results."
+            }
         }
     },
     "backlogFeature": {
@@ -37,14 +44,20 @@
         }
     },
     "components": {
+        "alertDialog":{
+            "buttons": {
+                "cancel":"Cancel",
+                "continue":"Continue"
+            }
+        },
+        "spinner": {
+            "text": "Loading..."
+        },
         "toaster": {
           "genericError": {
             "title": "Uh oh! Something went wrong.",
             "description": "There was a problem with your request. Try again, please."
           }  
-        },
-        "spinner": {
-            "text": "Loading..."
         }
     }
 }

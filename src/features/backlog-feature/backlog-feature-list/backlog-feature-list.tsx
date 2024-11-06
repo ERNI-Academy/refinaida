@@ -32,7 +32,7 @@ const BacklogFeatureList = () => {
         >
           <div className="p-2 pb-0">
             <h2 className="text-lg font-semibold">
-              {refinedBacklogItem.title}
+              {refinedBacklogItem.summary}
             </h2>
           </div>
           <div className="p-2">

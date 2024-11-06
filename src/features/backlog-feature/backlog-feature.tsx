@@ -10,13 +10,20 @@ import BacklogFeatureDescription from "@/features/backlog-feature/backlog-featur
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import { useAppStore } from "@/hooks/use-app-store";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
+import { downloadCsv, jsonToCsv } from "@/utils/utils";
 
 const BacklogFeature = () => {
   const { t } = useTranslation();
 
-  const { feature, setCurrentRefinedBacklog, isLoading } = useAppStore();
+  const { feature, refinedBacklog, setCurrentRefinedBacklog, isLoading } =
+    useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
+
+  const handleDownloadCSV = () => {
+    const csv = jsonToCsv(refinedBacklog);
+    downloadCsv(csv, `${feature.name}_storys.csv`);
+  };
 
   const handleThinkMore = useCallback(() => {
     setCurrentRefinedBacklog(undefined);
@@ -49,7 +56,7 @@ const BacklogFeature = () => {
         />
         <div className="w-full flex gap-4">
           <div className="w-1/2 flex justify-between">
-            <Button className="w-5/12" disabled>
+            <Button className="w-5/12" onClick={handleDownloadCSV}>
               {t("backlogFeature.buttons.export")}
             </Button>
             <ButtonLoading

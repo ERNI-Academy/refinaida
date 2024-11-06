@@ -35,7 +35,7 @@
         "title": "Feature",
         "secondTitle": "Backlog",
         "buttons": {
-            "export": "Export",
+            "export": "Export CSV",
             "thinkMore": "Think more",
             "refineRequirements": "Refine Requirements"
         },

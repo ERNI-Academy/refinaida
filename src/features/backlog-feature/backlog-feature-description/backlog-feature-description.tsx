@@ -20,7 +20,9 @@ const BacklogFeatureDescription = () => {
     >
       {currentRefinedBacklog?.description ? (
         <CardHeader className="w-full h-full p-10">
-          <CardTitle className="mb-3">{currentRefinedBacklog.title}</CardTitle>
+          <CardTitle className="mb-3">
+            {currentRefinedBacklog.summary}
+          </CardTitle>
           <MarkdownRenderer content={currentRefinedBacklog.description} />
         </CardHeader>
       ) : (

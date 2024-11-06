@@ -17,7 +17,9 @@ export type RefinedFeature = {
 
 export type RefinedBacklog = {
   code: string;
-  title: string;
+  summary: string;
+  issueType: string;
+  priority: string;
   release: string;
-  description?: string;
+  description: string;
 };

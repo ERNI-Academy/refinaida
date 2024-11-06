@@ -1,3 +1,5 @@
+import Papa from "papaparse";
+
 const KEY_ENTER = "Enter";
 
 export const handleEnterKey = (
@@ -7,4 +9,8 @@ export const handleEnterKey = (
   if (e.key === KEY_ENTER) {
     onEnter();
   }
+};
+
+export const jsonToCsv = (json: any): string => {
+  return Papa.unparse(json);
 };

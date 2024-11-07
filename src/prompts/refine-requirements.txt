@@ -29,6 +29,7 @@ Response Format: Ensure your response is a valid JSON with the following fields:
         "description": "Here is the new text with the user's information. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. Detail the expected value and/or result. Use BDD to further describe it, min 5. List the stakeholders that need to be involved and why.",
         "issueType": "Here by default it will be: Story",
         "priority": "Here by default it will be: Minior",
+        "assignee": "Here by default it will be: Undefined",
         "release": "Using Story Mapping, related wich stories you will deploy together and in which order. Do not relate with Sprints, give them a name with 5 words maximum that helps understand the release.",
     }
 ]

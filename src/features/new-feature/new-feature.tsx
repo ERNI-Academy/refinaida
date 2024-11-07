@@ -1,8 +1,11 @@
-import { useCallback } from "react";
+import { FileCheck2, FilePlus2 } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { Container } from "@/components/layout/container/container";
+import { useToast } from "@/components/toaster/hook/use-toast";
+import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import {
   Card,
@@ -12,6 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card/card";
 import { Input } from "@/components/ui/input/input";
+import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { useAppStore } from "@/hooks/use-app-store";
 import useRefineFeatureName from "@/hooks/use-refine-feature-name";
 import { routes } from "@/router";
@@ -20,16 +24,45 @@ import { handleEnterKey } from "@/utils/utils";
 const NewFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const { feature, setFeature, setMessages, isLoading } = useAppStore();
 
   const { fetchRefinedFeatureName } = useRefineFeatureName();
+
+  const [pdfFile, setPdfFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleRefine = useCallback(async () => {
     setMessages([]);
     await fetchRefinedFeatureName();
     navigate(routes.refineFeature);
   }, [setMessages, fetchRefinedFeatureName, navigate]);
+
+  const handleIconClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file && file.type === "application/pdf") {
+      setPdfFile(file);
+      toast({
+        variant: ToastVariant.Success,
+        title: t("components.toaster.uploadPdfSuccess.title"),
+        description: t("components.toaster.uploadPdfSuccess.description"),
+      });
+    } else {
+      setPdfFile(null);
+      toast({
+        variant: ToastVariant.Warning,
+        title: t("components.toaster.uploadPdfError.title"),
+        description: t("components.toaster.uploadPdfError.description"),
+      });
+    }
+  };
 
   return (
     <Container>
@@ -44,21 +77,43 @@ const NewFeature = () => {
         </CardHeader>
         <CardContent className="p-4">
           <div className="flex flex-col gap-4 items-center">
-            <Input
-              className="w-3/5"
-              placeholder={t("newFeature.input.placeholder")}
-              value={feature.name}
-              onChange={(e) => setFeature({ ...feature, name: e.target.value })}
-              onKeyDown={(e) => handleEnterKey(e, handleRefine)}
-              disabled={isLoading}
-            />
-            <ButtonLoading
-              className="w-2/6"
-              onClick={handleRefine}
-              isLoading={isLoading}
-            >
-              {t("newFeature.buttons.startRefining")}
-            </ButtonLoading>
+            <div className="flex w-3/6">
+              <Input
+                className="w-full"
+                placeholder={t("newFeature.input.placeholder")}
+                value={feature.name}
+                onChange={(e) =>
+                  setFeature({ ...feature, name: e.target.value })
+                }
+                onKeyDown={(e) => handleEnterKey(e, handleRefine)}
+                disabled={isLoading}
+              />
+            </div>
+            <div className="flex w-3/6 gap-4">
+              <ButtonLoading
+                className="flex w-5/6"
+                onClick={handleRefine}
+                isLoading={isLoading}
+              >
+                {t("newFeature.buttons.startRefining")}
+              </ButtonLoading>
+              <div className="flex w-auto">
+                <Input
+                  type="file"
+                  accept="application/pdf"
+                  className="hidden"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                />
+                <Button variant="outline" onClick={handleIconClick}>
+                  {!pdfFile ? (
+                    <FilePlus2 className="h-6 w-6" />
+                  ) : (
+                    <FileCheck2 className="h-6 w-6" color="#15803D" />
+                  )}
+                </Button>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>

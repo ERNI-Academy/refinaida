@@ -5,17 +5,28 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip/tooltip";
 
-interface TooltipProps {
-  text: React.ReactNode;
-  children: React.ReactNode;
-  side?: "bottom" | "top" | "right" | "left" | undefined;
+enum TooltipSide {
+  BOTTOM = "bottom",
+  TOP = "top",
+  RIGHT = "right",
+  LEFT = "left",
 }
 
-const Tooltip = ({ children, text, side = "bottom" }: TooltipProps) => (
+interface TooltipProps {
+  trigger: React.ReactNode;
+  content: React.ReactNode;
+  side?: TooltipSide | undefined;
+}
+
+const Tooltip = ({
+  trigger,
+  content,
+  side = TooltipSide.BOTTOM,
+}: TooltipProps) => (
   <TooltipProvider>
     <TooltipWrapper>
-      <TooltipTrigger>{children}</TooltipTrigger>
-      <TooltipContent side={side}>{text}</TooltipContent>
+      <TooltipTrigger>{trigger}</TooltipTrigger>
+      <TooltipContent side={side}>{content}</TooltipContent>
     </TooltipWrapper>
   </TooltipProvider>
 );

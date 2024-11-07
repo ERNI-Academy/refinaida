@@ -20,6 +20,7 @@ export type RefinedBacklog = {
   summary: string;
   issueType: string;
   priority: string;
+  assignee: string;
   release: string;
   description: string;
 };

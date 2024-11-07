@@ -41,6 +41,15 @@
         },
         "description": {
             "itemNotSelected": "Select item to view the details..."
+        },
+        "list": {
+            "fields": {
+                "summary": "Summary",
+                "code": "Code",
+                "issueType": "Issue Type",
+                "priority": "Priority",
+                "assignee": "Assignee"
+            }
         }
     },
     "components": {

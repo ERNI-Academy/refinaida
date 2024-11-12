@@ -67,6 +67,10 @@
             "title": "Uh oh! Something went wrong.",
             "description": "There was a problem with your request. Try again, please."
           },
+          "convertPdfError": {
+            "title": "Uh oh! Something went wrong.",
+            "description": "An error occurred while converting the PDF, please try uploading again."
+          },
           "uploadPdfSuccess": {
             "title": "Upload!",
             "description": "The pdf has been uploaded successfully."

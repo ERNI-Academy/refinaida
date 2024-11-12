@@ -17,7 +17,10 @@ const useRefineFeatureName = () => {
   const fetchRefinedFeatureName = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await sendRefinedFeatureName(feature.name);
+      const response = await sendRefinedFeatureName(
+        feature.name,
+        feature.textDocument
+      );
       const parsedResponse = parseAidaRefinedFeatureResponse(response);
       setFeature({
         ...feature,

@@ -32,7 +32,7 @@ interface AppStoreState {
 }
 
 export const useAppStore = create<AppStoreState>((set) => ({
-  feature: { name: "", context: "" },
+  feature: { name: "", context: "", textDocument: null },
   setFeature: (feature: Feature) => set({ feature }),
   questions: [],
   setQuestions: (questions: string[]) => set({ questions }),

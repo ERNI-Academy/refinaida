@@ -1,5 +1,5 @@
 import { FileCheck2, FilePlus2 } from "lucide-react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +19,7 @@ import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { useAppStore } from "@/hooks/use-app-store";
 import useRefineFeatureName from "@/hooks/use-refine-feature-name";
 import { routes } from "@/router";
-import { handleEnterKey } from "@/utils/utils";
+import { convertPdfToText, handleEnterKey } from "@/utils/utils";
 
 const NewFeature = () => {
   const { t } = useTranslation();
@@ -30,7 +30,6 @@ const NewFeature = () => {
 
   const { fetchRefinedFeatureName } = useRefineFeatureName();
 
-  const [pdfFile, setPdfFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleRefine = useCallback(async () => {
@@ -45,17 +44,39 @@ const NewFeature = () => {
     }
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (file && file.type === "application/pdf") {
-      setPdfFile(file);
-      toast({
-        variant: ToastVariant.Success,
-        title: t("components.toaster.uploadPdfSuccess.title"),
-        description: t("components.toaster.uploadPdfSuccess.description"),
+      try {
+        const textDocument = await convertPdfToText(file);
+        setFeature({
+          ...feature,
+          textDocument,
+        });
+        toast({
+          variant: ToastVariant.Success,
+          title: t("components.toaster.uploadPdfSuccess.title"),
+          description: t("components.toaster.uploadPdfSuccess.description"),
+        });
+      } catch {
+        toast({
+          variant: ToastVariant.Destructive,
+          title: t("components.toaster.convertPdfError.title"),
+          description: t("components.toaster.convertPdfError.description"),
+        });
+      }
+    } else if (!event.target.files?.length) {
+      setFeature({
+        ...feature,
+        textDocument: null,
       });
     } else {
-      setPdfFile(null);
+      setFeature({
+        ...feature,
+        textDocument: null,
+      });
       toast({
         variant: ToastVariant.Warning,
         title: t("components.toaster.uploadPdfError.title"),
@@ -103,10 +124,10 @@ const NewFeature = () => {
                   accept="application/pdf"
                   className="hidden"
                   ref={fileInputRef}
-                  onChange={handleFileChange}
+                  onChange={handleFileUpload}
                 />
                 <Button variant="outline" onClick={handleIconClick}>
-                  {!pdfFile ? (
+                  {!feature.textDocument ? (
                     <FilePlus2 className="h-6 w-6" />
                   ) : (
                     <FileCheck2 className="h-6 w-6" color="#15803D" />

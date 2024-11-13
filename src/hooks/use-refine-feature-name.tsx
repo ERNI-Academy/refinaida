@@ -28,7 +28,7 @@ const useRefineFeatureName = () => {
       setRefinedFeature(parsedResponse);
     } catch (error: any) {
       toast({
-        variant: ToastVariant.Destructive,
+        variant: ToastVariant.Error,
         title: t("components.toaster.genericError.title"),
         description: t("components.toaster.genericError.description"),
       });

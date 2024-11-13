@@ -1,6 +1,6 @@
 export enum ToastVariant {
   Default = "default",
-  Destructive = "destructive",
+  Error = "error",
   Warning = "warning",
   Success = "success",
 }

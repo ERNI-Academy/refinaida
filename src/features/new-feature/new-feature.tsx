@@ -59,7 +59,7 @@ const NewFeature = () => {
         });
       } catch {
         toast({
-          variant: ToastVariant.Destructive,
+          variant: ToastVariant.Error,
           title: t("components.toaster.convertPdfError.title"),
           description: t("components.toaster.convertPdfError.description"),
         });

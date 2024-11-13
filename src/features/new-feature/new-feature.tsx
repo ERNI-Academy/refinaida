@@ -26,7 +26,7 @@ const NewFeature = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const { feature, setFeature, setMessages, isLoading } = useAppStore();
+  const { feature, updateFeature, setMessages, isLoading } = useAppStore();
 
   const { fetchRefinedFeatureName } = useRefineFeatureName();
 
@@ -51,10 +51,7 @@ const NewFeature = () => {
     if (file && file.type === "application/pdf") {
       try {
         const textDocument = await convertPdfToText(file);
-        setFeature({
-          ...feature,
-          textDocument,
-        });
+        updateFeature({ textDocument });
         toast({
           variant: ToastVariant.Success,
           title: t("components.toaster.uploadPdfSuccess.title"),
@@ -68,15 +65,9 @@ const NewFeature = () => {
         });
       }
     } else if (!event.target.files?.length) {
-      setFeature({
-        ...feature,
-        textDocument: null,
-      });
+      updateFeature({ textDocument: null });
     } else {
-      setFeature({
-        ...feature,
-        textDocument: null,
-      });
+      updateFeature({ textDocument: null });
       toast({
         variant: ToastVariant.Warning,
         title: t("components.toaster.uploadPdfError.title"),
@@ -103,9 +94,7 @@ const NewFeature = () => {
                 className="w-full"
                 placeholder={t("newFeature.input.placeholder")}
                 value={feature.name}
-                onChange={(e) =>
-                  setFeature({ ...feature, name: e.target.value })
-                }
+                onChange={(e) => updateFeature({ name: e.target.value })}
                 onKeyDown={(e) => handleEnterKey(e, handleRefine)}
                 disabled={isLoading}
               />

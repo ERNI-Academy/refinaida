@@ -13,11 +13,19 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog/alert-dialog";
 import { Button } from "@/components/ui/button/button";
+import { useAppStore } from "@/hooks/use-app-store";
 import { routes } from "@/router";
 
 const BackNewFeatureDialog = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const { resetFeature } = useAppStore();
+
+  const handleBackNewFeature = () => {
+    resetFeature();
+    navigate(routes.default);
+  };
 
   return (
     <AlertDialog>
@@ -39,7 +47,7 @@ const BackNewFeatureDialog = () => {
           <AlertDialogCancel>
             {t("components.alertDialog.buttons.cancel")}
           </AlertDialogCancel>
-          <AlertDialogAction onClick={() => navigate(routes.default)}>
+          <AlertDialogAction onClick={handleBackNewFeature}>
             {t("components.alertDialog.buttons.continue")}
           </AlertDialogAction>
         </AlertDialogFooter>

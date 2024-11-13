@@ -10,6 +10,8 @@ import {
 interface AppStoreState {
   feature: Feature;
   setFeature: (feature: Feature) => void;
+  updateFeature: (updateFeature: Partial<Feature>) => void;
+  resetFeature: () => void;
   questions: string[];
   setQuestions: (questions: string[]) => void;
   messages: Message[];
@@ -34,6 +36,12 @@ interface AppStoreState {
 export const useAppStore = create<AppStoreState>((set) => ({
   feature: { name: "", context: "", textDocument: null },
   setFeature: (feature: Feature) => set({ feature }),
+  updateFeature: (updateFeature: Partial<Feature>) =>
+    set((state) => ({
+      feature: { ...state.feature, ...updateFeature },
+    })),
+  resetFeature: () =>
+    set({ feature: { name: "", context: "", textDocument: null } }),
   questions: [],
   setQuestions: (questions: string[]) => set({ questions }),
   messages: [],

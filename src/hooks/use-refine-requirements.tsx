@@ -29,7 +29,7 @@ const useRefineRequirements = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [feature.context, setRefinedBacklog, setIsLoading, toast, t]);
+  }, [setIsLoading, feature.context, setRefinedBacklog, toast, t]);
 
   return { fetchRefinedRequirements };
 };

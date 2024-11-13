@@ -11,7 +11,7 @@ const useRefineFeatureName = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
 
-  const { feature, setFeature, setRefinedFeature, setIsLoading } =
+  const { feature, updateFeature, setRefinedFeature, setIsLoading } =
     useAppStore();
 
   const fetchRefinedFeatureName = useCallback(async () => {
@@ -22,8 +22,7 @@ const useRefineFeatureName = () => {
         feature.textDocument
       );
       const parsedResponse = parseAidaRefinedFeatureResponse(response);
-      setFeature({
-        ...feature,
+      updateFeature({
         context: `${parsedResponse.summary}. ${parsedResponse.description}`,
       });
       setRefinedFeature(parsedResponse);
@@ -37,7 +36,15 @@ const useRefineFeatureName = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [feature, setFeature, setRefinedFeature, setIsLoading, toast, t]);
+  }, [
+    setIsLoading,
+    feature.name,
+    feature.textDocument,
+    updateFeature,
+    setRefinedFeature,
+    toast,
+    t,
+  ]);
 
   return { fetchRefinedFeatureName };
 };

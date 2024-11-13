@@ -10,7 +10,7 @@ import { sendRefinedFeatureContext } from "@/utils/utils-aida-service";
 const useRefineFeatureContext = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
-  const { feature, setFeature, setRefinedFeature, setIsLoadingChat } =
+  const { feature, updateFeature, setRefinedFeature, setIsLoadingChat } =
     useAppStore();
 
   const fetchRefineFeatureContext = useCallback(
@@ -22,8 +22,7 @@ const useRefineFeatureContext = () => {
           user_input
         );
         const parsedResponse = parseAidaRefinedFeatureResponse(response);
-        setFeature({
-          ...feature,
+        updateFeature({
           context: `${parsedResponse.summary}. ${parsedResponse.description}`,
         });
         setRefinedFeature(parsedResponse);
@@ -38,7 +37,14 @@ const useRefineFeatureContext = () => {
         setIsLoadingChat(false);
       }
     },
-    [setIsLoadingChat, feature, setFeature, setRefinedFeature, toast, t]
+    [
+      setIsLoadingChat,
+      feature.context,
+      updateFeature,
+      setRefinedFeature,
+      toast,
+      t,
+    ]
   );
 
   return { fetchRefineFeatureContext };

@@ -21,7 +21,7 @@ const useRefineRequirements = () => {
       setRefinedBacklog(parsedResponse);
     } catch (error: any) {
       toast({
-        variant: ToastVariant.Destructive,
+        variant: ToastVariant.Error,
         title: t("components.toaster.genericError.title"),
         description: t("components.toaster.genericError.description"),
       });
@@ -29,7 +29,7 @@ const useRefineRequirements = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [feature.context, setRefinedBacklog, setIsLoading, toast, t]);
+  }, [setIsLoading, feature.context, setRefinedBacklog, toast, t]);
 
   return { fetchRefinedRequirements };
 };

@@ -11,22 +11,24 @@ const useRefineFeatureName = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
 
-  const { feature, setFeature, setRefinedFeature, setIsLoading } =
+  const { feature, updateFeature, setRefinedFeature, setIsLoading } =
     useAppStore();
 
   const fetchRefinedFeatureName = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await sendRefinedFeatureName(feature.name);
+      const response = await sendRefinedFeatureName(
+        feature.name,
+        feature.textDocument
+      );
       const parsedResponse = parseAidaRefinedFeatureResponse(response);
-      setFeature({
-        ...feature,
+      updateFeature({
         context: `${parsedResponse.summary}. ${parsedResponse.description}`,
       });
       setRefinedFeature(parsedResponse);
     } catch (error: any) {
       toast({
-        variant: ToastVariant.Destructive,
+        variant: ToastVariant.Error,
         title: t("components.toaster.genericError.title"),
         description: t("components.toaster.genericError.description"),
       });
@@ -34,7 +36,15 @@ const useRefineFeatureName = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [feature, setFeature, setRefinedFeature, setIsLoading, toast, t]);
+  }, [
+    setIsLoading,
+    feature.name,
+    feature.textDocument,
+    updateFeature,
+    setRefinedFeature,
+    toast,
+    t,
+  ]);
 
   return { fetchRefinedFeatureName };
 };

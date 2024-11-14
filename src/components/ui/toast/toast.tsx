@@ -29,7 +29,7 @@ const toastVariants = cva(
     variants: {
       variant: {
         [ToastVariant.Default]: "border bg-background text-foreground",
-        [ToastVariant.Destructive]: "border-red-500 bg-red-100 text-red-700",
+        [ToastVariant.Error]: "border-red-500 bg-red-100 text-red-700",
         [ToastVariant.Warning]:
           "border-yellow-500 bg-yellow-100 text-yellow-700",
         [ToastVariant.Success]: "border-green-500 bg-green-100 text-green-700",

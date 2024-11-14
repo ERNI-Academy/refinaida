@@ -1,6 +1,7 @@
 export type Feature = {
   name: string;
   context: string;
+  textDocument?: string | null;
 };
 
 export interface Message {

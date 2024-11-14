@@ -38,12 +38,6 @@ const NewFeature = () => {
     navigate(routes.refineFeature);
   }, [setMessages, fetchRefinedFeatureName, navigate]);
 
-  const handleIconClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {

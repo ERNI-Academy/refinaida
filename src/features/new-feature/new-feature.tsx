@@ -64,15 +64,15 @@ const NewFeature = () => {
           description: t("components.toaster.convertPdfError.description"),
         });
       }
-    } else if (!event.target.files?.length) {
-      updateFeature({ textDocument: null });
     } else {
       updateFeature({ textDocument: null });
-      toast({
-        variant: ToastVariant.Warning,
-        title: t("components.toaster.uploadPdfError.title"),
-        description: t("components.toaster.uploadPdfError.description"),
-      });
+      if (event.target.files?.length) {
+        toast({
+          variant: ToastVariant.Warning,
+          title: t("components.toaster.uploadPdfError.title"),
+          description: t("components.toaster.uploadPdfError.description"),
+        });
+      }
     }
   };
 
@@ -115,7 +115,10 @@ const NewFeature = () => {
                   ref={fileInputRef}
                   onChange={handleFileUpload}
                 />
-                <Button variant="outline" onClick={handleIconClick}>
+                <Button
+                  variant="outline"
+                  onClick={() => fileInputRef.current?.click()}
+                >
                   {!feature.textDocument ? (
                     <FilePlus2 className="h-6 w-6" />
                   ) : (

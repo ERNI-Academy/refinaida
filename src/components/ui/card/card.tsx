@@ -6,14 +6,18 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   height?: string;
   minHeight?: string;
   maxHeight?: string;
+  isActive?: boolean;
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, height, minHeight, maxHeight, ...props }, ref) => (
+  ({ className, height, minHeight, maxHeight, isActive, ...props }, ref) => (
     <div
       ref={ref}
       className={cn(
         "rounded-lg border bg-card text-card-foreground",
+        {
+          "bg-gray-100": isActive,
+        },
         className
       )}
       style={{ height, minHeight, maxHeight }}

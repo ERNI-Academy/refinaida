@@ -23,7 +23,9 @@ const BacklogFeatureDescription = () => {
           <CardTitle className="mb-3">
             {currentRefinedBacklog.summary}
           </CardTitle>
-          <MarkdownRenderer content={currentRefinedBacklog.description} />
+          <div className="pb-10">
+            <MarkdownRenderer content={currentRefinedBacklog.description} />
+          </div>
         </CardHeader>
       ) : (
         <div className="flex items-center justify-center h-full">

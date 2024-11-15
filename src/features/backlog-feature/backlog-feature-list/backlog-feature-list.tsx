@@ -12,7 +12,12 @@ import { RefinedBacklog } from "@/types/common";
 const BacklogFeatureList = () => {
   const { t } = useTranslation();
 
-  const { refinedBacklog, setCurrentRefinedBacklog, isLoading } = useAppStore();
+  const {
+    refinedBacklog,
+    currentRefinedBacklog,
+    setCurrentRefinedBacklog,
+    isLoading,
+  } = useAppStore();
 
   const handleDetailBacklogItem = useCallback(
     (refineBacklogItem: RefinedBacklog) => {
@@ -29,10 +34,11 @@ const BacklogFeatureList = () => {
     >
       {refinedBacklog.map((refinedBacklogItem) => (
         <Card
-          className={`w-full mb-4 last:mb-0 h-30 backlog-list-card bg-gray-70 shadow-sm ${
+          className={`w-full mb-4 last:mb-0 h-30 backlog-list-card shadow-sm ${
             isLoading ? "hover:cursor-not-allowed" : "hover:cursor-pointer"
           } `}
           onClick={() => handleDetailBacklogItem(refinedBacklogItem)}
+          isActive={currentRefinedBacklog?.code === refinedBacklogItem.code}
           key={refinedBacklogItem.code}
         >
           <div className="flex flex-col w-full gap-4">
@@ -42,6 +48,16 @@ const BacklogFeatureList = () => {
                   <h2 className="text-md">{refinedBacklogItem.summary}</h2>
                 }
                 content={<p>{t("backlogFeature.list.fields.summary")}</p>}
+              />
+            </div>
+            <div className="flex">
+              <Tooltip
+                trigger={
+                  <h2 className="text-sm field-release bg-yellow-500 rounded-md text-white font-semibold uppercase ">
+                    {refinedBacklogItem.release}
+                  </h2>
+                }
+                content={<p>{t("backlogFeature.list.fields.release")}</p>}
               />
             </div>
             <div className="flex gap-1">

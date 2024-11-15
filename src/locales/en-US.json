@@ -44,11 +44,12 @@
         },
         "list": {
             "fields": {
-                "summary": "Summary",
+                "assignee": "Assignee",
                 "code": "Code",
                 "issueType": "Issue Type",
                 "priority": "Priority",
-                "assignee": "Assignee"
+                "release": "Release",
+                "summary": "Summary"
             }
         }
     },

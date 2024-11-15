@@ -12,11 +12,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog/alert-dialog";
-import { Button } from "@/components/ui/button/button";
 import { useAppStore } from "@/hooks/use-app-store";
 import { routes } from "@/router";
 
-const BackNewFeatureDialog = () => {
+interface BackNewFeatureDialogProps {
+  trigger: React.ReactNode;
+}
+
+const BackNewFeatureDialog = ({ trigger }: BackNewFeatureDialogProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -29,11 +32,7 @@ const BackNewFeatureDialog = () => {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        <Button className="w-2/6" variant={"outline"}>
-          {t("refineFeature.backNewFeatureDialog.button")}
-        </Button>
-      </AlertDialogTrigger>
+      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>

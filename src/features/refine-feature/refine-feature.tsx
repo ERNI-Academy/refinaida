@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 import { Container } from "@/components/layout/container/container";
 import Sidebar from "@/components/sidebar/sidebar";
+import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
-import BackNewFeatureDialog from "@/features/refine-feature/back-new-feature-dialog/back-new-feature-dialog";
+import BackNewFeatureDialog from "@/features/new-feature/back-new-feature-dialog/back-new-feature-dialog";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/hooks/use-app-store";
@@ -47,7 +48,13 @@ const RefineFeature = () => {
         />
         <div className="w-full flex gap-4">
           <div className="w-2/4 flex justify-between">
-            <BackNewFeatureDialog />
+            <BackNewFeatureDialog
+              trigger={
+                <Button className="w-2/6" variant={"outline"}>
+                  {t("refineFeature.backNewFeatureDialog.button")}
+                </Button>
+              }
+            />
           </div>
           <div className="w-2/4 flex">
             <ButtonLoading

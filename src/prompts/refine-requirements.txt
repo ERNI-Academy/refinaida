@@ -26,7 +26,7 @@ Response Format: Ensure your response is a valid JSON with the following fields:
     {
         "code": "Here number the Stories to have a reference.",
         "summary": "Here is the title of the User Story. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. One sentence, Less than 15 words.",
-        "description": "Here is the new text with the user's information. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. Detail the expected value and/or result. Use BDD to further describe it, min 5. List the stakeholders that need to be involved and why.",
+        "description": "Here is the new text with the user's information as markdown text. Feel free to be imaginative and detailed. Structure it in different paragraphs (Description, Acceptance Criteria, Additional Notes) to improve readability. Detail the expected value and/or result. Use BDD to further describe it, min 5. List the stakeholders that need to be involved and why. The structure should be as follows: Description: Must have the words 'As', 'I want' and 'So that' in bold, Acceptance Criteria: Must have the words 'Given', 'When' and 'Then' in bold, Additional Notes. Each heading must be in bold.",
         "issueType": "Here by default it will be: Story",
         "priority": "Here by default it will be: Minior",
         "assignee": "Here by default it will be: Undefined",

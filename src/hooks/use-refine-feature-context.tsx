@@ -5,13 +5,21 @@ import { useToast } from "@/components/toaster/hook/use-toast";
 import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefinedFeatureResponse } from "@/lib/aida";
-import { sendRefinedFeatureContext } from "@/utils/utils-aida-service";
+import {
+  mapRefinedFeatureResponse,
+  sendRefinedFeatureContext,
+} from "@/utils/utils-aida-service";
 
 const useRefineFeatureContext = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
-  const { feature, updateFeature, setRefinedFeature, setIsLoadingChat } =
-    useAppStore();
+  const {
+    feature,
+    updateFeature,
+    refinedFeature,
+    setRefinedFeature,
+    setIsLoadingChat,
+  } = useAppStore();
 
   const fetchRefineFeatureContext = useCallback(
     async (user_input: string = "") => {
@@ -25,7 +33,11 @@ const useRefineFeatureContext = () => {
         updateFeature({
           context: `${parsedResponse.summary}. ${parsedResponse.description}`,
         });
-        setRefinedFeature(parsedResponse);
+        const mapRefinedFeature = mapRefinedFeatureResponse(
+          parsedResponse,
+          refinedFeature
+        );
+        setRefinedFeature(mapRefinedFeature);
       } catch (error: any) {
         toast({
           variant: ToastVariant.Error,
@@ -41,6 +53,7 @@ const useRefineFeatureContext = () => {
       setIsLoadingChat,
       feature.context,
       updateFeature,
+      refinedFeature,
       setRefinedFeature,
       toast,
       t,

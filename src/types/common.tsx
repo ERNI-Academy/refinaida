@@ -1,8 +1,8 @@
-export type Feature = {
+export interface Feature {
   name: string;
   context: string;
   textDocument?: string | null;
-};
+}
 
 export interface Message {
   id: string;
@@ -10,13 +10,18 @@ export interface Message {
   sender: string;
 }
 
-export type RefinedFeature = {
-  summary: string;
-  description: string;
-  questions: string[];
-};
+export interface Description {
+  old: string | undefined;
+  new: string | undefined;
+}
 
-export type RefinedBacklog = {
+export interface RefinedFeature {
+  summary: string;
+  description: Description;
+  questions: string[];
+}
+
+export interface RefinedBacklog {
   code: string;
   summary: string;
   issueType: string;
@@ -24,4 +29,4 @@ export type RefinedBacklog = {
   assignee: string;
   release: string;
   description: string;
-};
+}

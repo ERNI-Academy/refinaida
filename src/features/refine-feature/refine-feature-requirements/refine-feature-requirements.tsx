@@ -1,5 +1,6 @@
 import "./refine-feature-requirements.scss";
 
+import TextDiff from "@/components/textDiff/textDiff";
 import {
   Card,
   CardDescription,
@@ -22,7 +23,14 @@ const RefineFeatureRequirements = () => {
       {!isLoadingChat ? (
         <CardHeader className="w-full h-full p-10">
           <CardTitle className="mb-3">{`Summary: ${refinedFeature.summary}`}</CardTitle>
-          <CardDescription>{`Description: ${refinedFeature.description}`}</CardDescription>
+          {refinedFeature.description.new && refinedFeature.description.old ? (
+            <TextDiff
+              oldText={`Description: ${refinedFeature.description.old}`}
+              newText={`Description: ${refinedFeature.description.new}`}
+            />
+          ) : (
+            <CardDescription>{`Description: ${refinedFeature.description.new}`}</CardDescription>
+          )}
         </CardHeader>
       ) : (
         <Spinner className="h-full w-full" />

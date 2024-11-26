@@ -1,5 +1,6 @@
 import { create } from "zustand";
 
+import { NewFeature, NewRefinedFeature } from "@/helpers/conts";
 import {
   Feature,
   Message,
@@ -19,6 +20,7 @@ interface AppStoreState {
   addMessage: (message: Message) => void;
   refinedFeature: RefinedFeature;
   setRefinedFeature: (refinedFeature: RefinedFeature) => void;
+  resetRefinedFeature: () => void;
   refinedBacklog: RefinedBacklog[];
   setRefinedBacklog: (refinedBackLog: RefinedBacklog[]) => void;
   currentRefinedBacklog: RefinedBacklog | undefined;
@@ -34,14 +36,13 @@ interface AppStoreState {
 }
 
 export const useAppStore = create<AppStoreState>((set) => ({
-  feature: { name: "", context: "", textDocument: null },
+  feature: NewFeature,
   setFeature: (feature: Feature) => set({ feature }),
   updateFeature: (updateFeature: Partial<Feature>) =>
     set((state) => ({
       feature: { ...state.feature, ...updateFeature },
     })),
-  resetFeature: () =>
-    set({ feature: { name: "", context: "", textDocument: null } }),
+  resetFeature: () => set({ feature: NewFeature }),
   questions: [],
   setQuestions: (questions: string[]) => set({ questions }),
   messages: [],
@@ -54,9 +55,10 @@ export const useAppStore = create<AppStoreState>((set) => ({
       }
       return { messages: [...state.messages, message] };
     }),
-  refinedFeature: {} as RefinedFeature,
+  refinedFeature: NewRefinedFeature,
   setRefinedFeature: (refinedFeature: RefinedFeature) =>
     set({ refinedFeature }),
+  resetRefinedFeature: () => set({ refinedFeature: NewRefinedFeature }),
   refinedBacklog: [],
   setRefinedBacklog: (refinedBacklog: RefinedBacklog[]) =>
     set({ refinedBacklog }),

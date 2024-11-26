@@ -1,6 +1,11 @@
-import { RefinedBacklog, RefinedFeature } from "@/types/common";
+import { RefinedBacklog } from "@/types/common";
 
-export type AidaRefineFeatureResponse = RefinedFeature;
+export interface AidaRefineFeatureResponse {
+  summary: string;
+  description: string;
+  questions: string[];
+}
+
 export type AidaRefineRequirementsResponse = RefinedBacklog[];
 
 export const parseAidaRefinedFeatureResponse = (

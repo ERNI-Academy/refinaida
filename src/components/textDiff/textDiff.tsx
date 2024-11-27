@@ -26,7 +26,11 @@ const TextDiff = ({ oldText, newText }: TextDiffProps) => {
           textDecoration: part.removed ? "line-through" : "none",
         };
         return (
-          <span key={index} style={style}>
+          <span
+            className="text-sm text-muted-foreground"
+            key={index}
+            style={style}
+          >
             {part.value}
           </span>
         );

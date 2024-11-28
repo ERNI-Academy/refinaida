@@ -9,16 +9,23 @@ import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import { useAppStore } from "@/hooks/use-app-store";
+import useRefineDescription from "@/hooks/use-refine-description";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
 import { downloadCsv, jsonToCsv } from "@/utils/utils";
 
 const BacklogFeature = () => {
   const { t } = useTranslation();
 
-  const { feature, refinedBacklog, setCurrentRefinedBacklog, isLoading } =
-    useAppStore();
+  const {
+    feature,
+    refinedBacklog,
+    setCurrentCodeRefinedStory,
+    isLoading,
+    isLoadingDescription,
+  } = useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
+  const { fetchRefinedDescription } = useRefineDescription();
 
   const handleDownloadCSV = () => {
     const csv = jsonToCsv(refinedBacklog);
@@ -26,9 +33,13 @@ const BacklogFeature = () => {
   };
 
   const handleThinkMore = useCallback(() => {
-    setCurrentRefinedBacklog(undefined);
+    setCurrentCodeRefinedStory("");
     fetchRefinedRequirements();
-  }, [setCurrentRefinedBacklog, fetchRefinedRequirements]);
+  }, [setCurrentCodeRefinedStory, fetchRefinedRequirements]);
+
+  const handleRefineDescription = useCallback(() => {
+    fetchRefinedDescription();
+  }, [fetchRefinedDescription]);
 
   return (
     <Container size="lg">
@@ -68,9 +79,13 @@ const BacklogFeature = () => {
             </ButtonLoading>
           </div>
           <div className="w-1/2 flex">
-            <Button className="w-7/12 ml-auto" disabled>
-              {t("backlogFeature.buttons.refineRequirements")}
-            </Button>
+            <ButtonLoading
+              className="w-7/12 ml-auto"
+              onClick={handleRefineDescription}
+              isLoading={isLoadingDescription}
+            >
+              {t("backlogFeature.buttons.refineDescription")}
+            </ButtonLoading>
           </div>
         </div>
       </div>

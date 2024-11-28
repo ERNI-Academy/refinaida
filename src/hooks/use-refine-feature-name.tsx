@@ -3,12 +3,10 @@ import { useTranslation } from "react-i18next";
 
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { ToastVariant } from "@/components/ui/toast/toast.const";
+import { mapRefinedFeatureResponse } from "@/helpers/helpers";
 import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefinedFeatureResponse } from "@/lib/aida";
-import {
-  mapRefinedFeatureResponse,
-  sendRefinedFeatureName,
-} from "@/utils/utils-aida-service";
+import { sendRefinedFeatureName } from "@/utils/utils-aida-service";
 
 const useRefineFeatureName = () => {
   const { t } = useTranslation();

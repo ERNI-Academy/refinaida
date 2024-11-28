@@ -1,10 +1,8 @@
-import { AidaRefineFeatureResponse } from "@/lib/aida";
 import refineDescriptionPrompt from "@/prompts/refine-description.txt?raw";
 import refineFeatureContextPrompt from "@/prompts/refine-feature-context.txt?raw";
 import refineFeatureNamePrompt from "@/prompts/refine-feature-name.txt?raw";
 import refineRequirementsPrompt from "@/prompts/refine-requirements.txt?raw";
 import AidaService from "@/services/aida-service";
-import { RefinedFeature } from "@/types/common";
 
 export const sendRefinedFeatureName = async (
   feature: string,
@@ -65,18 +63,4 @@ export const sendRefinedDescription = async (
   } catch (error) {
     throw error;
   }
-};
-
-export const mapRefinedFeatureResponse = (
-  response: AidaRefineFeatureResponse,
-  currentFeature: RefinedFeature
-): RefinedFeature => {
-  return {
-    summary: response.summary,
-    description: {
-      old: currentFeature.description.new,
-      new: response.description,
-    },
-    questions: response.questions,
-  };
 };

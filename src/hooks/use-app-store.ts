@@ -23,14 +23,19 @@ interface AppStoreState {
   resetRefinedFeature: () => void;
   refinedBacklog: RefinedBacklog[];
   setRefinedBacklog: (refinedBackLog: RefinedBacklog[]) => void;
-  currentRefinedBacklog: RefinedBacklog | undefined;
-  setCurrentRefinedBacklog: (
-    currentRefinedBacklog: RefinedBacklog | undefined
+  updateRefinedBacklog: (
+    code: string,
+    key: keyof RefinedBacklog,
+    value: any
   ) => void;
+  currentCodeRefinedStory: string;
+  setCurrentCodeRefinedStory: (currentCodeRefinedStory: string) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
   isLoadingChat: boolean;
   setIsLoadingChat: (isLoadingChat: boolean) => void;
+  isLoadingDescription: boolean;
+  setIsLoadingDescription: (isLoadingDescription: boolean) => void;
   aidaAuth: { apiKey: string; endpoint: string };
   setAidaAuth: (apiKey: string, endpoint: string) => void;
 }
@@ -62,14 +67,22 @@ export const useAppStore = create<AppStoreState>((set) => ({
   refinedBacklog: [],
   setRefinedBacklog: (refinedBacklog: RefinedBacklog[]) =>
     set({ refinedBacklog }),
-  currentRefinedBacklog: undefined,
-  setCurrentRefinedBacklog: (
-    currentRefinedBacklog: RefinedBacklog | undefined
-  ) => set({ currentRefinedBacklog }),
+  updateRefinedBacklog: (code: string, key: keyof RefinedBacklog, value: any) =>
+    set((state) => ({
+      refinedBacklog: state.refinedBacklog.map((item) =>
+        item.code === code ? { ...item, [key]: value } : item
+      ),
+    })),
+  currentCodeRefinedStory: "",
+  setCurrentCodeRefinedStory: (currentCodeRefinedStory: string) =>
+    set({ currentCodeRefinedStory }),
   isLoading: false,
   setIsLoading: (isLoading: boolean) => set({ isLoading }),
   isLoadingChat: false,
   setIsLoadingChat: (isLoadingChat: boolean) => set({ isLoadingChat }),
+  isLoadingDescription: false,
+  setIsLoadingDescription: (isLoadingDescription: boolean) =>
+    set({ isLoadingDescription }),
   aidaAuth: { apiKey: "", endpoint: "" },
   setAidaAuth: (apiKey: string, endpoint: string) =>
     set({ aidaAuth: { apiKey, endpoint } }),

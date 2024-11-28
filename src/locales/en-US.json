@@ -40,7 +40,8 @@
             "refineRequirements": "Refine Requirements"
         },
         "description": {
-            "itemNotSelected": "Select item to view the details..."
+            "itemNotSelected": "Select item to view the details...",
+            "itemUpdating": "Updating the selected item..."
         },
         "list": {
             "fields": {

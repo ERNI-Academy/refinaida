@@ -1,10 +1,5 @@
 import { AidaRefineFeatureResponse } from "@/lib/aida";
-import { RefinedBacklog, RefinedFeature } from "@/types/common";
-
-export const getDetailRefinedBacklog = (
-  code: string,
-  refinedBacklog: RefinedBacklog[]
-): RefinedBacklog | undefined => refinedBacklog.find((rb) => rb.code === code);
+import { RefinedFeature } from "@/types/common";
 
 export const mapRefinedFeatureResponse = (
   response: AidaRefineFeatureResponse,

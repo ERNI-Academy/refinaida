@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { ToastVariant } from "@/components/ui/toast/toast.const";
-import { getDetailRefinedBacklog } from "@/helpers/helpers";
+import useGetDetailRefinedFeature from "@/features/backlog-feature/hooks/use-detail-refined-backlog";
 import { useAppStore } from "@/hooks/use-app-store";
 import { sendRefinedDescription } from "@/utils/utils-aida-service";
 
@@ -11,27 +11,20 @@ const useRefineDescription = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
 
-  const {
-    feature,
-    refinedBacklog,
-    updateRefinedBacklog,
-    currentCodeRefinedStory,
-    setIsLoadingDescription,
-  } = useAppStore();
+  const { feature, updateRefinedBacklog, setIsLoadingDescription } =
+    useAppStore();
+
+  const { detailRefinedBacklog } = useGetDetailRefinedFeature();
 
   const fetchRefinedDescription = useCallback(async () => {
     try {
       setIsLoadingDescription(true);
-      const currentRefinedStory = getDetailRefinedBacklog(
-        currentCodeRefinedStory as string,
-        refinedBacklog
-      );
       const response = await sendRefinedDescription(
         feature.context,
-        currentRefinedStory?.description as string
+        detailRefinedBacklog?.description as string
       );
       updateRefinedBacklog(
-        currentRefinedStory?.code as string,
+        detailRefinedBacklog?.code as string,
         "description",
         response
       );
@@ -47,10 +40,10 @@ const useRefineDescription = () => {
     }
   }, [
     setIsLoadingDescription,
-    refinedBacklog,
     feature.context,
+    detailRefinedBacklog?.description,
+    detailRefinedBacklog?.code,
     updateRefinedBacklog,
-    currentCodeRefinedStory,
     toast,
     t,
   ]);

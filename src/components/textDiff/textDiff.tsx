@@ -1,4 +1,4 @@
-import { diffWords } from "diff";
+import { Change, diffWords } from "diff";
 import { useEffect, useState } from "react";
 
 interface TextDiffProps {
@@ -7,7 +7,7 @@ interface TextDiffProps {
 }
 
 const TextDiff = ({ oldText, newText }: TextDiffProps) => {
-  const [diffResult, setDiffResult] = useState<any[]>([]);
+  const [diffResult, setDiffResult] = useState<Change[]>([]);
 
   useEffect(() => {
     const diff = diffWords(oldText, newText);

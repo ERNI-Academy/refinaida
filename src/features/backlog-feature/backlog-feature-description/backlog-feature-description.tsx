@@ -4,23 +4,15 @@ import { useTranslation } from "react-i18next";
 
 import MarkdownRenderer from "@/components/markdown/markdown";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card/card";
-import { getDetailRefinedBacklog } from "@/helpers/helpers";
+import useGetDetailRefinedFeature from "@/features/backlog-feature/hooks/use-detail-refined-backlog";
 import { useAppStore } from "@/hooks/use-app-store";
 
 const BacklogFeatureDescription = () => {
   const { t } = useTranslation();
 
-  const {
-    refinedBacklog,
-    currentCodeRefinedStory,
-    isLoading,
-    isLoadingDescription,
-  } = useAppStore();
+  const { isLoading, isLoadingDescription } = useAppStore();
 
-  const currentRefinedStory = getDetailRefinedBacklog(
-    currentCodeRefinedStory as string,
-    refinedBacklog
-  );
+  const { detailRefinedBacklog } = useGetDetailRefinedFeature();
 
   return (
     <Card
@@ -33,11 +25,11 @@ const BacklogFeatureDescription = () => {
         <div className="flex items-center justify-center h-full">
           {t("backlogFeature.description.itemUpdating")}
         </div>
-      ) : currentRefinedStory ? (
+      ) : detailRefinedBacklog ? (
         <CardHeader className="w-full h-full p-10">
-          <CardTitle className="mb-3">{currentRefinedStory.summary}</CardTitle>
+          <CardTitle className="mb-3">{detailRefinedBacklog.summary}</CardTitle>
           <div className="pb-10">
-            <MarkdownRenderer content={currentRefinedStory.description} />
+            <MarkdownRenderer content={detailRefinedBacklog.description} />
           </div>
         </CardHeader>
       ) : (

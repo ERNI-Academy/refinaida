@@ -11,8 +11,8 @@ export interface Message {
 }
 
 export interface Description {
-  old: string | undefined;
-  new: string | undefined;
+  old?: string;
+  new?: string;
 }
 
 export interface RefinedFeature {

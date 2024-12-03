@@ -1,5 +1,8 @@
-import { AidaRefineFeatureResponse } from "@/lib/aida";
-import { RefinedFeature } from "@/types/common";
+import {
+  AidaRefineFeatureResponse,
+  AidaRefineRequirementsResponse,
+} from "@/lib/aida";
+import { RefinedBacklog, RefinedFeature } from "@/types/common";
 
 export const mapRefinedFeatureResponse = (
   response: AidaRefineFeatureResponse,
@@ -14,3 +17,19 @@ export const mapRefinedFeatureResponse = (
     questions: response.questions,
   };
 };
+
+export const mapRefinedBacklogResponse = (
+  response: AidaRefineRequirementsResponse[]
+): RefinedBacklog[] =>
+  response.map((backlogItem) => ({
+    code: backlogItem.code,
+    summary: backlogItem.summary,
+    issueType: backlogItem.issueType,
+    priority: backlogItem.priority,
+    assignee: backlogItem.assignee,
+    release: backlogItem.release,
+    description: {
+      old: undefined,
+      new: backlogItem.description,
+    },
+  }));

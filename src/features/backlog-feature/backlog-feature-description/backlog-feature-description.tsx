@@ -29,7 +29,9 @@ const BacklogFeatureDescription = () => {
         <CardHeader className="w-full h-full p-10">
           <CardTitle className="mb-3">{detailRefinedBacklog.summary}</CardTitle>
           <div className="pb-10">
-            <MarkdownRenderer content={detailRefinedBacklog.description} />
+            <MarkdownRenderer
+              content={detailRefinedBacklog.description.new as string}
+            />
           </div>
         </CardHeader>
       ) : (

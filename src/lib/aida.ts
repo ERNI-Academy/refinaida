@@ -1,12 +1,18 @@
-import { RefinedBacklog } from "@/types/common";
-
 export interface AidaRefineFeatureResponse {
   summary: string;
   description: string;
   questions: string[];
 }
 
-export type AidaRefineRequirementsResponse = RefinedBacklog[];
+export interface AidaRefineRequirementsResponse {
+  code: string;
+  summary: string;
+  issueType: string;
+  priority: string;
+  assignee: string;
+  release: string;
+  description: string;
+}
 
 export const parseAidaRefinedFeatureResponse = (
   response: string
@@ -14,4 +20,4 @@ export const parseAidaRefinedFeatureResponse = (
 
 export const parseAidaRefinedRequirementsResponse = (
   response: string
-): AidaRefineRequirementsResponse => JSON.parse(response);
+): AidaRefineRequirementsResponse[] => JSON.parse(response);

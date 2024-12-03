@@ -21,12 +21,15 @@ const useRefineDescription = () => {
       setIsLoadingDescription(true);
       const response = await sendRefinedDescription(
         feature.context,
-        detailRefinedBacklog?.description as string
+        detailRefinedBacklog?.description.new as string
       );
       updateRefinedBacklog(
         detailRefinedBacklog?.code as string,
         "description",
-        response
+        {
+          old: detailRefinedBacklog?.description.new,
+          new: response,
+        }
       );
     } catch (error: any) {
       toast({

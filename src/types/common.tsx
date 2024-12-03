@@ -28,5 +28,5 @@ export interface RefinedBacklog {
   priority: string;
   assignee: string;
   release: string;
-  description: string;
+  description: Description;
 }

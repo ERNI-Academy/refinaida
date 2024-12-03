@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { ToastVariant } from "@/components/ui/toast/toast.const";
+import { mapRefinedBacklogResponse } from "@/helpers/helpers";
 import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefinedRequirementsResponse } from "@/lib/aida";
 import { sendRefinedRequirements } from "@/utils/utils-aida-service";
@@ -18,7 +19,8 @@ const useRefineRequirements = () => {
       setIsLoading(true);
       const response = await sendRefinedRequirements(feature.context);
       const parsedResponse = parseAidaRefinedRequirementsResponse(response);
-      setRefinedBacklog(parsedResponse);
+      const mapRefinedBacklog = mapRefinedBacklogResponse(parsedResponse);
+      setRefinedBacklog(mapRefinedBacklog);
     } catch (error: any) {
       toast({
         variant: ToastVariant.Error,

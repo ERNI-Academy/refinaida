@@ -21,6 +21,12 @@ export interface RefinedFeature {
   questions: string[];
 }
 
+export interface RefinedBacklogDetails {
+  description: string;
+  acceptanceCriteria: string[];
+  addicionalNotes: string;
+}
+
 export interface RefinedBacklog {
   code: string;
   summary: string;
@@ -28,5 +34,5 @@ export interface RefinedBacklog {
   priority: string;
   assignee: string;
   release: string;
-  description: Description;
+  details: RefinedBacklogDetails;
 }

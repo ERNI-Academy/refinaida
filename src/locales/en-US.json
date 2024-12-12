@@ -37,11 +37,14 @@
         "buttons": {
             "export": "Export CSV",
             "thinkMore": "Think more",
-            "refineRequirements": "Refine Requirements"
+            "refineDescription": "Refine description"
         },
         "description": {
             "itemNotSelected": "Select item to view the details...",
-            "itemUpdating": "Updating the selected item..."
+            "itemUpdating": "Updating the selected item...",
+            "detailOptions.DESCRIPTION": "Description",
+            "detailOptions.ACCEPTANCE_CRITERIA": "Acceptance criteria",
+            "detailOptions.ADDICIONAL_NOTES": "Adicional notes"
         },
         "list": {
             "fields": {

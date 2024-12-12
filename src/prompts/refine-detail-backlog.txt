@@ -19,12 +19,18 @@ Tools to Use:
 Provided Information: 
 
 - Here is the information the Product Owner has provided so far: "{{feature_context}}"
-- Next I will leave you the current description:  "{{description}}"
-- I will need you to update following these recommendations:
-The new text with the user's information as valid markdown text. Feel free to be imaginative and detailed. Structure it in different paragraphs (Description, Acceptance Criteria, Additional Notes) to improve readability. Detail the expected value and/or result. Use BDD to further describe it, min 5. List the stakeholders that need to be involved and why. The structure should be as follows: Description: Must have the words 'As', 'I want' and 'So that' in bold, Acceptance Criteria: Must have the words 'Given', 'When' and 'Then' in bold, Additional Notes. Each heading must be in bold.
+- Here is the the current detail: "{{detailBacklog}}"
 
-Response Format: Ensure your response is a valid markdown as String
+Ensure to return a modified version based on the current one.
+
+Response Format: Ensure your response is a valid JSON with the following fields:
+
+{
+	"description": "Here is a description for the user's information. Feel free to be imaginative and detailed. Use agile structure.",
+	"acceptanceCriteria": "Here is a acceptance criteria for the user's information. Feel free to be imaginative and detailed. Use BDD to further describe it, minimum 5 acceptance criteria. Detail the expected value and/or result. Should have always given/then structure. Return string array"
+	"addicionalNotes": "Here is a addicional notes for the user's information. Feel free to be imaginative and detailed. List the stakeholders that need to be involved and why.",
+}
 
 Ensure that the language in which you write the feature is the same as the one in which the information is provided.
 
-Only output string without any other text or characters.
+Only output JSON without any other text or characters, with all the control characters escaped and without break line.

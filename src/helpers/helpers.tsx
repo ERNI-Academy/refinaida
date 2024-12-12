@@ -38,3 +38,10 @@ export const mapRefinedBacklogResponse = (
       addicionalNotes: backlogItem.details.addicionalNotes,
     } as RefinedBacklogDetails,
   }));
+
+export const transformDetailsToString = (
+  details: RefinedBacklogDetails
+): string => {
+  const { description, acceptanceCriteria, addicionalNotes } = details;
+  return `${description} ${acceptanceCriteria.join(" ")} ${addicionalNotes}`;
+};

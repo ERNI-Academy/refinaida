@@ -1,4 +1,4 @@
-export enum DetailOptions {
+export enum DetailType {
   DESCRIPTION = "DESCRIPTION",
   ACCEPTANCE_CRITERIA = "ACCEPTANCE_CRITERIA",
   ADDICIONAL_NOTES = "ADDICIONAL_NOTES",

@@ -5,6 +5,7 @@ export interface AidaRefineFeatureResponse {
   description: string;
   questions: string[];
 }
+
 export interface AidaRefineRequirementsResponse {
   code: string;
   summary: string;
@@ -15,9 +16,7 @@ export interface AidaRefineRequirementsResponse {
   details: RefinedBacklogDetails;
 }
 
-export interface AidaRefineDescriptionResponse {
-  description: string;
-}
+export type AidaRefineDetailBacklogResponse = RefinedBacklogDetails;
 
 export const parseAidaRefinedFeatureResponse = (
   response: string
@@ -27,6 +26,6 @@ export const parseAidaRefinedRequirementsResponse = (
   response: string
 ): AidaRefineRequirementsResponse[] => JSON.parse(response);
 
-export const parseAidaRefinedDescriptionResponse = (
+export const parseAidaRefinedDetailBacklogResponse = (
   response: string
-): AidaRefineDescriptionResponse => JSON.parse(response);
+): AidaRefineDetailBacklogResponse => JSON.parse(response);

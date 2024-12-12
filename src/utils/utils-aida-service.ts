@@ -1,4 +1,4 @@
-import refineDescriptionPrompt from "@/prompts/refine-description.txt?raw";
+import refineDetailBacklogPrompt from "@/prompts/refine-detail-backlog.txt?raw";
 import refineFeatureContextPrompt from "@/prompts/refine-feature-context.txt?raw";
 import refineFeatureNamePrompt from "@/prompts/refine-feature-name.txt?raw";
 import refineRequirementsPrompt from "@/prompts/refine-requirements.txt?raw";
@@ -50,15 +50,15 @@ export const sendRefinedRequirements = async (
   }
 };
 
-export const sendRefinedDescription = async (
+export const sendRefinedDetailBacklog = async (
   context: string,
-  description: string
+  detailBacklog: string
 ): Promise<string> => {
   try {
     let prompt: string;
-    prompt = refineDescriptionPrompt
+    prompt = refineDetailBacklogPrompt
       .replace("{{feature_context}}", context)
-      .replace("{{description}}", description);
+      .replace("{{detailBacklog}}", detailBacklog);
     return await AidaService.generateResponse(prompt);
   } catch (error) {
     throw error;

@@ -34,8 +34,8 @@ interface AppStoreState {
   setIsLoading: (isLoading: boolean) => void;
   isLoadingChat: boolean;
   setIsLoadingChat: (isLoadingChat: boolean) => void;
-  isLoadingDescription: boolean;
-  setIsLoadingDescription: (isLoadingDescription: boolean) => void;
+  isLoadingDetail: boolean;
+  setIsLoadingDetail: (isLoadingDetail: boolean) => void;
   aidaAuth: { apiKey: string; endpoint: string };
   setAidaAuth: (apiKey: string, endpoint: string) => void;
 }
@@ -80,9 +80,8 @@ export const useAppStore = create<AppStoreState>((set) => ({
   setIsLoading: (isLoading: boolean) => set({ isLoading }),
   isLoadingChat: false,
   setIsLoadingChat: (isLoadingChat: boolean) => set({ isLoadingChat }),
-  isLoadingDescription: false,
-  setIsLoadingDescription: (isLoadingDescription: boolean) =>
-    set({ isLoadingDescription }),
+  isLoadingDetail: false,
+  setIsLoadingDetail: (isLoadingDetail: boolean) => set({ isLoadingDetail }),
   aidaAuth: { apiKey: "", endpoint: "" },
   setAidaAuth: (apiKey: string, endpoint: string) =>
     set({ aidaAuth: { apiKey, endpoint } }),

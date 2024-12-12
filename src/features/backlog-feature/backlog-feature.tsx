@@ -6,10 +6,10 @@ import { Container } from "@/components/layout/container/container";
 import Sidebar from "@/components/sidebar/sidebar";
 import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
-import BacklogFeatureDescription from "@/features/backlog-feature/backlog-feature-description/backlog-feature-description";
+import BacklogFeatureDetail from "@/features/backlog-feature/backlog-feature-detail/backlog-feature-detail";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import { useAppStore } from "@/hooks/use-app-store";
-import useRefineDescription from "@/hooks/use-refine-description";
+import useRefineDetailBacklog from "@/hooks/use-refine-detail-backlog";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
 import { downloadCsv, jsonToCsv } from "@/utils/utils";
 
@@ -21,11 +21,11 @@ const BacklogFeature = () => {
     refinedBacklog,
     setCurrentCodeRefinedStory,
     isLoading,
-    isLoadingDescription,
+    isLoadingDetail,
   } = useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
-  const { fetchRefinedDescription } = useRefineDescription();
+  const { fetchRefineDetailBacklog } = useRefineDetailBacklog();
 
   const handleDownloadCSV = () => {
     const csv = jsonToCsv(refinedBacklog);
@@ -36,10 +36,6 @@ const BacklogFeature = () => {
     setCurrentCodeRefinedStory("");
     fetchRefinedRequirements();
   }, [setCurrentCodeRefinedStory, fetchRefinedRequirements]);
-
-  const handleRefineDescription = useCallback(() => {
-    fetchRefinedDescription();
-  }, [fetchRefinedDescription]);
 
   return (
     <Container size="lg">
@@ -62,7 +58,7 @@ const BacklogFeature = () => {
           leftSlot={<BacklogFeatureList />}
           leftWidth="w-2/4"
           leftIcon={<Logs className="h-6 w-6 cursor-pointer" />}
-          rightSlot={<BacklogFeatureDescription />}
+          rightSlot={<BacklogFeatureDetail />}
           rightWidth="w-10"
         />
         <div className="w-full flex gap-4">
@@ -81,10 +77,10 @@ const BacklogFeature = () => {
           <div className="w-1/2 flex">
             <ButtonLoading
               className="w-7/12 ml-auto"
-              onClick={handleRefineDescription}
-              isLoading={isLoadingDescription}
+              onClick={fetchRefineDetailBacklog}
+              isLoading={isLoadingDetail}
             >
-              {t("backlogFeature.buttons.refineDescription")}
+              {t("backlogFeature.buttons.refineDetail")}
             </ButtonLoading>
           </div>
         </div>

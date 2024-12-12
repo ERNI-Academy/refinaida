@@ -1,22 +1,22 @@
 import { useTranslation } from "react-i18next";
 
-import { DetailOptions } from "@/features/backlog-feature/backlog-detail/backlog-details.conts";
+import { DetailType } from "@/features/backlog-feature/backlog-feature-detail-item/backlog-feature-detail-item.const";
 
 interface BacklogDetailProps {
-  detailOption: DetailOptions;
+  type: DetailType;
   value: string | string[];
 }
 
-const BacklogDetail = ({ detailOption, value }: BacklogDetailProps) => {
+const BacklogFeatureDetailItem = ({ type, value }: BacklogDetailProps) => {
   const { t } = useTranslation();
 
   return (
     <div className="pb-5">
       <p className="font-bold">
-        {t(`backlogFeature.description.detailOptions.${detailOption}`)}
+        {t(`backlogFeature.detail.detailOptions.${type}`)}
       </p>
 
-      {detailOption !== DetailOptions.ACCEPTANCE_CRITERIA ? (
+      {type !== DetailType.ACCEPTANCE_CRITERIA ? (
         <p>{value}</p>
       ) : (
         (value as string[]).map((acceptanceCriteria: any, i) => (
@@ -29,4 +29,4 @@ const BacklogDetail = ({ detailOption, value }: BacklogDetailProps) => {
   );
 };
 
-export default BacklogDetail;
+export default BacklogFeatureDetailItem;

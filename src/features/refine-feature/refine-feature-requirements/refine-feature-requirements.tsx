@@ -31,7 +31,7 @@ const RefineFeatureRequirements = () => {
   return !isLoadingChat ? (
     <div className="relative">
       <FileDiff
-        className={`absolute top-0 right-0 mt-6 mr-6 p-2 border border-gray-400 rounded-full ${
+        className={`absolute top-0 right-0 mt-6 mr-6 p-2 border border-gray-300 rounded-full ${
           existDescriptionOld
             ? "cursor-pointer text-black transition transform hover:scale-105 active:scale-95 shadow-lg"
             : "cursor-not-allowed text-gray-400 shadow-none"

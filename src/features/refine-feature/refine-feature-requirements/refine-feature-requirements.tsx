@@ -17,10 +17,7 @@ const RefineFeatureRequirements = () => {
   const { refinedFeature, isLoadingChat } = useAppStore();
 
   const existDescriptionOld: boolean = useMemo(
-    () =>
-      refinedFeature.description.new && refinedFeature.description.old
-        ? true
-        : false,
+    () => !!(refinedFeature.description.new && refinedFeature.description.old),
     [refinedFeature.description]
   );
 

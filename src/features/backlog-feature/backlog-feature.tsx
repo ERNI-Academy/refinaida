@@ -1,5 +1,5 @@
 import { Logs } from "lucide-react";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Container } from "@/components/layout/container/container";
@@ -38,11 +38,6 @@ const BacklogFeature = () => {
     fetchRefinedRequirements();
   }, [setCurrentCodeRefinedStory, fetchRefinedRequirements]);
 
-  const existCurrentCodeRefinedStory = useMemo(
-    () => (currentCodeRefinedStory ? true : false),
-    [currentCodeRefinedStory]
-  );
-
   return (
     <Container size="lg">
       <div className="flex flex-col w-full gap-8">
@@ -80,10 +75,10 @@ const BacklogFeature = () => {
           </div>
           <div className="w-1/2 flex">
             <ButtonLoading
-              className="w-5/12 "
+              className="w-5/12"
               onClick={fetchRefineDetailBacklog}
               isLoading={isLoadingDetail}
-              disabled={!existCurrentCodeRefinedStory}
+              disabled={!currentCodeRefinedStory ? true : false}
             >
               {t("backlogFeature.buttons.refineDetail")}
             </ButtonLoading>

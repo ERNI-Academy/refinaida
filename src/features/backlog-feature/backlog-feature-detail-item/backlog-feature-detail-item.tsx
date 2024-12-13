@@ -11,7 +11,7 @@ const BacklogFeatureDetailItem = ({ type, value }: BacklogDetailProps) => {
   const { t } = useTranslation();
 
   return (
-    <div className="pb-5">
+    <div className="pb-2">
       <p className="font-bold">
         {t(`backlogFeature.detail.detailOptions.${type}`)}
       </p>

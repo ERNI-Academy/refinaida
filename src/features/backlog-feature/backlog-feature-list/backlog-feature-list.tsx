@@ -1,13 +1,11 @@
 import "./backlog-feature-list.scss";
 
 import { Bookmark, ChevronsDown, CircleUserRound } from "lucide-react";
-import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 import Tooltip from "@/components/tooltip/tooltip";
 import { Card } from "@/components/ui/card/card";
 import { useAppStore } from "@/hooks/use-app-store";
-import { RefinedBacklog } from "@/types/common";
 
 const BacklogFeatureList = () => {
   const { t } = useTranslation();
@@ -18,13 +16,6 @@ const BacklogFeatureList = () => {
     setCurrentCodeRefinedStory,
     isLoading,
   } = useAppStore();
-
-  const handleDetailBacklogItem = useCallback(
-    (refineBacklogItem: RefinedBacklog) => {
-      setCurrentCodeRefinedStory(refineBacklogItem.code);
-    },
-    [setCurrentCodeRefinedStory]
-  );
 
   return (
     <div
@@ -37,7 +28,7 @@ const BacklogFeatureList = () => {
           className={`w-full mb-4 last:mb-0 h-30 backlog-list-card shadow-sm ${
             isLoading ? "hover:cursor-not-allowed" : "hover:cursor-pointer"
           } `}
-          onClick={() => handleDetailBacklogItem(refinedBacklogItem)}
+          onClick={() => setCurrentCodeRefinedStory(refinedBacklogItem.code)}
           isActive={currentCodeRefinedStory === refinedBacklogItem.code}
           key={refinedBacklogItem.code}
         >

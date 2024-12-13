@@ -78,7 +78,7 @@ const BacklogFeature = () => {
               className="w-5/12"
               onClick={fetchRefineDetailBacklog}
               isLoading={isLoadingDetail}
-              disabled={!currentCodeRefinedStory ? true : false}
+              disabled={!currentCodeRefinedStory}
             >
               {t("backlogFeature.buttons.refineDetail")}
             </ButtonLoading>

@@ -1,5 +1,5 @@
 import { Logs } from "lucide-react";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Container } from "@/components/layout/container/container";
@@ -19,6 +19,7 @@ const BacklogFeature = () => {
   const {
     feature,
     refinedBacklog,
+    currentCodeRefinedStory,
     setCurrentCodeRefinedStory,
     isLoading,
     isLoadingDetail,
@@ -36,6 +37,11 @@ const BacklogFeature = () => {
     setCurrentCodeRefinedStory("");
     fetchRefinedRequirements();
   }, [setCurrentCodeRefinedStory, fetchRefinedRequirements]);
+
+  const existCurrentCodeRefinedStory = useMemo(
+    () => (currentCodeRefinedStory ? true : false),
+    [currentCodeRefinedStory]
+  );
 
   return (
     <Container size="lg">
@@ -63,25 +69,31 @@ const BacklogFeature = () => {
         />
         <div className="w-full flex gap-4">
           <div className="w-1/2 flex justify-between">
-            <Button className="w-5/12" onClick={handleDownloadCSV}>
-              {t("backlogFeature.buttons.export")}
-            </Button>
             <ButtonLoading
               className="w-5/12"
               onClick={handleThinkMore}
               isLoading={isLoading}
+              disabled={isLoadingDetail}
             >
               {t("backlogFeature.buttons.thinkMore")}
             </ButtonLoading>
           </div>
           <div className="w-1/2 flex">
             <ButtonLoading
-              className="w-7/12 ml-auto"
+              className="w-5/12 "
               onClick={fetchRefineDetailBacklog}
               isLoading={isLoadingDetail}
+              disabled={!existCurrentCodeRefinedStory}
             >
               {t("backlogFeature.buttons.refineDetail")}
             </ButtonLoading>
+            <Button
+              className="w-5/12 ml-auto"
+              onClick={handleDownloadCSV}
+              disabled={isLoading || isLoadingDetail}
+            >
+              {t("backlogFeature.buttons.export")}
+            </Button>
           </div>
         </div>
       </div>

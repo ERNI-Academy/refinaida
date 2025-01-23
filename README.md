@@ -12,6 +12,9 @@ Refinaida is a solution to help product owners refine user stories. Where, throu
 > VITE_AZURE_OPEN_AI_MODEL=OPEN_AI_MODEL #Replace with the model name
 > VITE_AZURE_OPEN_AI_TEMPERATURE=0.5 # Replace with the temperature value, by default it is 0.7
 > </code></pre>
+> Can you check the documentation here:
+> - https://learn.microsoft.com/en-us/azure/ai-services/openai/reference
+> - https://learn.microsoft.com/en-us/azure/ai-services/what-are-ai-services?context=%2Fazure%2Fai-studio%2Fcontext%2Fcontext
 
 
 ## React + TypeScript + Vite

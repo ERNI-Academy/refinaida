@@ -1,6 +1,18 @@
 # About
 
-Refinaida is a solution to help product owners refine user stories.
+Refinaida is a solution to help product owners refine user stories. Where, through a definition, a context can be configured to finally be able to obtain several user stories that can be imported into Jira.
+
+> [!NOTE]
+> In order to use the solution, it is necessary to have an instance in Azure OpenAI, so the variables in the **.env** file located at the root of the project must be changed:
+> <pre><code>
+> VITE_AZURE_OPEN_AI_API_KEY=OPEN_AI_API_KEY #Replace with your API key
+> VITE_AZURE_OPEN_AI_API_VERSION=API_VERSION #Replace with the API version
+> VITE_AZURE_OPEN_AI_DEPLOYMENT=DEPLOYEMENT #Replace with the deployment name of your OpenAI model
+> VITE_AZURE_OPEN_AI_ENDPOINT=OPEN_AI_ENDPOINT #Replace with the Azure OpenAI endpoints
+> VITE_AZURE_OPEN_AI_MODEL=OPEN_AI_MODEL #Replace with the model name
+> VITE_AZURE_OPEN_AI_TEMPERATURE=0.5 # Replace with the temperature value, by default it is 0.7
+> </code></pre>
+
 
 ## React + TypeScript + Vite
 
@@ -22,15 +34,18 @@ Currently, two official plugins are available:
 # Getting Started
 
 <ol>
-  <li>Clone this repository</li>
+  <li>Open solution with visual studio.</li>
+  <li>Clone this repository.</li>
   <br/>
   <pre><code>https://github.com/ERNI-Academy/refinaida.git</code></pre>
-  <li>Open solution with visual studio</li>
+  <li>Update packages.</li>
   <br/>
-  <li>Run the solution</li>
+  <pre><code>npm install</code></pre>
+  <li>Update environment variables, only first time.</li>
+  <li>Run the solution.</li>
   <br/>
   <pre><code>npm run dev</code></pre>
-  <p>Open <a href="http://localhost:5173"> http://localhost:5173</a> with your browser to see the result.</p>
+  <li>Open <a href="http://localhost:5173"> http://localhost:5173</a> with your browser to see the result.</li>
 </ol>
 
 ## Expanding the ESLint configuration

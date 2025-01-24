@@ -4,18 +4,19 @@ Refinaida is a solution to help product owners refine user stories. Where, throu
 
 > [!NOTE]
 > In order to use the solution, it is necessary to have an instance in Azure OpenAI, so the variables in the **.env** file located at the root of the project must be changed:
+>
 > <pre><code>
 > VITE_AZURE_OPEN_AI_API_KEY=OPEN_AI_API_KEY #Replace with your API key
 > VITE_AZURE_OPEN_AI_API_VERSION=API_VERSION #Replace with the API version
-> VITE_AZURE_OPEN_AI_DEPLOYMENT=DEPLOYEMENT #Replace with the deployment name of your OpenAI model
-> VITE_AZURE_OPEN_AI_ENDPOINT=OPEN_AI_ENDPOINT #Replace with the Azure OpenAI endpoints
+> VITE_AZURE_OPEN_AI_DEPLOYMENT=DEPLOYEMENT #Replace with the deployment name of your model
+> VITE_AZURE_OPEN_AI_ENDPOINT=OPEN OpenAI_AI_ENDPOINT #Replace with the Azure OpenAI endpoints
 > VITE_AZURE_OPEN_AI_MODEL=OPEN_AI_MODEL #Replace with the model name
-> VITE_AZURE_OPEN_AI_TEMPERATURE=0.5 # Replace with the temperature value, by default it is 0.7
 > </code></pre>
+>
 > Can you check the documentation here:
+>
 > - https://learn.microsoft.com/en-us/azure/ai-services/openai/reference
 > - https://learn.microsoft.com/en-us/azure/ai-services/what-are-ai-services?context=%2Fazure%2Fai-studio%2Fcontext%2Fcontext
-
 
 ## React + TypeScript + Vite
 
@@ -62,11 +63,11 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -75,11 +76,11 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from "eslint-plugin-react";
 
 export default tseslint.config({
   // Set the react version
-  settings: { react: { version: '18.3' } },
+  settings: { react: { version: "18.3" } },
   plugins: {
     // Add the react plugin
     react,
@@ -88,7 +89,7 @@ export default tseslint.config({
     // other rules...
     // Enable its recommended rules
     ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
+    ...react.configs["jsx-runtime"].rules,
   },
-})
+});
 ```

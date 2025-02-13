@@ -25,7 +25,7 @@ Provided Information: Here is the information the Product Owner has provided so 
 
 In addition to providing you with a related document:
 
-{{feature_text_document}}
+"{{feature_text_document}}"
 
 Benchmarking: Compare this requeriment with other similar in the market. What additional features could we consider? What advantages or disadvantages do you observe compared to existing solutions?
 

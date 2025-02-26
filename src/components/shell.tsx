@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import BackNewFeatureDialog from "@/features/new-feature/back-new-feature-dialog/back-new-feature-dialog";
+import BackNewFeatureDialog from "@/features/refine-feature/back-new-feature-dialog/back-new-feature-dialog";
 
 type ShellProps = {
   children: React.ReactNode;

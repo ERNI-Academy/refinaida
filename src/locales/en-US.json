@@ -26,7 +26,7 @@
                 "subtitle": "This action will cause you to lose your current results."
             }
         },
-        "configFeatureDialog": {
+        "configureRequirementsDialog": {
             "button": "Configure requirements",
             "dialog": {
                 "title": "Configure your feature",

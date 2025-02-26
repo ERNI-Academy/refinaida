@@ -5,8 +5,8 @@ import { Container } from "@/components/layout/container/container";
 import Sidebar from "@/components/sidebar/sidebar";
 import { Button } from "@/components/ui/button/button";
 import BackNewFeatureDialog from "@/features/refine-feature/back-new-feature-dialog/back-new-feature-dialog";
+import ConfigureRequirementsDialog from "@/features/refine-feature/configure-requirements-dialog/configure-requirements-dialog";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
-import RefineFeatureConfigDialog from "@/features/refine-feature/refine-feature-config-dialog/refine-feature-config-dialog";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/hooks/use-app-store";
 
@@ -45,10 +45,10 @@ const RefineFeature = () => {
             />
           </div>
           <div className="w-2/4 flex">
-            <RefineFeatureConfigDialog
+            <ConfigureRequirementsDialog
               trigger={
                 <Button className="w-7/12 ml-auto">
-                  {t("refineFeature.configFeatureDialog.button")}
+                  {t("refineFeature.configureRequirementsDialog.button")}
                 </Button>
               }
             />

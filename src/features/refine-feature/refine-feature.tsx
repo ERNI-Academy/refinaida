@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Container } from "@/components/layout/container/container";
 import Sidebar from "@/components/sidebar/sidebar";
 import { Button } from "@/components/ui/button/button";
-import BackNewFeatureDialog from "@/features/new-feature/back-new-feature-dialog/back-new-feature-dialog";
+import BackNewFeatureDialog from "@/features/refine-feature/back-new-feature-dialog/back-new-feature-dialog";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureConfigDialog from "@/features/refine-feature/refine-feature-config-dialog/refine-feature-config-dialog";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";

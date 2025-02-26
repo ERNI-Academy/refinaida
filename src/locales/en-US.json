@@ -14,10 +14,6 @@
     },
     "refineFeature": {
         "title": "Feature",
-        "buttons": {
-            "back": "Back",
-            "getRequirements": "Get Requirements"
-        },
         "chat": {
             "sendMessage": {
                 "placeholder": "Type your response here..."
@@ -28,6 +24,21 @@
             "dialog": {
                 "title": "Are you absolutely sure to go back?",
                 "subtitle": "This action will cause you to lose your current results."
+            }
+        },
+        "configFeatureDialog": {
+            "button": "Configure requirements",
+            "dialog": {
+                "title": "Configure your feature",
+                "subtitle": "Configure the User Stories and Acceptance Criteria parameters according to your needs before refining them.",
+                "labels":  {
+                    "userStories": "User stories",
+                    "acceptanceCriteria": "Acceptance criteria"
+                },
+                "buttons": {
+                    "back": "Back",
+                    "getRequirements": "Get requirements"
+                }
             }
         }
     },

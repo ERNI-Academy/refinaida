@@ -1,31 +1,19 @@
 import { Send } from "lucide-react";
-import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 import { Container } from "@/components/layout/container/container";
 import Sidebar from "@/components/sidebar/sidebar";
 import { Button } from "@/components/ui/button/button";
-import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import BackNewFeatureDialog from "@/features/new-feature/back-new-feature-dialog/back-new-feature-dialog";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
+import RefineFeatureConfigDialog from "@/features/refine-feature/refine-feature-config-dialog/refine-feature-config-dialog";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/hooks/use-app-store";
-import useRefineRequirements from "@/hooks/use-refine-requirements";
-import { routes } from "@/router.tsx";
 
 const RefineFeature = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
-  const { feature, isLoading } = useAppStore();
-
-  const { fetchRefinedRequirements } = useRefineRequirements();
-
-  const handleRequirements = useCallback(async () => {
-    await fetchRefinedRequirements();
-    navigate(routes.backlogFeature);
-  }, [fetchRefinedRequirements, navigate]);
+  const { feature } = useAppStore();
 
   return (
     <Container size="lg">
@@ -57,13 +45,13 @@ const RefineFeature = () => {
             />
           </div>
           <div className="w-2/4 flex">
-            <ButtonLoading
-              className="w-7/12 ml-auto"
-              onClick={handleRequirements}
-              isLoading={isLoading}
-            >
-              {t("refineFeature.buttons.getRequirements")}
-            </ButtonLoading>
+            <RefineFeatureConfigDialog
+              trigger={
+                <Button className="w-7/12 ml-auto">
+                  {t("refineFeature.configFeatureDialog.button")}
+                </Button>
+              }
+            />
           </div>
         </div>
       </div>

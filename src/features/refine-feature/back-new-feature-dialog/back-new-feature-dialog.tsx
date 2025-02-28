@@ -23,10 +23,12 @@ const BackNewFeatureDialog = ({ trigger }: BackNewFeatureDialogProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { resetFeature, resetRefinedFeature } = useAppStore();
+  const { resetFeature, resetConfigureRequirements, resetRefinedFeature } =
+    useAppStore();
 
   const handleBackNewFeature = () => {
     resetFeature();
+    resetConfigureRequirements();
     resetRefinedFeature();
     navigate(routes.default);
   };

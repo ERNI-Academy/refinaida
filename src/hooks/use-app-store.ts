@@ -1,7 +1,12 @@
 import { create } from "zustand";
 
-import { NewFeature, NewRefinedFeature } from "@/helpers/conts";
 import {
+  NewConfigureRequirements,
+  NewFeature,
+  NewRefinedFeature,
+} from "@/helpers/conts";
+import {
+  ConfigureRequirements,
   Feature,
   Message,
   RefinedBacklog,
@@ -21,6 +26,11 @@ interface AppStoreState {
   refinedFeature: RefinedFeature;
   setRefinedFeature: (refinedFeature: RefinedFeature) => void;
   resetRefinedFeature: () => void;
+  configureRequirements: ConfigureRequirements;
+  setConfigureRequirements: (
+    configureRequirements: ConfigureRequirements
+  ) => void;
+  resetConfigureRequirements: () => void;
   refinedBacklog: RefinedBacklog[];
   setRefinedBacklog: (refinedBackLog: RefinedBacklog[]) => void;
   updateRefinedBacklog: (
@@ -64,6 +74,11 @@ export const useAppStore = create<AppStoreState>((set) => ({
   setRefinedFeature: (refinedFeature: RefinedFeature) =>
     set({ refinedFeature }),
   resetRefinedFeature: () => set({ refinedFeature: NewRefinedFeature }),
+  configureRequirements: NewConfigureRequirements,
+  setConfigureRequirements: (configureRequirements: ConfigureRequirements) =>
+    set({ configureRequirements }),
+  resetConfigureRequirements: () =>
+    set({ configureRequirements: NewConfigureRequirements }),
   refinedBacklog: [],
   setRefinedBacklog: (refinedBacklog: RefinedBacklog[]) =>
     set({ refinedBacklog }),

@@ -1,23 +1,21 @@
-import { useState } from "react";
-
 import { Button } from "@/components/ui/button/button";
 import { cn } from "@/lib/utils";
 
 interface CounterProps {
   className: string;
-  initialValue: number;
+  value: number;
+  setValue: (value: number) => void;
   min?: number;
   max?: number;
 }
 
 const Counter = ({
   className,
-  initialValue = 0,
+  value = 0,
+  setValue,
   min = 0,
   max = 100,
 }: CounterProps) => {
-  const [value, setValue] = useState<number>(initialValue);
-
   const increment = () => {
     if (value < max) {
       setValue(value + 1);
@@ -39,7 +37,7 @@ const Counter = ({
         className={`text-white w-8 h-8 flex items-center justify-center rounded-full transition duration-200 ease-in-out shadow-md disabled:bg-gray-400 disabled:opacity-60`}
         disabled={value <= min}
       >
-        <span className="font-bold">-</span>
+        <span className="font-bold text-lg">-</span>
       </Button>
       <span className="text-sm">{value}</span>
       <Button

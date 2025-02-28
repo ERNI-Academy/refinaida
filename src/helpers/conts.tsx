@@ -1,4 +1,4 @@
-import { Feature, RefinedFeature } from "@/types/common";
+import { ConfigureRequirements, Feature, RefinedFeature } from "@/types/common";
 
 export const NewFeature: Feature = {
   name: "",
@@ -10,4 +10,9 @@ export const NewRefinedFeature: RefinedFeature = {
   summary: "",
   description: { old: undefined, new: undefined },
   questions: [],
+};
+
+export const NewConfigureRequirements: ConfigureRequirements = {
+  userStories: 3,
+  acceptanceCriteria: 6,
 };

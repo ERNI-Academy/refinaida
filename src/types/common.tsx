@@ -21,6 +21,11 @@ export interface RefinedFeature {
   questions: string[];
 }
 
+export interface ConfigureRequirements {
+  userStories: number;
+  acceptanceCriteria: number;
+}
+
 export interface RefinedBacklogDetails {
   description: string;
   acceptanceCriteria: string[];

@@ -1,5 +1,5 @@
 import { Label } from "@radix-ui/react-label";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -28,9 +28,24 @@ const ConfigureRequirementsDialog = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { isLoading } = useAppStore();
+  const { configureRequirements, setConfigureRequirements, isLoading } =
+    useAppStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
+
+  const [userStories, setUserStories] = useState(
+    configureRequirements.userStories
+  );
+  const [acceptanceCriteria, setAcceptanceCriteria] = useState(
+    configureRequirements.acceptanceCriteria
+  );
+
+  useEffect(() => {
+    setConfigureRequirements({
+      userStories,
+      acceptanceCriteria,
+    });
+  }, [userStories, acceptanceCriteria, setConfigureRequirements]);
 
   const handleRequirements = useCallback(async () => {
     await fetchRefinedRequirements();
@@ -56,7 +71,13 @@ const ConfigureRequirementsDialog = ({
                 "refineFeature.configureRequirementsDialog.dialog.labels.userStories"
               )}
             </Label>
-            <Counter className="w-3/6" initialValue={10} min={1} max={15} />
+            <Counter
+              className="w-3/6"
+              value={userStories}
+              setValue={setUserStories}
+              min={1}
+              max={15}
+            />
           </div>
           <div className="flex w-6/6 items-center">
             <Label htmlFor="name" className="flex w-3/6 text-sm text-right">
@@ -64,7 +85,13 @@ const ConfigureRequirementsDialog = ({
                 "refineFeature.configureRequirementsDialog.dialog.labels.acceptanceCriteria"
               )}
             </Label>
-            <Counter className="w-3/6" initialValue={5} min={1} max={15} />
+            <Counter
+              className="w-3/6"
+              value={acceptanceCriteria}
+              setValue={setAcceptanceCriteria}
+              min={1}
+              max={15}
+            />
           </div>
         </div>
         <DialogFooter>

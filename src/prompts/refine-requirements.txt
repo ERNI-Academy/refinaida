@@ -2,7 +2,7 @@ Act as an expert Product Manager.
 
 We are a software team (Product Owner and a multidisciplinary team) with all necessary capabilities to develop modern software. 
 
-We need your assistance in create the ten most valuable User Stories from a requirement previous refined.
+We need your assistance in create the "{{userStories}}" most valuable User Stories from a requirement previous refined.
 
 Tools to Use: 
 - Preferably, use the format "As a [user], I want [functionality], so that [value]" or Job Stories.
@@ -28,7 +28,7 @@ Response Format: Ensure your response is a valid JSON with the following fields:
         "summary": "Here is the title of the User Story. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. One sentence, Less than 15 words.",
         "details": {
 			"description": "Here is a description for the user's information. Feel free to be imaginative and detailed. Use agile structure.",
-			"acceptanceCriteria": "Here is a acceptance criteria for the user's information. Feel free to be imaginative and detailed. Use BDD to further describe it, minimum 5 acceptance criteria. Detail the expected value and/or result. Should have always given/then structure. Return string array"
+			"acceptanceCriteria": "Here is a acceptance criteria for the user's information. Feel free to be imaginative and detailed. Use BDD to further describe it, minimum "{{acceptanceCriteria}}" acceptance criteria. Detail the expected value and/or result. Should have always given/then structure. Return string array"
 			"addicionalNotes": "Here is a addicional notes for the user's information. Feel free to be imaginative and detailed. List the stakeholders that need to be involved and why.",
 		},
         "issueType": "Here by default it will be: Story",

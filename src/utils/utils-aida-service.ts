@@ -39,11 +39,16 @@ export const sendRefinedFeatureContext = async (
 };
 
 export const sendRefinedRequirements = async (
-  context: string
+  context: string,
+  userStories: number,
+  acceptanceCriteria: number
 ): Promise<string> => {
   try {
     let prompt: string;
-    prompt = refineRequirementsPrompt.replace("{{feature_context}}", context);
+    prompt = refineRequirementsPrompt
+      .replace("{{feature_context}}", context)
+      .replace("{{userStories}}", userStories.toString())
+      .replace("{{acceptanceCriteria}}", acceptanceCriteria.toString());
     return await AidaService.generateResponse(prompt);
   } catch (error) {
     throw error;

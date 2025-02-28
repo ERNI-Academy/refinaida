@@ -12,12 +12,17 @@ const useRefineRequirements = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
 
-  const { feature, setRefinedBacklog, setIsLoading } = useAppStore();
+  const { feature, configureRequirements, setRefinedBacklog, setIsLoading } =
+    useAppStore();
 
   const fetchRefinedRequirements = useCallback(async () => {
     try {
       setIsLoading(true);
-      const response = await sendRefinedRequirements(feature.context);
+      const response = await sendRefinedRequirements(
+        feature.context,
+        configureRequirements.userStories,
+        configureRequirements.acceptanceCriteria
+      );
       const parsedResponse = parseAidaRefinedRequirementsResponse(response);
       const mapRefinedBacklog = mapRefinedBacklogResponse(parsedResponse);
       setRefinedBacklog(mapRefinedBacklog);
@@ -31,7 +36,14 @@ const useRefineRequirements = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [setIsLoading, feature.context, setRefinedBacklog, toast, t]);
+  }, [
+    setIsLoading,
+    configureRequirements,
+    feature.context,
+    setRefinedBacklog,
+    toast,
+    t,
+  ]);
 
   return { fetchRefinedRequirements };
 };

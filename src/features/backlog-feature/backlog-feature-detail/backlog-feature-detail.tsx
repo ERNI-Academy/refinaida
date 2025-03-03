@@ -6,12 +6,14 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card/card";
 import BacklogFeatureDetailItem from "@/features/backlog-feature/backlog-feature-detail-item/backlog-feature-detail-item";
 import { DetailType } from "@/features/backlog-feature/backlog-feature-detail-item/backlog-feature-detail-item.const";
 import useGetDetailRefinedFeature from "@/features/backlog-feature/hooks/use-detail-refined-backlog";
-import { useAppStore } from "@/hooks/use-app-store";
+import { useAppStore } from "@/stores/use-app-store";
+import { useBacklogFeatureStore } from "@/stores/use-backlog-feature-store";
 
 const BacklogFeatureDetail = () => {
   const { t } = useTranslation();
 
-  const { isLoading, isLoadingDetail } = useAppStore();
+  const { isLoading } = useAppStore();
+  const { isLoadingDetail } = useBacklogFeatureStore();
 
   const { detailRefinedBacklog } = useGetDetailRefinedFeature();
 

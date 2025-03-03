@@ -8,22 +8,22 @@ import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import BacklogFeatureDetail from "@/features/backlog-feature/backlog-feature-detail/backlog-feature-detail";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
-import { useAppStore } from "@/hooks/use-app-store";
 import useRefineDetailBacklog from "@/hooks/use-refine-detail-backlog";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
+import { useAppStore } from "@/stores/use-app-store";
+import { useBacklogFeatureStore } from "@/stores/use-backlog-feature-store";
 import { downloadCsv, jsonToCsv } from "@/utils/utils";
 
 const BacklogFeature = () => {
   const { t } = useTranslation();
 
+  const { feature, isLoading } = useAppStore();
   const {
-    feature,
     refinedBacklog,
     currentCodeRefinedStory,
     setCurrentCodeRefinedStory,
-    isLoading,
     isLoadingDetail,
-  } = useAppStore();
+  } = useBacklogFeatureStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
   const { fetchRefineDetailBacklog } = useRefineDetailBacklog();

@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 
-import { useAppStore } from "@/hooks/use-app-store";
+import { useBacklogFeatureStore } from "@/stores/use-backlog-feature-store";
 
 const useGetDetailRefinedFeature = () => {
-  const { refinedBacklog, currentCodeRefinedStory } = useAppStore();
+  const { refinedBacklog, currentCodeRefinedStory } = useBacklogFeatureStore();
 
   const detailRefinedBacklog = useMemo(
     () => refinedBacklog.find((rb) => rb.code === currentCodeRefinedStory),

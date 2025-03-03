@@ -5,17 +5,18 @@ import { useTranslation } from "react-i18next";
 
 import Tooltip from "@/components/tooltip/tooltip";
 import { Card } from "@/components/ui/card/card";
-import { useAppStore } from "@/hooks/use-app-store";
+import { useAppStore } from "@/stores/use-app-store";
+import { useBacklogFeatureStore } from "@/stores/use-backlog-feature-store";
 
 const BacklogFeatureList = () => {
   const { t } = useTranslation();
 
+  const { isLoading } = useAppStore();
   const {
     refinedBacklog,
     currentCodeRefinedStory,
     setCurrentCodeRefinedStory,
-    isLoading,
-  } = useAppStore();
+  } = useBacklogFeatureStore();
 
   return (
     <div

@@ -10,20 +10,22 @@ import {
   TypeMessageEnum,
   UserEnum,
 } from "@/features/refine-feature/refine-feature-chat/refine-feature-chat.const";
-import { useAppStore } from "@/hooks/use-app-store";
 import useRefineFeatureContext from "@/hooks/use-refine-feature-context";
+import { useAppStore } from "@/stores/use-app-store";
+import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 import { handleEnterKey } from "@/utils/utils";
 
 const RefineFeatureChat = () => {
   const { t } = useTranslation();
 
+  const { isLoading } = useAppStore();
   const {
     refinedFeature: { questions },
     messages,
     addMessage,
-    isLoading,
     isLoadingChat,
-  } = useAppStore();
+  } = useRefineFeatureStore();
+
   const { fetchRefineFeatureContext } = useRefineFeatureContext();
 
   const [input, setInput] = useState<string>("");

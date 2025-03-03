@@ -12,8 +12,10 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog/alert-dialog";
-import { useAppStore } from "@/hooks/use-app-store";
 import { routes } from "@/router";
+import { useAppStore } from "@/stores/use-app-store";
+import { useBacklogFeatureStore } from "@/stores/use-backlog-feature-store";
+import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 
 interface BackNewFeatureDialogProps {
   trigger: React.ReactNode;
@@ -23,13 +25,16 @@ const BackNewFeatureDialog = ({ trigger }: BackNewFeatureDialogProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { resetFeature, resetConfigureRequirements, resetRefinedFeature } =
-    useAppStore();
+  const { resetFeature } = useAppStore();
+  const { resetConfigureRequirements, resetRefinedFeature } =
+    useRefineFeatureStore();
+  const { setCurrentCodeRefinedStory } = useBacklogFeatureStore();
 
   const handleBackNewFeature = () => {
     resetFeature();
     resetConfigureRequirements();
     resetRefinedFeature();
+    setCurrentCodeRefinedStory("");
     navigate(routes.default);
   };
 

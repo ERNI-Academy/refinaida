@@ -16,9 +16,10 @@ import {
 } from "@/components/ui/card/card";
 import { Input } from "@/components/ui/input/input";
 import { ToastVariant } from "@/components/ui/toast/toast.const";
-import { useAppStore } from "@/hooks/use-app-store";
 import useRefineFeatureName from "@/hooks/use-refine-feature-name";
 import { routes } from "@/router";
+import { useAppStore } from "@/stores/use-app-store";
+import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 import { convertPdfToText, handleEnterKey } from "@/utils/utils";
 
 const NewFeature = () => {
@@ -26,7 +27,8 @@ const NewFeature = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const { feature, updateFeature, setMessages, isLoading } = useAppStore();
+  const { feature, updateFeature, isLoading } = useAppStore();
+  const { setMessages } = useRefineFeatureStore();
 
   const { fetchRefinedFeatureName } = useRefineFeatureName();
 

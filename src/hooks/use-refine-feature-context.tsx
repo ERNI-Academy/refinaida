@@ -4,20 +4,18 @@ import { useTranslation } from "react-i18next";
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { mapRefinedFeatureResponse } from "@/helpers/helpers";
-import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefinedFeatureResponse } from "@/lib/aida";
+import { useAppStore } from "@/stores/use-app-store";
+import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 import { sendRefinedFeatureContext } from "@/utils/utils-aida-service";
 
 const useRefineFeatureContext = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
-  const {
-    feature,
-    updateFeature,
-    refinedFeature,
-    setRefinedFeature,
-    setIsLoadingChat,
-  } = useAppStore();
+
+  const { feature, updateFeature } = useAppStore();
+  const { refinedFeature, setRefinedFeature, setIsLoadingChat } =
+    useRefineFeatureStore();
 
   const fetchRefineFeatureContext = useCallback(
     async (user_input: string = "") => {

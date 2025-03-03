@@ -4,16 +4,19 @@ import { useTranslation } from "react-i18next";
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { ToastVariant } from "@/components/ui/toast/toast.const";
 import { mapRefinedBacklogResponse } from "@/helpers/helpers";
-import { useAppStore } from "@/hooks/use-app-store";
 import { parseAidaRefinedRequirementsResponse } from "@/lib/aida";
+import { useAppStore } from "@/stores/use-app-store";
+import { useBacklogFeatureStore } from "@/stores/use-backlog-feature-store";
+import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 import { sendRefinedRequirements } from "@/utils/utils-aida-service";
 
 const useRefineRequirements = () => {
   const { t } = useTranslation();
   const { toast } = useToast();
 
-  const { feature, configureRequirements, setRefinedBacklog, setIsLoading } =
-    useAppStore();
+  const { feature, setIsLoading } = useAppStore();
+  const { configureRequirements } = useRefineFeatureStore();
+  const { setRefinedBacklog } = useBacklogFeatureStore();
 
   const fetchRefinedRequirements = useCallback(async () => {
     try {

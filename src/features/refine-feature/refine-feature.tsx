@@ -8,7 +8,7 @@ import BackNewFeatureDialog from "@/features/refine-feature/back-new-feature-dia
 import ConfigureRequirementsDialog from "@/features/refine-feature/configure-requirements-dialog/configure-requirements-dialog";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
-import { useAppStore } from "@/hooks/use-app-store";
+import { useAppStore } from "@/stores/use-app-store";
 
 const RefineFeature = () => {
   const { t } = useTranslation();

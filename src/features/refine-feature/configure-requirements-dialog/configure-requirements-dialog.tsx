@@ -14,9 +14,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog/dialog";
-import { useAppStore } from "@/hooks/use-app-store";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
 import { routes } from "@/router";
+import { useAppStore } from "@/stores/use-app-store";
+import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 
 interface ConfigureRequirementsDialogProps {
   trigger: React.ReactNode;
@@ -28,8 +29,9 @@ const ConfigureRequirementsDialog = ({
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const { configureRequirements, setConfigureRequirements, isLoading } =
-    useAppStore();
+  const { isLoading } = useAppStore();
+  const { configureRequirements, setConfigureRequirements } =
+    useRefineFeatureStore();
 
   const { fetchRefinedRequirements } = useRefineRequirements();
 

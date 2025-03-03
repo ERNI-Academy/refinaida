@@ -11,10 +11,10 @@ import {
   CardTitle,
 } from "@/components/ui/card/card";
 import Spinner from "@/components/ui/spinner/spinner";
-import { useAppStore } from "@/hooks/use-app-store";
+import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 
 const RefineFeatureRequirements = () => {
-  const { refinedFeature, isLoadingChat } = useAppStore();
+  const { refinedFeature, isLoadingChat } = useRefineFeatureStore();
 
   const existDescriptionOld: boolean = useMemo(
     () => !!(refinedFeature.description.new && refinedFeature.description.old),

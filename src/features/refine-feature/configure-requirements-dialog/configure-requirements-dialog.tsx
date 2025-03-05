@@ -104,7 +104,7 @@ const ConfigureRequirementsDialog = ({
         <DialogFooter>
           {type === RequirementTypeEnum.GET_REQUIREMENTS && (
             <ButtonLoading
-              className="w-7/12 ml-auto"
+              className="w-6/12 ml-auto"
               onClick={handleRequirements}
               isLoading={isLoading}
             >
@@ -114,7 +114,7 @@ const ConfigureRequirementsDialog = ({
             </ButtonLoading>
           )}
           {type === RequirementTypeEnum.SAVE_REQUIREMENTS && (
-            <Button className="w-7/12 ml-auto" onClick={() => setIsOpen(false)}>
+            <Button className="w-6/12 ml-auto" onClick={() => setIsOpen(false)}>
               {t(
                 "refineFeature.configureRequirementsDialog.dialog.buttons.saveRequirements"
               )}

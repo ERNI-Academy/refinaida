@@ -1,4 +1,4 @@
-import { Logs } from "lucide-react";
+import { Logs, Settings } from "lucide-react";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import BacklogFeatureDetail from "@/features/backlog-feature/backlog-feature-detail/backlog-feature-detail";
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
+import ConfigureRequirementsDialog from "@/features/refine-feature/configure-requirements-dialog/configure-requirements-dialog";
+import { RequirementTypeEnum } from "@/features/refine-feature/configure-requirements-dialog/configure-requirements-dialog.conts";
 import useRefineDetailBacklog from "@/hooks/use-refine-detail-backlog";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
 import { useAppStore } from "@/stores/use-app-store";
@@ -63,7 +65,7 @@ const BacklogFeature = () => {
           rightWidth="w-10"
         />
         <div className="w-full flex gap-4">
-          <div className="w-1/2 flex justify-between">
+          <div className="w-1/2 flex gap-4">
             <ButtonLoading
               className="w-5/12"
               onClick={handleThinkMore}
@@ -72,6 +74,18 @@ const BacklogFeature = () => {
             >
               {t("backlogFeature.buttons.thinkMore")}
             </ButtonLoading>
+            <ConfigureRequirementsDialog
+              trigger={
+                <Button
+                  className="w-auto"
+                  variant={"outline"}
+                  disabled={isLoading || isLoadingDetail}
+                >
+                  <Settings className="h-5 w-5" />
+                </Button>
+              }
+              type={RequirementTypeEnum.SAVE_REQUIREMENTS}
+            />
           </div>
           <div className="w-1/2 flex">
             <ButtonLoading

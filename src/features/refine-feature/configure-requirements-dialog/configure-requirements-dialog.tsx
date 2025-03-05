@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
+import { Button } from "@/components/ui/button/button";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import Counter from "@/components/ui/counter/counter";
 import {
@@ -14,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog/dialog";
+import { RequirementTypeEnum } from "@/features/refine-feature/configure-requirements-dialog/configure-requirements-dialog.conts";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
 import { routes } from "@/router";
 import { useAppStore } from "@/stores/use-app-store";
@@ -21,10 +23,12 @@ import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 
 interface ConfigureRequirementsDialogProps {
   trigger: React.ReactNode;
+  type: RequirementTypeEnum;
 }
 
 const ConfigureRequirementsDialog = ({
   trigger,
+  type,
 }: ConfigureRequirementsDialogProps) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -35,6 +39,7 @@ const ConfigureRequirementsDialog = ({
 
   const { fetchRefinedRequirements } = useRefineRequirements();
 
+  const [isOpen, setIsOpen] = useState(false);
   const [userStories, setUserStories] = useState(
     configureRequirements.userStories
   );
@@ -55,7 +60,7 @@ const ConfigureRequirementsDialog = ({
   }, [fetchRefinedRequirements, navigate]);
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="md:max-w-[450px]">
         <DialogHeader>
@@ -97,15 +102,24 @@ const ConfigureRequirementsDialog = ({
           </div>
         </div>
         <DialogFooter>
-          <ButtonLoading
-            className="w-7/12 ml-auto"
-            onClick={handleRequirements}
-            isLoading={isLoading}
-          >
-            {t(
-              "refineFeature.configureRequirementsDialog.dialog.buttons.getRequirements"
-            )}
-          </ButtonLoading>
+          {type === RequirementTypeEnum.GET_REQUIREMENTS && (
+            <ButtonLoading
+              className="w-7/12 ml-auto"
+              onClick={handleRequirements}
+              isLoading={isLoading}
+            >
+              {t(
+                "refineFeature.configureRequirementsDialog.dialog.buttons.getRequirements"
+              )}
+            </ButtonLoading>
+          )}
+          {type === RequirementTypeEnum.SAVE_REQUIREMENTS && (
+            <Button className="w-7/12 ml-auto" onClick={() => setIsOpen(false)}>
+              {t(
+                "refineFeature.configureRequirementsDialog.dialog.buttons.saveRequirements"
+              )}
+            </Button>
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog/dialog";
-import { RequirementTypeEnum } from "@/features/refine-feature/configure-requirements-dialog/configure-requirements-dialog.conts";
+import { RequirementTypeEnum } from "@/features/shared/configure-requirements-dialog/configure-requirements-dialog.conts";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
 import { routes } from "@/router";
 import { useAppStore } from "@/stores/use-app-store";

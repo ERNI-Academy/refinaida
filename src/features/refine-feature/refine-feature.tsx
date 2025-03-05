@@ -6,6 +6,7 @@ import Sidebar from "@/components/sidebar/sidebar";
 import { Button } from "@/components/ui/button/button";
 import BackNewFeatureDialog from "@/features/refine-feature/back-new-feature-dialog/back-new-feature-dialog";
 import ConfigureRequirementsDialog from "@/features/refine-feature/configure-requirements-dialog/configure-requirements-dialog";
+import { RequirementTypeEnum } from "@/features/refine-feature/configure-requirements-dialog/configure-requirements-dialog.conts";
 import RefineFeatureChat from "@/features/refine-feature/refine-feature-chat/refine-feature-chat";
 import RefineFeatureRequirements from "@/features/refine-feature/refine-feature-requirements/refine-feature-requirements";
 import { useAppStore } from "@/stores/use-app-store";
@@ -51,6 +52,7 @@ const RefineFeature = () => {
                   {t("refineFeature.configureRequirementsDialog.button")}
                 </Button>
               }
+              type={RequirementTypeEnum.GET_REQUIREMENTS}
             />
           </div>
         </div>

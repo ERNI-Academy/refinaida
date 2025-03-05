@@ -37,7 +37,8 @@
                 },
                 "buttons": {
                     "back": "Back",
-                    "getRequirements": "Get requirements"
+                    "getRequirements": "Get requirements",
+                    "saveRequirements": "Save requirements"
                 }
             }
         }

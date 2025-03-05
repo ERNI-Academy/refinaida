@@ -13,6 +13,6 @@ export const NewRefinedFeature: RefinedFeature = {
 };
 
 export const NewConfigureRequirements: ConfigureRequirements = {
-  userStories: 3,
-  acceptanceCriteria: 6,
+  userStories: 5,
+  acceptanceCriteria: 10,
 };

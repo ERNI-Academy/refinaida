@@ -27,6 +27,7 @@ export interface ConfigureRequirements {
 }
 
 export interface RefinedBacklogDetails {
+  businessValue: string;
   description: string;
   acceptanceCriteria: string[];
   addicionalNotes: string;

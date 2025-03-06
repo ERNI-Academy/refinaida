@@ -54,6 +54,7 @@
         "detail": {
             "itemNotSelected": "Select item to view the details...",
             "itemUpdating": "Updating details of the selected item...",
+            "detailOptions.BUSINESS_VALUE": "Business value",
             "detailOptions.DESCRIPTION": "Description",
             "detailOptions.ACCEPTANCE_CRITERIA": "Acceptance criteria",
             "detailOptions.ADDICIONAL_NOTES": "Adicional notes"

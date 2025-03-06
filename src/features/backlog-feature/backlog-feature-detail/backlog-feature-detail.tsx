@@ -33,6 +33,10 @@ const BacklogFeatureDetail = () => {
           <CardTitle className="mb-3">{detailRefinedBacklog.summary}</CardTitle>
           <div className="pb-10">
             <BacklogFeatureDetailItem
+              type={DetailType.BUSINESS_VALUE}
+              value={detailRefinedBacklog.details.businessValue}
+            />
+            <BacklogFeatureDetailItem
               type={DetailType.DESCRIPTION}
               value={detailRefinedBacklog.details.description}
             />

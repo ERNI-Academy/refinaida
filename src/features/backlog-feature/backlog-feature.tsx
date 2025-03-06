@@ -10,6 +10,7 @@ import BacklogFeatureDetail from "@/features/backlog-feature/backlog-feature-det
 import BacklogFeatureList from "@/features/backlog-feature/backlog-feature-list/backlog-feature-list";
 import ConfigureRequirementsDialog from "@/features/shared/configure-requirements-dialog/configure-requirements-dialog";
 import { RequirementTypeEnum } from "@/features/shared/configure-requirements-dialog/configure-requirements-dialog.conts";
+import { mapRefinedBacklogToExport } from "@/helpers/helpers";
 import useRefineDetailBacklog from "@/hooks/use-refine-detail-backlog";
 import useRefineRequirements from "@/hooks/use-refine-requirements";
 import { useAppStore } from "@/stores/use-app-store";
@@ -31,7 +32,8 @@ const BacklogFeature = () => {
   const { fetchRefineDetailBacklog } = useRefineDetailBacklog();
 
   const handleDownloadCSV = () => {
-    const csv = jsonToCsv(refinedBacklog);
+    const mapRefinedBacklog = mapRefinedBacklogToExport(refinedBacklog);
+    const csv = jsonToCsv(mapRefinedBacklog);
     downloadCsv(csv, `${feature.name}_storys.csv`);
   };
 

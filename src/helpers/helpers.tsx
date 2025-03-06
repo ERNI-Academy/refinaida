@@ -33,6 +33,7 @@ export const mapRefinedBacklogResponse = (
     assignee: backlogItem.assignee,
     release: backlogItem.release,
     details: {
+      businessValue: backlogItem.details.businessValue,
       description: backlogItem.details.description,
       acceptanceCriteria: backlogItem.details.acceptanceCriteria,
       addicionalNotes: backlogItem.details.addicionalNotes,
@@ -42,6 +43,9 @@ export const mapRefinedBacklogResponse = (
 export const transformDetailsToString = (
   details: RefinedBacklogDetails
 ): string => {
-  const { description, acceptanceCriteria, addicionalNotes } = details;
-  return `${description} ${acceptanceCriteria.join(" ")} ${addicionalNotes}`;
+  const { businessValue, description, acceptanceCriteria, addicionalNotes } =
+    details;
+  return `${businessValue} ${description} ${acceptanceCriteria.join(
+    " "
+  )} ${addicionalNotes}`;
 };

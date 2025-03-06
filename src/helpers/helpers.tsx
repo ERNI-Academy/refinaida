@@ -5,6 +5,7 @@ import {
 import {
   RefinedBacklog,
   RefinedBacklogDetails,
+  RefinedBacklogExport,
   RefinedFeature,
 } from "@/types/common";
 
@@ -39,6 +40,30 @@ export const mapRefinedBacklogResponse = (
       addicionalNotes: backlogItem.details.addicionalNotes,
     } as RefinedBacklogDetails,
   }));
+
+export const mapRefinedBacklogToExport = (
+  refinedBacklog: RefinedBacklog[]
+): RefinedBacklogExport[] =>
+  refinedBacklog.map((refinedBacklogItem) => ({
+    key: refinedBacklogItem.code,
+    summary: refinedBacklogItem.summary,
+    issueType: refinedBacklogItem.issueType,
+    priority: refinedBacklogItem.priority,
+    assignee: refinedBacklogItem.assignee,
+    release: refinedBacklogItem.release,
+    description: transformBacklogDetailsToString(refinedBacklogItem.details),
+  }));
+
+export const transformBacklogDetailsToString = (
+  refinedBacklogDetails: RefinedBacklogDetails
+): string => {
+  return `
+  Business value: ${refinedBacklogDetails.businessValue}
+  Description: ${refinedBacklogDetails.description}
+  Acceptance criteria: ${refinedBacklogDetails.acceptanceCriteria.join("; ")}
+  Addicional notes: ${refinedBacklogDetails.addicionalNotes}
+  `;
+};
 
 export const transformDetailsToString = (
   details: RefinedBacklogDetails

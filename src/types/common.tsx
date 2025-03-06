@@ -49,3 +49,13 @@ export interface RefinedBacklogDetailList {
   type: DetailType;
   value: string | string[];
 }
+
+export interface RefinedBacklogExport {
+  key: string;
+  summary: string;
+  issueType: string;
+  priority: string;
+  assignee: string;
+  release: string;
+  description: string;
+}

@@ -44,31 +44,38 @@ const NewFeature = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
-    if (file && file.type === "application/pdf") {
-      try {
-        const textDocument = await convertPdfToText(file);
-        updateFeature({ textDocument });
-        toast({
-          variant: ToastVariant.Success,
-          title: t("components.toaster.uploadPdfSuccess.title"),
-          description: t("components.toaster.uploadPdfSuccess.description"),
-        });
-      } catch {
-        toast({
-          variant: ToastVariant.Error,
-          title: t("components.toaster.convertPdfError.title"),
-          description: t("components.toaster.convertPdfError.description"),
-        });
+    let textDocument: string | null = null;
+
+    try {
+      if (file && file.type === "application/pdf") {
+        textDocument = await convertPdfToText(file);
+      } else if (file && file.type === "text/plain") {
+        textDocument = await file.text();
+      } else {
+        updateFeature({ textDocument: null });
+        if (event.target.files?.length) {
+          toast({
+            variant: ToastVariant.Warning,
+            title: t("components.toaster.typeDocumentWarning.title"),
+            description: t(
+              "components.toaster.typeDocumentWarning.description"
+            ),
+          });
+        }
+        return;
       }
-    } else {
-      updateFeature({ textDocument: null });
-      if (event.target.files?.length) {
-        toast({
-          variant: ToastVariant.Warning,
-          title: t("components.toaster.uploadPdfError.title"),
-          description: t("components.toaster.uploadPdfError.description"),
-        });
-      }
+      updateFeature({ textDocument });
+      toast({
+        variant: ToastVariant.Success,
+        title: t("components.toaster.uploadDocumentSuccess.title"),
+        description: t("components.toaster.uploadDocumentSuccess.description"),
+      });
+    } catch {
+      toast({
+        variant: ToastVariant.Error,
+        title: t("components.toaster.convertDocumentError.title"),
+        description: t("components.toaster.convertDocumentError.description"),
+      });
     }
   };
 
@@ -106,7 +113,7 @@ const NewFeature = () => {
               <div className="flex w-auto">
                 <Input
                   type="file"
-                  accept="application/pdf"
+                  accept=".pdf, .txt"
                   className="hidden"
                   ref={fileInputRef}
                   onChange={handleFileUpload}

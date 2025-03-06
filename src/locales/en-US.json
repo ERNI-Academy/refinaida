@@ -84,17 +84,17 @@
             "title": "Uh oh! Something went wrong.",
             "description": "There was a problem with your request. Try again, please."
           },
-          "convertPdfError": {
+          "typeDocumentWarning": {
             "title": "Uh oh! Something went wrong.",
-            "description": "An error occurred while converting the PDF, please try uploading again."
+            "description": "Documents can only be PDF or TXT, please select a valid one. Try again, please."
           },
-          "uploadPdfSuccess": {
+          "convertDocumentError": {
+            "title": "Uh oh! Something went wrong.",
+            "description": "An error occurred while converting the document, please try uploading again."
+          },
+          "uploadDocumentSuccess": {
             "title": "Upload!",
-            "description": "The pdf has been uploaded successfully."
-          },
-          "uploadPdfError": {
-            "title": "Uh oh! Something went wrong.",
-            "description": "Documents can only be PDF, please select a valid one. Try again, please."
+            "description": "Document has been uploaded successfully."
           }
         }
     }

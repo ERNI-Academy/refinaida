@@ -1,3 +1,5 @@
+import { DetailType } from "@/features/backlog-feature/backlog-feature-detail-item/backlog-feature-detail-item.const";
+
 export interface Feature {
   name: string;
   context: string;
@@ -41,4 +43,9 @@ export interface RefinedBacklog {
   assignee: string;
   release: string;
   details: RefinedBacklogDetails;
+}
+
+export interface RefinedBacklogDetailList {
+  type: DetailType;
+  value: string | string[];
 }

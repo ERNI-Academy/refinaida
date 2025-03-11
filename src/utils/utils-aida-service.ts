@@ -57,13 +57,15 @@ export const sendRefinedRequirements = async (
 
 export const sendRefinedDetailBacklog = async (
   context: string,
-  detailBacklog: string
+  detailSummary: string,
+  acceptanceCriteria: number
 ): Promise<string> => {
   try {
     let prompt: string;
     prompt = refineDetailBacklogPrompt
       .replace("{{feature_context}}", context)
-      .replace("{{detailBacklog}}", detailBacklog);
+      .replace("{{detailSummary}}", detailSummary)
+      .replace("{{acceptanceCriteria}}", acceptanceCriteria.toString());
     return await AidaService.generateResponse(prompt);
   } catch (error) {
     throw error;

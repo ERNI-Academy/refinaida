@@ -7,23 +7,40 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   minHeight?: string;
   maxHeight?: string;
   isActive?: boolean;
+  disabled?: boolean;
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, height, minHeight, maxHeight, isActive, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn(
-        "rounded-lg border bg-card text-card-foreground",
-        {
-          "bg-gray-100": isActive,
-        },
-        className
-      )}
-      style={{ height, minHeight, maxHeight }}
-      {...props}
-    />
-  )
+  (
+    {
+      className,
+      height,
+      minHeight,
+      maxHeight,
+      isActive,
+      disabled,
+      onClick,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <div
+        ref={ref}
+        className={cn(
+          "rounded-lg border bg-card text-card-foreground",
+          {
+            "bg-gray-100": isActive,
+            "opacity-50 cursor-not-allowed": disabled,
+          },
+          className
+        )}
+        style={{ height, minHeight, maxHeight }}
+        onClick={(e) => !disabled && onClick?.(e)}
+        {...props}
+      />
+    );
+  }
 );
 
 Card.displayName = "Card";

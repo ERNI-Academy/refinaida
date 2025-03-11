@@ -16,6 +16,7 @@ const BacklogFeatureList = () => {
     refinedBacklog,
     currentCodeRefinedStory,
     setCurrentCodeRefinedStory,
+    isLoadingDetail,
   } = useBacklogFeatureStore();
 
   return (
@@ -26,12 +27,15 @@ const BacklogFeatureList = () => {
     >
       {refinedBacklog.map((refinedBacklogItem) => (
         <Card
+          key={refinedBacklogItem.code}
           className={`w-full mb-4 last:mb-0 h-30 backlog-list-card shadow-sm ${
-            isLoading ? "hover:cursor-not-allowed" : "hover:cursor-pointer"
+            isLoading || isLoadingDetail
+              ? "hover:cursor-not-allowed"
+              : "hover:cursor-pointer"
           } `}
           onClick={() => setCurrentCodeRefinedStory(refinedBacklogItem.code)}
           isActive={currentCodeRefinedStory === refinedBacklogItem.code}
-          key={refinedBacklogItem.code}
+          disabled={isLoading || isLoadingDetail}
         >
           <div className="flex flex-col w-full gap-4">
             <div className="flex">

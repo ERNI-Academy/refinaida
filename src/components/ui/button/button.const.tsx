@@ -28,3 +28,9 @@ export const buttonVariants = cva(
     },
   }
 );
+
+export enum ButtonType {
+  BUTTON = "button",
+  SUBMIT = "submit",
+  RESET = "reset",
+}

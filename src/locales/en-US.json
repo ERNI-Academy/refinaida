@@ -10,6 +10,12 @@
         },
         "input": {
             "placeholder": "Type something you want to refine..."
+        },
+        "validations": {
+            "name": {
+                "required": "Feature name is required.",
+                "minLength": "Feature name must be at least 3 characters long."
+            }
         }
     },
     "refineFeature": {

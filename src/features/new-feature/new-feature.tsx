@@ -64,11 +64,7 @@ const NewFeature = () => {
     let textDocument: string | null = null;
 
     try {
-      if (file && file.type === "application/pdf") {
-        textDocument = await convertPdfToText(file);
-      } else if (file && file.type === "text/plain") {
-        textDocument = await file.text();
-      } else {
+      if (file?.type !== "application/pdf" && file?.type !== "text/plain") {
         updateFeature({ textDocument: null });
         if (event.target.files?.length) {
           toast({
@@ -79,14 +75,20 @@ const NewFeature = () => {
             ),
           });
         }
-        return;
+      } else {
+        textDocument =
+          file.type === "text/plain"
+            ? await file.text()
+            : await convertPdfToText(file);
+        updateFeature({ textDocument });
+        toast({
+          variant: ToastVariant.Success,
+          title: t("components.toaster.uploadDocumentSuccess.title"),
+          description: t(
+            "components.toaster.uploadDocumentSuccess.description"
+          ),
+        });
       }
-      updateFeature({ textDocument });
-      toast({
-        variant: ToastVariant.Success,
-        title: t("components.toaster.uploadDocumentSuccess.title"),
-        description: t("components.toaster.uploadDocumentSuccess.description"),
-      });
     } catch {
       toast({
         variant: ToastVariant.Error,

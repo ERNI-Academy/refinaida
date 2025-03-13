@@ -1,11 +1,13 @@
 import { FileCheck2, FilePlus2 } from "lucide-react";
 import { useCallback, useRef } from "react";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { Container } from "@/components/layout/container/container";
 import { useToast } from "@/components/toaster/hook/use-toast";
 import { Button } from "@/components/ui/button/button";
+import { ButtonType } from "@/components/ui/button/button.const";
 import { ButtonLoading } from "@/components/ui/button-loading/button-loading";
 import {
   Card,
@@ -22,6 +24,10 @@ import { useAppStore } from "@/stores/use-app-store";
 import { useRefineFeatureStore } from "@/stores/use-refine-feature-store";
 import { convertPdfToText, handleEnterKey } from "@/utils/utils";
 
+interface NewFeatureFormValues {
+  name: string;
+}
+
 const NewFeature = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -32,13 +38,24 @@ const NewFeature = () => {
 
   const { fetchRefinedFeatureName } = useRefineFeatureName();
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NewFeatureFormValues>();
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleRefine = useCallback(async () => {
+  const refineFeature = useCallback(async () => {
     setMessages([]);
     await fetchRefinedFeatureName();
     navigate(routes.refineFeature);
   }, [setMessages, fetchRefinedFeatureName, navigate]);
+
+  const handleRefine = (data: NewFeatureFormValues) => {
+    updateFeature({ name: data.name });
+    refineFeature();
+  };
 
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>
@@ -91,36 +108,46 @@ const NewFeature = () => {
           </CardDescription>
         </CardHeader>
         <CardContent className="p-4">
-          <div className="flex flex-col gap-4 items-center">
+          <form
+            onSubmit={handleSubmit(handleRefine)}
+            className="flex flex-col gap-4 items-center"
+          >
             <div className="flex w-3/6">
               <Input
-                className="w-full"
+                className="flex w-full"
                 placeholder={t("newFeature.input.placeholder")}
-                value={feature.name}
-                onChange={(e) => updateFeature({ name: e.target.value })}
-                onKeyDown={(e) => handleEnterKey(e, handleRefine)}
+                {...register("name", {
+                  required: t("newFeature.validations.name.required"),
+                  minLength: {
+                    value: 3,
+                    message: t("newFeature.validations.name.minLength"),
+                  },
+                })}
+                error={errors.name}
                 disabled={isLoading}
+                onKeyDown={(e) => handleEnterKey(e, handleSubmit(handleRefine))}
               />
             </div>
             <div className="flex w-3/6 gap-4">
               <ButtonLoading
-                className="flex w-5/6"
-                onClick={handleRefine}
+                className="flex w-full"
                 isLoading={isLoading}
+                type={ButtonType.SUBMIT}
               >
                 {t("newFeature.buttons.startRefining")}
               </ButtonLoading>
               <div className="flex w-auto">
                 <Input
+                  ref={fileInputRef}
                   type="file"
                   accept=".pdf, .txt"
                   className="hidden"
-                  ref={fileInputRef}
                   onChange={handleFileUpload}
                 />
                 <Button
                   variant="outline"
                   onClick={() => fileInputRef.current?.click()}
+                  disabled={isLoading}
                 >
                   {!feature.textDocument ? (
                     <FilePlus2 className="h-6 w-6" />
@@ -130,7 +157,7 @@ const NewFeature = () => {
                 </Button>
               </div>
             </div>
-          </div>
+          </form>
         </CardContent>
       </Card>
     </Container>

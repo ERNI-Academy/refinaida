@@ -23,8 +23,8 @@ const BacklogFeature = () => {
   const { feature, isLoading } = useAppStore();
   const {
     refinedBacklog,
-    currentCodeRefinedStory,
-    setCurrentCodeRefinedStory,
+    currentCodeRefinedStorie,
+    setCurrentCodeRefinedStorie,
     isLoadingDetail,
   } = useBacklogFeatureStore();
 
@@ -34,13 +34,13 @@ const BacklogFeature = () => {
   const handleDownloadCSV = () => {
     const mapRefinedBacklog = mapRefinedBacklogToExport(refinedBacklog);
     const csv = jsonToCsv(mapRefinedBacklog);
-    downloadCsv(csv, `${feature.name}_storys.csv`);
+    downloadCsv(csv, `${feature.name}_stories.csv`);
   };
 
   const handleThinkMore = useCallback(() => {
-    setCurrentCodeRefinedStory("");
+    setCurrentCodeRefinedStorie("");
     fetchRefinedRequirements();
-  }, [setCurrentCodeRefinedStory, fetchRefinedRequirements]);
+  }, [setCurrentCodeRefinedStorie, fetchRefinedRequirements]);
 
   return (
     <Container size="lg">
@@ -94,7 +94,7 @@ const BacklogFeature = () => {
               className="w-5/12"
               onClick={fetchRefineDetailBacklog}
               isLoading={isLoadingDetail}
-              disabled={!currentCodeRefinedStory}
+              disabled={!currentCodeRefinedStorie}
             >
               {t("backlogFeature.buttons.refineDetail")}
             </ButtonLoading>

@@ -28,13 +28,13 @@ const BackNewFeatureDialog = ({ trigger }: BackNewFeatureDialogProps) => {
   const { resetFeature } = useAppStore();
   const { resetConfigureRequirements, resetRefinedFeature } =
     useRefineFeatureStore();
-  const { setCurrentCodeRefinedStory } = useBacklogFeatureStore();
+  const { setCurrentCodeRefinedStorie } = useBacklogFeatureStore();
 
   const handleBackNewFeature = () => {
     resetFeature();
     resetConfigureRequirements();
     resetRefinedFeature();
-    setCurrentCodeRefinedStory("");
+    setCurrentCodeRefinedStorie("");
     navigate(routes.default);
   };
 

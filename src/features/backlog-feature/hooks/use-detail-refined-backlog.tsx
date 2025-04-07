@@ -3,11 +3,11 @@ import { useMemo } from "react";
 import { useBacklogFeatureStore } from "@/stores/use-backlog-feature-store";
 
 const useGetDetailRefinedFeature = () => {
-  const { refinedBacklog, currentCodeRefinedStory } = useBacklogFeatureStore();
+  const { refinedBacklog, currentCodeRefinedStorie } = useBacklogFeatureStore();
 
   const detailRefinedBacklog = useMemo(
-    () => refinedBacklog.find((rb) => rb.code === currentCodeRefinedStory),
-    [currentCodeRefinedStory, refinedBacklog]
+    () => refinedBacklog.find((rb) => rb.code === currentCodeRefinedStorie),
+    [currentCodeRefinedStorie, refinedBacklog]
   );
 
   return { detailRefinedBacklog };

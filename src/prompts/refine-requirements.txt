@@ -25,17 +25,17 @@ Response Format: Ensure your response is a valid JSON with the following fields:
 [
     {
         "code": "Here number the Stories to have a reference.",
-        "summary": "Here is the title of the User Story. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. One sentence, Less than 15 words.",
+        "summary": "Here is the title of the User Storie. Feel free to be imaginative and detailed. Structure it in different paragraphs to improve readability. One sentence, Less than 15 words.",
         "details": {
 			"businessValue": "Here is a business value for the user's information. Feel free to be imaginative and detailed. Use agile structure (as, want, so).",
 			"description": "Here is a description. Feel free to be imaginative and detailed.",
 			"acceptanceCriteria": "Here is a acceptance criteria for the user's information. Feel free to be imaginative and detailed. Use BDD to further describe it, "{{acceptanceCriteria}}" acceptance criteria. Detail the expected value and/or result. Should have always given/then structure. Return string array"
 			"additionalNotes": "Here is a additional notes for the user's information. Feel free to be imaginative and detailed. List the stakeholders that need to be involved and why.",
 		},
-        "issueType": "Here by default it will be: Story",
+        "issueType": "Here by default it will be: Storie",
         "priority": "Here by default it will be: Minior",
         "assignee": "Here by default it will be: Undefined",
-        "release": "Using Story Mapping, related wich stories you will deploy together and in which order. Do not relate with Sprints, give them a name with 5 words maximum that helps understand the release.",
+        "release": "Using Storie Mapping, related wich stories you will deploy together and in which order. Do not relate with Sprints, give them a name with 5 words maximum that helps understand the release.",
     }
 ]
 

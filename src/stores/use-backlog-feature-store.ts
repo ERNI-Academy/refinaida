@@ -10,8 +10,8 @@ interface BacklogFeatureStoreState {
     key: keyof RefinedBacklog,
     value: any
   ) => void;
-  currentCodeRefinedStory: string;
-  setCurrentCodeRefinedStory: (currentCodeRefinedStory: string) => void;
+  currentCodeRefinedStorie: string;
+  setCurrentCodeRefinedStorie: (currentCodeRefinedStorie: string) => void;
   isLoadingDetail: boolean;
   setIsLoadingDetail: (isLoadingDetail: boolean) => void;
 }
@@ -31,9 +31,9 @@ export const useBacklogFeatureStore = create<BacklogFeatureStoreState>(
           item.code === code ? { ...item, [key]: value } : item
         ),
       })),
-    currentCodeRefinedStory: "",
-    setCurrentCodeRefinedStory: (currentCodeRefinedStory: string) =>
-      set({ currentCodeRefinedStory }),
+    currentCodeRefinedStorie: "",
+    setCurrentCodeRefinedStorie: (currentCodeRefinedStorie: string) =>
+      set({ currentCodeRefinedStorie }),
     isLoadingDetail: false,
     setIsLoadingDetail: (isLoadingDetail: boolean) => set({ isLoadingDetail }),
   })

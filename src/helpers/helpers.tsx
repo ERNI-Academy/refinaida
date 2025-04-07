@@ -37,7 +37,7 @@ export const mapRefinedBacklogResponse = (
       businessValue: backlogItem.details.businessValue,
       description: backlogItem.details.description,
       acceptanceCriteria: backlogItem.details.acceptanceCriteria,
-      addicionalNotes: backlogItem.details.addicionalNotes,
+      additionalNotes: backlogItem.details.additionalNotes,
     } as RefinedBacklogDetails,
   }));
 
@@ -61,16 +61,16 @@ export const transformBacklogDetailsToString = (
   Business value: ${refinedBacklogDetails.businessValue}
   Description: ${refinedBacklogDetails.description}
   Acceptance criteria: ${refinedBacklogDetails.acceptanceCriteria.join("; ")}
-  Addicional notes: ${refinedBacklogDetails.addicionalNotes}
+  Additional notes: ${refinedBacklogDetails.additionalNotes}
   `;
 };
 
 export const transformDetailsToString = (
   details: RefinedBacklogDetails
 ): string => {
-  const { businessValue, description, acceptanceCriteria, addicionalNotes } =
+  const { businessValue, description, acceptanceCriteria, additionalNotes } =
     details;
   return `${businessValue} ${description} ${acceptanceCriteria.join(
     " "
-  )} ${addicionalNotes}`;
+  )} ${additionalNotes}`;
 };

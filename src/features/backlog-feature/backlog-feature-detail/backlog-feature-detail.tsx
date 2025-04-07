@@ -33,7 +33,7 @@ const BacklogFeatureDetail = () => {
     },
     {
       type: DetailType.ADDICIONAL_NOTES,
-      value: detailRefinedBacklog?.details.addicionalNotes || "",
+      value: detailRefinedBacklog?.details.additionalNotes || "",
     },
   ];
 

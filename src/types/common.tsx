@@ -32,7 +32,7 @@ export interface RefinedBacklogDetails {
   businessValue: string;
   description: string;
   acceptanceCriteria: string[];
-  addicionalNotes: string;
+  additionalNotes: string;
 }
 
 export interface RefinedBacklog {

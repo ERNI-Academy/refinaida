@@ -23,8 +23,8 @@ const BacklogFeature = () => {
   const { feature, isLoading } = useAppStore();
   const {
     refinedBacklog,
-    currentCodeRefinedStorie,
-    setCurrentCodeRefinedStorie,
+    currentCodeRefinedStory,
+    setCurrentCodeRefinedStory,
     isLoadingDetail,
   } = useBacklogFeatureStore();
 
@@ -38,9 +38,9 @@ const BacklogFeature = () => {
   };
 
   const handleThinkMore = useCallback(() => {
-    setCurrentCodeRefinedStorie("");
+    setCurrentCodeRefinedStory("");
     fetchRefinedRequirements();
-  }, [setCurrentCodeRefinedStorie, fetchRefinedRequirements]);
+  }, [setCurrentCodeRefinedStory, fetchRefinedRequirements]);
 
   return (
     <Container size="lg">
@@ -94,7 +94,7 @@ const BacklogFeature = () => {
               className="w-5/12"
               onClick={fetchRefineDetailBacklog}
               isLoading={isLoadingDetail}
-              disabled={!currentCodeRefinedStorie}
+              disabled={!currentCodeRefinedStory}
             >
               {t("backlogFeature.buttons.refineDetail")}
             </ButtonLoading>

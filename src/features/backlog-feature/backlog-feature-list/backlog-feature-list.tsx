@@ -14,8 +14,8 @@ const BacklogFeatureList = () => {
   const { isLoading } = useAppStore();
   const {
     refinedBacklog,
-    currentCodeRefinedStorie,
-    setCurrentCodeRefinedStorie,
+    currentCodeRefinedStory,
+    setCurrentCodeRefinedStory,
     isLoadingDetail,
   } = useBacklogFeatureStore();
 
@@ -33,8 +33,8 @@ const BacklogFeatureList = () => {
               ? "hover:cursor-not-allowed"
               : "hover:cursor-pointer"
           } `}
-          onClick={() => setCurrentCodeRefinedStorie(refinedBacklogItem.code)}
-          isActive={currentCodeRefinedStorie === refinedBacklogItem.code}
+          onClick={() => setCurrentCodeRefinedStory(refinedBacklogItem.code)}
+          isActive={currentCodeRefinedStory === refinedBacklogItem.code}
           disabled={isLoading || isLoadingDetail}
         >
           <div className="flex flex-col w-full gap-4">

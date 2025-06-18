@@ -24,9 +24,11 @@ Use one or more of the following approaches to guide your analysis:
 Apply only those tools that add clarity and insight. Avoid overuse.
 
 Provided Information  
-The Product Owner has already defined the following:
+Here is the refined feature definition provided by the Product Owner:
 
-"{{feature_context}}"
+=== FEATURE CONTEXT ===  
+{{feature_context}}  
+=== END CONTEXT ===
 
 The team has now added this additional input:
 
@@ -45,7 +47,7 @@ Response Format
 Ensure your response is a valid JSON with the following fields:
 
 {
-  "summary": "Here is the title of the feature. Be concise and descriptive. One sentence, less than 15 words.",
+  "summary": "Default: {{feature_summary}}",
   "description": "Here is the new text combining all user-provided information. Use a clear, professional tone. Structure in short, well-written paragraphs. Max 1000 characters.",
   "questions": [
     "Ask 3 smart, open-ended questions to clarify or extend the feature definition.",

@@ -19,9 +19,11 @@ You may use one or more of the following techniques as appropriate. Use only tho
 - **Socratic Questions, RICE, Kano, or Value vs Effort**: Use only if needed to determine value or surface story gaps
 
 Provided Information  
-The Product Owner has provided the following context:
+Here is the refined feature definition provided by the Product Owner:
 
-"{{feature_context}}"
+=== FEATURE CONTEXT ===  
+{{feature_context}}  
+=== END CONTEXT ===
 
 Use this to derive your user stories and structure them logically.
 
@@ -36,7 +38,7 @@ Ensure your response is a valid JSON array with the following structure (one obj
       "businessValue": "Use user story format (as, want, so). Summarize the core value of the story.",
       "description": "Brief explanation of the feature or need. Professional tone. Max 500 characters.",
       "acceptanceCriteria": [
-        "Returns "{{acceptanceCriteria}}" acceptance criteria.",
+        "Provide exactly {{acceptanceCriteria}} acceptance criteria. If {{acceptanceCriteria}} is 1, you must return only one acceptance criteria. Do not add extra examples or steps unless explicitly required.",
         "Given [precondition], when [action], then [expected outcome].",
         "Additional Given/When/Then steps if required."
       ],

@@ -25,13 +25,15 @@ export const sendRefinedFeatureName = async (
 
 export const sendRefinedFeatureContext = async (
   context: string,
-  user_input: string
+  user_input: string,
+  summary: string
 ): Promise<string> => {
   try {
     let prompt: string;
     prompt = refineFeatureContextPrompt
       .replace("{{feature_context}}", context)
-      .replace("{{feature_user_input}}", user_input);
+      .replace("{{feature_user_input}}", user_input)
+      .replace("{{feature_summary}}", summary);
     return await AidaService.generateResponse(prompt);
   } catch (error) {
     throw error;

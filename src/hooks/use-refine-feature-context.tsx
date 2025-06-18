@@ -23,7 +23,8 @@ const useRefineFeatureContext = () => {
         setIsLoadingChat(true);
         const response = await sendRefinedFeatureContext(
           feature.context,
-          user_input
+          user_input,
+          refinedFeature.summary
         );
         const parsedResponse = parseAidaRefinedFeatureResponse(response);
         updateFeature({

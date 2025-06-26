@@ -37,6 +37,34 @@ const BacklogFeatureDetail = () => {
     },
   ];
 
+  let detailContent;
+  if (isLoadingDetail) {
+    detailContent = (
+      <div className="flex items-center justify-center h-full">
+        {t("backlogFeature.detail.itemUpdating")}
+      </div>
+    );
+  } else if (detailRefinedBacklog) {
+    detailContent = (
+      <CardHeader className="w-full h-full p-10">
+        <CardTitle className="mb-3">{detailRefinedBacklog.summary}</CardTitle>
+        <div className="pb-10">
+          {backlogFeatureDetailList.map(
+            ({ type, value }: RefinedBacklogDetailList) => (
+              <BacklogFeatureDetailItem key={type} type={type} value={value} />
+            )
+          )}
+        </div>
+      </CardHeader>
+    );
+  } else {
+    detailContent = (
+      <div className="flex items-center justify-center h-full">
+        {t("backlogFeature.detail.itemNotSelected")}
+      </div>
+    );
+  }
+
   return (
     <Card
       className={`backlog-feature-detail-wrapper overflow-y-auto shadow-lg ${
@@ -44,30 +72,7 @@ const BacklogFeatureDetail = () => {
       } `}
       height="500px"
     >
-      {isLoadingDetail ? (
-        <div className="flex items-center justify-center h-full">
-          {t("backlogFeature.detail.itemUpdating")}
-        </div>
-      ) : detailRefinedBacklog ? (
-        <CardHeader className="w-full h-full p-10">
-          <CardTitle className="mb-3">{detailRefinedBacklog.summary}</CardTitle>
-          <div className="pb-10">
-            {backlogFeatureDetailList.map(
-              ({ type, value }: RefinedBacklogDetailList) => (
-                <BacklogFeatureDetailItem
-                  key={type}
-                  type={type}
-                  value={value}
-                />
-              )
-            )}
-          </div>
-        </CardHeader>
-      ) : (
-        <div className="flex items-center justify-center h-full">
-          {t("backlogFeature.detail.itemNotSelected")}
-        </div>
-      )}
+      {detailContent}
     </Card>
   );
 };

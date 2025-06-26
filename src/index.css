@@ -56,21 +56,20 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
-  * {
+  /* Resets y utilidades base */
+  *,
+  *::before,
+  *::after {
     @apply border-border;
   }
-  html {
+  html,
+  body,
+  #root {
     @apply h-full w-full;
   }
   body {
-    @apply bg-background text-foreground;
-    @apply h-full w-full min-w-96;
+    @apply bg-background text-foreground min-w-96;
     font-family: "Source Sans 3", sans-serif;
-  }
-  #root {
-    @apply h-full w-full;
   }
 }

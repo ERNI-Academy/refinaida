@@ -15,7 +15,7 @@ enum TooltipSide {
 interface TooltipProps {
   trigger: React.ReactNode;
   content: React.ReactNode;
-  side?: TooltipSide | undefined;
+  side?: TooltipSide;
 }
 
 const Tooltip = ({

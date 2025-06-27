@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 
+import ERNI_Logo from "@/assets/ERNI_coat-of-arms_dark-blue.png";
 import BackNewFeatureDialog from "@/features/shared/back-new-feature-dialog/back-new-feature-dialog";
 import { routes } from "@/router";
 
@@ -14,9 +15,14 @@ export const Shell = ({ children }: ShellProps) => {
 
   return (
     <div className="flex flex-col h-full w-full">
-      <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 border-b bg-background px-4">
+      <header className="sticky top-0 z-10 flex h-[57px] items-center gap-1 px-4 border-b bg-background">
         {location.pathname === routes.default ? (
-          <h1 className="text-2xl uppercase font-mono">{t("header.title")}</h1>
+          <div className="flex w-auto">
+            <img src={ERNI_Logo} className="h-8" />
+            <h1 className="ml-4 text-2xl uppercase font-mono text-brand-primary">
+              {t("header.title")}
+            </h1>
+          </div>
         ) : (
           <BackNewFeatureDialog
             trigger={

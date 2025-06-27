@@ -104,6 +104,7 @@ const ConfigureRequirementsDialog = ({
         <DialogFooter>
           {type === RequirementTypeEnum.GET_REQUIREMENTS && (
             <ButtonLoading
+              variant={"brandPrimary"}
               className="w-6/12 ml-auto"
               onClick={handleRequirements}
               isLoading={isLoading}

@@ -96,8 +96,8 @@ const RefineFeatureChat = () => {
           <Send
             className={`h-6 w-6 ${
               !isLoading && !isLoadingChat
-                ? "cursor-pointer text-black"
-                : "cursor-not-allowed text-gray-400"
+                ? "cursor-pointer text-brand-primary"
+                : "cursor-not-allowed text-brand-secondary-60"
             }`}
             onClick={handleSendMessage}
           />

@@ -40,8 +40,8 @@ const MessageText = ({ message, isLoading = false }: MessageTextProps) => {
         <div
           className={`p-2 inline-block ${
             isUser
-              ? "order-1 bg-blue-800 text-white rounded-except-br"
-              : "order-3 bg-gray-200 text-black rounded-except-bl"
+              ? "order-1 bg-brand-primary-40 text-white rounded-except-br"
+              : "order-3 bg-brand-secondary-95 text-black rounded-except-bl"
           }`}
         >
           {Array.isArray(message.text) ? (
@@ -58,7 +58,11 @@ const MessageText = ({ message, isLoading = false }: MessageTextProps) => {
           )}
         </div>
         <div className="flex items-end order-2">
-          {isUser ? <User className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
+          {isUser ? (
+            <User className="h-6 w-6 text-brand-primary" />
+          ) : (
+            <Bot className="h-6 w-6 text-brand-primary" />
+          )}
         </div>
       </div>
     </div>

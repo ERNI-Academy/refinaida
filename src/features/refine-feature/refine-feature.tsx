@@ -20,10 +20,10 @@ const RefineFeature = () => {
     <Container size="lg">
       <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col w-full items-center justify-center">
-          <span className="text-lg font-bold text-gray-500">
+          <span className="text-lg font-bold text-brand-secondary-50">
             {t("refineFeature.title")}
           </span>
-          <span className="text-5xl text-ellipsis whitespace-nowrap w-full text-center overflow-hidden">
+          <span className="text-5xl text-brand-primary whitespace-nowrap w-full text-center overflow-hidden max-w-[35ch] truncate">
             {feature.name}
           </span>
         </div>
@@ -48,7 +48,7 @@ const RefineFeature = () => {
           <div className="w-2/4 flex">
             <ConfigureRequirementsDialog
               trigger={
-                <Button className="w-7/12 ml-auto">
+                <Button className="w-7/12 ml-auto" variant="brandPrimary">
                   {t("refineFeature.configureRequirementsDialog.button")}
                 </Button>
               }

@@ -132,6 +132,7 @@ const NewFeature = () => {
             </div>
             <div className="flex w-3/6 gap-4">
               <ButtonLoading
+                variant="brandPrimary"
                 className="flex w-full"
                 isLoading={isLoading}
                 type={ButtonType.SUBMIT}
@@ -152,7 +153,7 @@ const NewFeature = () => {
                   disabled={isLoading}
                 >
                   {!feature.textDocument ? (
-                    <FilePlus2 className="h-6 w-6" />
+                    <FilePlus2 className="h-6 w-6 text-brand-primary" />
                   ) : (
                     <FileCheck2 className="h-6 w-6" color="#15803D" />
                   )}

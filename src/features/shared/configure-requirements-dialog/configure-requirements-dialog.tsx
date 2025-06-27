@@ -115,7 +115,11 @@ const ConfigureRequirementsDialog = ({
             </ButtonLoading>
           )}
           {type === RequirementTypeEnum.SAVE_REQUIREMENTS && (
-            <Button className="w-6/12 ml-auto" onClick={() => setIsOpen(false)}>
+            <Button
+              variant={"brandPrimary"}
+              className="w-6/12 ml-auto"
+              onClick={() => setIsOpen(false)}
+            >
               {t(
                 "refineFeature.configureRequirementsDialog.dialog.buttons.saveRequirements"
               )}

@@ -46,15 +46,15 @@ const BacklogFeature = () => {
     <Container size="lg">
       <div className="flex flex-col w-full gap-8">
         <div className="flex flex-col w-full items-center justify-center">
-          <span className="text-lg font-bold text-gray-500">
+          <span className="text-lg font-bold text-brand-secondary-50">
             {t("backlogFeature.title")}
           </span>
-          <span className="text-5xl text-ellipsis whitespace-nowrap w-full text-center overflow-hidden">
+          <span className="text-5xl text-brand-primary whitespace-nowrap w-full text-center overflow-hidden">
             {feature.name}
           </span>
         </div>
         <div className="flex flex-col w-full p-0">
-          <span className="text-2xl font-bold text-gray-500">
+          <span className="text-2xl font-bold text-brand-secondary-50">
             {t("backlogFeature.secondTitle")}
           </span>
         </div>
@@ -69,6 +69,7 @@ const BacklogFeature = () => {
         <div className="w-full flex gap-4">
           <div className="w-1/2 flex gap-4">
             <ButtonLoading
+              variant={"brandPrimary"}
               className="w-5/12"
               onClick={handleThinkMore}
               isLoading={isLoading}
@@ -91,6 +92,7 @@ const BacklogFeature = () => {
           </div>
           <div className="w-1/2 flex">
             <ButtonLoading
+              variant={"brandPrimary"}
               className="w-5/12"
               onClick={fetchRefineDetailBacklog}
               isLoading={isLoadingDetail}
@@ -99,6 +101,7 @@ const BacklogFeature = () => {
               {t("backlogFeature.buttons.refineDetail")}
             </ButtonLoading>
             <Button
+              variant={"brandPrimary"}
               className="w-5/12 ml-auto"
               onClick={handleDownloadCSV}
               disabled={isLoading || isLoadingDetail}

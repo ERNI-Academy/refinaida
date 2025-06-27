@@ -47,7 +47,9 @@ const BacklogFeatureDetail = () => {
   } else if (detailRefinedBacklog) {
     detailContent = (
       <CardHeader className="w-full h-full p-10">
-        <CardTitle className="mb-3">{detailRefinedBacklog.summary}</CardTitle>
+        <CardTitle className="mb-3 text-secondary-0">
+          {detailRefinedBacklog.summary}
+        </CardTitle>
         <div className="pb-10">
           {backlogFeatureDetailList.map(
             ({ type, value }: RefinedBacklogDetailList) => (

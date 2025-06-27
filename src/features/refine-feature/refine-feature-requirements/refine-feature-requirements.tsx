@@ -42,7 +42,7 @@ const RefineFeatureRequirements = () => {
         height="550px"
       >
         <CardHeader className="w-full h-full overflow-y-auto p-10">
-          <CardTitle className="mb-3 mr-4">{`Summary: ${refinedFeature.summary}`}</CardTitle>
+          <CardTitle className="mb-3 mr-4 text-brand-secondary-0">{`Summary: ${refinedFeature.summary}`}</CardTitle>
           {existDescriptionOld && toogleDiff ? (
             <TextDiff
               oldText={`Description: ${refinedFeature.description.old}`}

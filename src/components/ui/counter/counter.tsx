@@ -33,6 +33,7 @@ const Counter = ({
       className={cn("flex items-center justify-between px-5 py-2", className)}
     >
       <Button
+        variant={"brandPrimary"}
         onClick={decrement}
         className={`text-white w-8 h-8 flex items-center justify-center rounded-full transition duration-200 ease-in-out shadow-md disabled:bg-gray-400 disabled:opacity-60`}
         disabled={value <= min}
@@ -41,6 +42,7 @@ const Counter = ({
       </Button>
       <span className="text-sm">{value}</span>
       <Button
+        variant={"brandPrimary"}
         onClick={increment}
         className={`text-white w-8 h-8 flex items-center justify-center rounded-full transition duration-200 ease-in-out shadow-md disabled:bg-gray-400 disabled:opacity-60`}
         disabled={value >= max}

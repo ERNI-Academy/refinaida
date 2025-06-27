@@ -105,7 +105,7 @@ const NewFeature = () => {
           <CardTitle className="text-5xl p-1 font-semibold text-center">
             {t("newFeature.title")}
           </CardTitle>
-          <CardDescription className="text-lg p-0 text-gray-500 text-center">
+          <CardDescription className="text-lg p-0 text-center">
             {t("newFeature.subtitle")}
           </CardDescription>
         </CardHeader>

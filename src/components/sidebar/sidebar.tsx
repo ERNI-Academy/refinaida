@@ -34,7 +34,7 @@ const Sidebar = ({
         }`}
       >
         <div
-          className={`flex flex-col pt-1 bg-gray-800 transition-all duration-700 ${
+          className={`flex flex-col pt-1 bg-brand-primary transition-all duration-70 ${
             isSidebarOpen ? "rounded-border" : "rounded-border-collapsed"
           } `}
         >

@@ -1,5 +1,6 @@
 import "./backlog-feature-detail.scss";
 
+import { useCallback, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Card, CardHeader, CardTitle } from "@/components/ui/card/card";
@@ -18,38 +19,36 @@ const BacklogFeatureDetail = () => {
 
   const { detailRefinedBacklog } = useGetDetailRefinedFeature();
 
-  const backlogFeatureDetailList: RefinedBacklogDetailList[] = [
-    {
-      type: DetailType.BUSINESS_VALUE,
-      value: detailRefinedBacklog?.details.businessValue || "",
-    },
-    {
-      type: DetailType.DESCRIPTION,
-      value: detailRefinedBacklog?.details.description || "",
-    },
-    {
-      type: DetailType.ACCEPTANCE_CRITERIA,
-      value: detailRefinedBacklog?.details.acceptanceCriteria || [],
-    },
-    {
-      type: DetailType.ADDICIONAL_NOTES,
-      value: detailRefinedBacklog?.details.additionalNotes || "",
-    },
-  ];
+  const backlogFeatureDetailList = useMemo(
+    (): RefinedBacklogDetailList[] => [
+      {
+        type: DetailType.BUSINESS_VALUE,
+        value: detailRefinedBacklog?.details.businessValue || "",
+      },
+      {
+        type: DetailType.DESCRIPTION,
+        value: detailRefinedBacklog?.details.description || "",
+      },
+      {
+        type: DetailType.ACCEPTANCE_CRITERIA,
+        value: detailRefinedBacklog?.details.acceptanceCriteria || [],
+      },
+      {
+        type: DetailType.ADDICIONAL_NOTES,
+        value: detailRefinedBacklog?.details.additionalNotes || "",
+      },
+    ],
+    [detailRefinedBacklog]
+  );
 
-  let detailContent;
-  if (isLoadingDetail) {
-    detailContent = (
+  const detail = useCallback(() => {
+    return isLoadingDetail ? (
       <div className="flex items-center justify-center h-full">
         {t("backlogFeature.detail.itemUpdating")}
       </div>
-    );
-  } else if (detailRefinedBacklog) {
-    detailContent = (
+    ) : detailRefinedBacklog ? (
       <CardHeader className="w-full h-full p-10">
-        <CardTitle className="mb-3 text-secondary-0">
-          {detailRefinedBacklog.summary}
-        </CardTitle>
+        <CardTitle className="mb-3">{detailRefinedBacklog.summary}</CardTitle>
         <div className="pb-10">
           {backlogFeatureDetailList.map(
             ({ type, value }: RefinedBacklogDetailList) => (
@@ -58,14 +57,12 @@ const BacklogFeatureDetail = () => {
           )}
         </div>
       </CardHeader>
-    );
-  } else {
-    detailContent = (
+    ) : (
       <div className="flex items-center justify-center h-full">
         {t("backlogFeature.detail.itemNotSelected")}
       </div>
     );
-  }
+  }, [backlogFeatureDetailList, detailRefinedBacklog, isLoadingDetail, t]);
 
   return (
     <Card
@@ -74,7 +71,7 @@ const BacklogFeatureDetail = () => {
       } `}
       height="500px"
     >
-      {detailContent}
+      {detail()}
     </Card>
   );
 };

@@ -7,15 +7,15 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: FieldError;
 }
 
+const borderStyles = "border border-brand-secondary-95 rounded-md";
+const disabledStyles = "disabled:cursor-not-allowed disabled:opacity-50";
+const fileStyles =
+  "file:border-0 file:bg-transparent file:text-sm file:font-medium";
+const focusStyles =
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background focus-visible:ring-brand-primary";
+
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, type, error, ...props }, ref) => {
-    const borderStyles = "border border-brand-secondary-95 rounded-md";
-    const disabledStyles = "disabled:cursor-not-allowed disabled:opacity-50";
-    const fileStyles =
-      "file:border-0 file:bg-transparent file:text-sm file:font-medium";
-    const focusStyles =
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background focus-visible:ring-brand-primary";
-
     return (
       <div className="w-full">
         <input

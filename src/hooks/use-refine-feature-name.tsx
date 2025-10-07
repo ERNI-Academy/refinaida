@@ -16,11 +16,11 @@ const useRefineFeatureName = () => {
   const { feature, updateFeature, setIsLoading } = useAppStore();
   const { refinedFeature, setRefinedFeature } = useRefineFeatureStore();
 
-  const fetchRefinedFeatureName = useCallback(async () => {
+  const fetchRefinedFeatureName = useCallback(async (name: string) => {
     try {
       setIsLoading(true);
       const response = await sendRefinedFeatureName(
-        feature.name,
+        name,
         feature.textDocument
       );
       const parsedResponse = parseAidaRefinedFeatureResponse(response);

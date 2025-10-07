@@ -46,15 +46,15 @@ const NewFeature = () => {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const refineFeature = useCallback(async () => {
+  const refineFeature = useCallback(async (name: string) => {
     setMessages([]);
-    await fetchRefinedFeatureName();
+    await fetchRefinedFeatureName(name);
     navigate(routes.refineFeature);
   }, [setMessages, fetchRefinedFeatureName, navigate]);
 
   const handleRefine = (data: NewFeatureFormValues) => {
     updateFeature({ name: data.name });
-    refineFeature();
+    refineFeature(data.name);
   };
 
   const handleFileUpload = async (
